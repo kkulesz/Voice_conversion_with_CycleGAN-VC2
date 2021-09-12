@@ -10,7 +10,7 @@ class ResidualBlock(nn.Module):
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
-                stride=(1, 1),
+                stride=1,
                 padding=padding),
             nn.InstanceNorm1d(
                 num_features=out_channels,
@@ -20,7 +20,7 @@ class ResidualBlock(nn.Module):
                 in_channels=out_channels,
                 out_channels=in_channels,
                 kernel_size=kernel_size,
-                stride=(1, 1),
+                stride=1,
                 padding=padding),
             nn.InstanceNorm1d(
                 num_features=in_channels,

@@ -1,7 +1,8 @@
 import torch
+import torch.nn as nn
 
 
-class GLU(torch.nn.Module):
+class GLU(nn.Module):
     """
     TODO
     """
