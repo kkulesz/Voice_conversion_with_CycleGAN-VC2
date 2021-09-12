@@ -5,9 +5,9 @@ import torch.nn as nn
 from src.model.custom_blocks.glu import GLU
 
 
-class DownSampleLayer(nn.Module):
+class DownSample1DLayer(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
-        super(DownSampleLayer, self).__init__()
+        super(DownSample1DLayer, self).__init__()
         self.sequential = nn.Sequential(
             torch.nn.Conv1d(
                 in_channels=in_channels,

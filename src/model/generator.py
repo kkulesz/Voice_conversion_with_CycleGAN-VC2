@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 
 from src.model.custom_blocks.glu import GLU
-from src.model.custom_blocks.down_sample import DownSampleLayer
+from src.model.custom_blocks.down_sample_1d_layer import DownSample1DLayer
 from src.model.custom_blocks.up_sample import UpSampleLayer
 from src.model.custom_blocks.residual_block import ResidualBlock
 
@@ -20,8 +20,8 @@ class Generator(nn.Module):
             GLU()
         )
 
-        self.down_sample_1 = DownSampleLayer(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
-        self.down_sample_2 = DownSampleLayer(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
+        self.down_sample_1 = DownSample1DLayer(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
+        self.down_sample_2 = DownSample1DLayer(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
 
         self.residual_block = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
         self.number_of_residual_block_iteration = 6
@@ -50,10 +50,8 @@ class Generator(nn.Module):
 
 if __name__ == '__main__':
     # Dimensionality Testing
-
-    np.random.seed(0)
-    x = np.random.randn(158, 24, 128)
-    x = torch.from_numpy(x).float()
     generator = Generator()
+
+    x = torch.randn(158, 24, 128)
     output = generator(x)
-    print(output)
+    print("Output shape Generator:", output.shape)
