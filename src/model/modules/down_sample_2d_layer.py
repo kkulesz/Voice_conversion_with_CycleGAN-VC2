@@ -2,7 +2,7 @@ from typing import Tuple
 
 import torch
 import torch.nn as nn
-from src.model.custom_blocks.glu import GLU
+from src.model.modules.glu import GLU
 
 
 class DownSample2DLayer(nn.Module):

@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from src.model.custom_blocks.glu import GLU
-from src.model.custom_blocks.down_sample_2d_layer import DownSample2DLayer
+from src.model.modules.glu import GLU
+from src.model.modules.down_sample_2d_layer import DownSample2DLayer
 
 
 class Discriminator(nn.Module):
@@ -27,9 +27,13 @@ class Discriminator(nn.Module):
         after_down_sampling_2 = self.down_sample_2(after_down_sampling_1)
         after_down_sampling_3 = self.down_sample_3(after_down_sampling_2)
         after_down_sampling = after_down_sampling_3.contiguous().permute(0, 2, 3, 1).contiguous()
-        result = torch.sigmoid(self.fully_connected_layer(after_down_sampling))
-        return result
+        after_fully_connected_layer = self.fully_connected_layer(after_down_sampling)
+        result = torch.sigmoid(after_fully_connected_layer)
 
+        # first_result_value = result[0][0][0][0]
+        # print("Result: {0}".format(first_result_value))
+
+        return result
 
 if __name__ == '__main__':
     # Dimensionality Testing
@@ -37,4 +41,7 @@ if __name__ == '__main__':
 
     x = torch.randn(158, 24, 128)
     output = discriminator(x)
-    print("Output shape Discriminator:", output.shape)
+    print("Discriminator-output shape:", output.shape)
+
+
+#  plotly-dash, stream-lead - na NTRach projekt

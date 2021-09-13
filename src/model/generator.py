@@ -3,10 +3,10 @@ import torch.nn as nn
 
 import numpy as np
 
-from src.model.custom_blocks.glu import GLU
-from src.model.custom_blocks.down_sample_1d_layer import DownSample1DLayer
-from src.model.custom_blocks.up_sample import UpSampleLayer
-from src.model.custom_blocks.residual_block import ResidualBlock
+from src.model.modules.glu import GLU
+from src.model.modules.down_sample_1d_layer import DownSample1DLayer
+from src.model.modules.up_sample import UpSampleLayer
+from src.model.modules.residual_block import ResidualBlock
 
 
 # TODO: find out what padding is for and decide its value
@@ -54,4 +54,4 @@ if __name__ == '__main__':
 
     x = torch.randn(158, 24, 128)
     output = generator(x)
-    print("Output shape Generator:", output.shape)
+    print("Generator-output shape:", output.shape)

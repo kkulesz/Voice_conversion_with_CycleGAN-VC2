@@ -2,26 +2,28 @@ from typing import Tuple
 
 import torch
 import torch.nn as nn
-from src.model.custom_blocks.glu import GLU
+from src.model.modules.glu import GLU
+from src.model.modules.pixel_shuffle import PixelShuffle
 
 
-class DownSample1DLayer(nn.Module):
+class UpSampleLayer(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
-        super(DownSample1DLayer, self).__init__()
+        super(UpSampleLayer, self).__init__()
         self.sequential = nn.Sequential(
-            torch.nn.Conv1d(
+            nn.Conv1d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
                 stride=stride,
                 padding=padding
             ),
-            torch.nn.InstanceNorm1d(
-                num_features=out_channels,
+            PixelShuffle(upscale_factor=2),
+            nn.InstanceNorm1d(
+                num_features=out_channels // 2,
                 affine=True
             ),
             GLU()
         )
 
-    def forward(self, x: torch.Tensor):
+    def forward(self, x):
         return self.sequential(x)
