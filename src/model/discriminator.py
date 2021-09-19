@@ -14,9 +14,12 @@ class Discriminator(nn.Module):
             GLU()
         )
 
-        self.down_sample_1 = DownSample2DLayer(in_channels=128, out_channels=256, kernel_size=[4, 4], stride=[2, 2], padding=1)
-        self.down_sample_2 = DownSample2DLayer(in_channels=256, out_channels=512, kernel_size=[4, 4], stride=[2, 2], padding=1)
-        self.down_sample_3 = DownSample2DLayer(in_channels=512, out_channels=1024, kernel_size=[5, 4], stride=[1, 2], padding=[2, 1])
+        self.down_sample_1 = DownSample2DLayer(in_channels=128, out_channels=256, kernel_size=[4, 4], stride=[2, 2],
+                                               padding=1)
+        self.down_sample_2 = DownSample2DLayer(in_channels=256, out_channels=512, kernel_size=[4, 4], stride=[2, 2],
+                                               padding=1)
+        self.down_sample_3 = DownSample2DLayer(in_channels=512, out_channels=1024, kernel_size=[5, 4], stride=[1, 2],
+                                               padding=[2, 1])
 
         self.fully_connected_layer = nn.Linear(in_features=1024, out_features=1)
 
@@ -35,6 +38,7 @@ class Discriminator(nn.Module):
 
         return result
 
+
 if __name__ == '__main__':
     # Dimensionality Testing
     discriminator = Discriminator()
@@ -42,6 +46,3 @@ if __name__ == '__main__':
     x = torch.randn(158, 24, 128)
     output = discriminator(x)
     print("Discriminator-output shape:", output.shape)
-
-
-#  plotly-dash, stream-lead - na NTRach projekt
