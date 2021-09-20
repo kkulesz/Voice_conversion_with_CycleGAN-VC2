@@ -12,7 +12,7 @@ class Preprocessor(ABC):
         self._number_of_frames = number_of_frames
 
     @abstractmethod
-    def preprocess(self, data_directory: str):
+    def preprocess(self, data_directory: str, cache_directory: str) -> None:
         pass
 
     def _load_signals(self, data_directory: str):

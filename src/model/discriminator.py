@@ -14,17 +14,14 @@ class Discriminator(nn.Module):
             GLU()
         )
 
-        self.down_sample_1 = DownSample2DLayer(in_channels=128, out_channels=256, kernel_size=[4, 4], stride=[2, 2],
-                                               padding=1)
-        self.down_sample_2 = DownSample2DLayer(in_channels=256, out_channels=512, kernel_size=[4, 4], stride=[2, 2],
-                                               padding=1)
-        self.down_sample_3 = DownSample2DLayer(in_channels=512, out_channels=1024, kernel_size=[5, 4], stride=[1, 2],
-                                               padding=[2, 1])
+        self.down_sample_1 = DownSample2DLayer(in_channels=128, out_channels=256, kernel_size=[4, 4], stride=[2, 2], padding=1)
+        self.down_sample_2 = DownSample2DLayer(in_channels=256, out_channels=512, kernel_size=[4, 4], stride=[2, 2], padding=1)
+        self.down_sample_3 = DownSample2DLayer(in_channels=512, out_channels=1024, kernel_size=[5, 4], stride=[1, 2], padding=[2, 1])
 
         self.fully_connected_layer = nn.Linear(in_features=1024, out_features=1)
 
     def forward(self, x: torch.Tensor):
-        unsqueezed = x.unsqueeze(1)
+        unsqueezed = x.unsqueeze(1)  # (batch_size, 1, number_of_features, time)
         after_initial_conv = self.initial_conv(unsqueezed)
         after_down_sampling_1 = self.down_sample_1(after_initial_conv)
         after_down_sampling_2 = self.down_sample_2(after_down_sampling_1)
@@ -32,9 +29,6 @@ class Discriminator(nn.Module):
         after_down_sampling = after_down_sampling_3.contiguous().permute(0, 2, 3, 1).contiguous()
         after_fully_connected_layer = self.fully_connected_layer(after_down_sampling)
         result = torch.sigmoid(after_fully_connected_layer)
-
-        # first_result_value = result[0][0][0][0]
-        # print("Result: {0}".format(first_result_value))
 
         return result
 
@@ -46,3 +40,4 @@ if __name__ == '__main__':
     x = torch.randn(158, 24, 128)
     output = discriminator(x)
     print("Discriminator-output shape:", output.shape)
+
