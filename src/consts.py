@@ -15,6 +15,10 @@ class Consts:
     male_2 = "SM2"
     female_1 = "SF1"
     female_2 = "SF2"
+    male_to_female = (male_1, female_1)
+    male_to_male = (male_1, male_2)
+    female_to_male = (female_1, male_1)
+    female_to_female = (female_1, female_2)
 
     cache_dir = os.path.join(project_dir_path, "cache")
     A_cache_dir = os.path.join(cache_dir, "A")

@@ -5,11 +5,10 @@ from abc import abstractmethod
 
 
 class Preprocessor(ABC):
-    def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms, number_of_frames):
+    def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms):
         self._number_of_mceps = number_of_mceps
         self._sampling_rate = sampling_rate
         self._frame_period_in_ms = frame_period_in_ms
-        self._number_of_frames = number_of_frames
 
     @abstractmethod
     def preprocess(self, data_directory: str, cache_directory: str) -> None:

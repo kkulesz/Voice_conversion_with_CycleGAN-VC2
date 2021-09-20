@@ -8,12 +8,13 @@ from src.preprocessing.preprocessor import Preprocessor
 
 
 class PyWorldPreprocessor(Preprocessor):
-    def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms, number_of_frames):
-        super(PyWorldPreprocessor, self).__init__(number_of_mceps, sampling_rate, frame_period_in_ms, number_of_frames)
+    def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms):
+        super(PyWorldPreprocessor, self).__init__(number_of_mceps, sampling_rate, frame_period_in_ms)
 
     def preprocess(self, data_directory, cache_directory):
-        A_dataset_dir = os.path.join(data_directory, Consts.male_1)
-        B_dataset_dir = os.path.join(data_directory, Consts.female_1)
+        A, B = Consts.male_to_female
+        A_dataset_dir = os.path.join(data_directory, A)
+        B_dataset_dir = os.path.join(data_directory, B)
 
         self._preprocess_domain(A_dataset_dir, Consts.A_cache_dir)
         self._preprocess_domain(B_dataset_dir, Consts.B_cache_dir)
@@ -85,13 +86,13 @@ class PyWorldPreprocessor(Preprocessor):
         return normalized, mean, std
 
     def _save_preprocessed_data(self, cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
-        mcep_file = os.path.join(cache_directory, "mcep_normalization.npz")
+        mcep_file = os.path.join(cache_directory, Consts.mcep_file)
         np.savez(mcep_file, mean=mcep_mean, std=mcep_std)
 
-        log_f0_file = os.path.join(cache_directory, "f0_normalization.npz")
+        log_f0_file = os.path.join(cache_directory, Consts.f0_file)
         np.savez(log_f0_file, mean=log_f0_mean, std=log_f0_std)
 
-        spectral_envelope_file = os.path.join(cache_directory, "spectral_envelope.pickle")
+        spectral_envelope_file = os.path.join(cache_directory, Consts.spectral_envelope_file)
         with open(spectral_envelope_file, 'wb') as file:
             pickle.dump(spectral_envelope, file)
 
@@ -99,7 +100,6 @@ class PyWorldPreprocessor(Preprocessor):
 if __name__ == '__main__':
     preprocessor = PyWorldPreprocessor(number_of_mceps=24,
                                        sampling_rate=16000,
-                                       frame_period_in_ms=5.0,
-                                       number_of_frames=128)
+                                       frame_period_in_ms=5.0)
 
     preprocessor.preprocess(Consts.vc16_data_dir, Consts.cache_dir)
