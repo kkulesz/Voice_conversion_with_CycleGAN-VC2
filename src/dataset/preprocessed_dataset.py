@@ -14,7 +14,7 @@ class PreprocessedDataset(Dataset):
             self._B_dataset = pickle.load(B_file)
         self._number_of_frames = number_of_frames
 
-        self._increase_randomness()
+        self._A_dataset, self._B_dataset = self._increase_randomness()
 
     def __len__(self):
         return min(len(self._A_dataset), len(self._B_dataset))
@@ -63,6 +63,7 @@ if __name__ == '__main__':
 
     print(len(dataset[0]))
     print(len(dataset[0][0]))
+    print(dataset[0][0].shape)
     print(len(dataset[0][0][0]))
 
 
