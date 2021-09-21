@@ -11,10 +11,10 @@ class Preprocessor(ABC):
         self._frame_period_in_ms = frame_period_in_ms
 
     @abstractmethod
-    def preprocess(self, data_directory: str, cache_directory: str) -> None:
+    def preprocess(self, data_directory: str, A_dir: str, B_dir: str, cache_directory: str) -> None:
         pass
 
-    def _load_signals(self, data_directory: str):
+    def _load_signals(self, data_directory: str) -> list:
         signals = list()
         for file in os.listdir(data_directory):
             file_path = os.path.join(data_directory, file)

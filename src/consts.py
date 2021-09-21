@@ -5,12 +5,15 @@ class Consts:
     # preprocessing constants
     f0_floor = 71.0
     f0_ceil = 800.0
-
+    number_of_mcpes = 24
+    sampling_rate = 16000
+    frame_period_in_ms = 5.0
     number_of_frames = 128
 
     # directories
     project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\src\\"
 
+    # train directories
     data_dir = os.path.join(project_dir_path, "data")
     vc16_data_dir = os.path.join(data_dir, "vc-challenge-2016\\vcc2016_training")
     male_1 = "SM1"
@@ -22,6 +25,7 @@ class Consts:
     female_to_male = (female_1, male_1)
     female_to_female = (female_1, female_2)
 
+    # cache directories
     cache_dir = os.path.join(project_dir_path, "cache")
     A_cache_dir = os.path.join(cache_dir, "A")
     B_cache_dir = os.path.join(cache_dir, "B")

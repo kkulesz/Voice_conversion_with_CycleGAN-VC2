@@ -11,10 +11,9 @@ class PyWorldPreprocessor(Preprocessor):
     def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms):
         super(PyWorldPreprocessor, self).__init__(number_of_mceps, sampling_rate, frame_period_in_ms)
 
-    def preprocess(self, data_directory, cache_directory):
-        A, B = Consts.male_to_female
-        A_dataset_dir = os.path.join(data_directory, A)
-        B_dataset_dir = os.path.join(data_directory, B)
+    def preprocess(self, data_directory, A_dir, B_dir, cache_directory):
+        A_dataset_dir = os.path.join(data_directory, A_dir)
+        B_dataset_dir = os.path.join(data_directory, B_dir)
 
         self._preprocess_domain(A_dataset_dir, Consts.A_cache_dir)
         self._preprocess_domain(B_dataset_dir, Consts.B_cache_dir)
@@ -102,4 +101,8 @@ if __name__ == '__main__':
                                        sampling_rate=16000,
                                        frame_period_in_ms=5.0)
 
-    preprocessor.preprocess(Consts.vc16_data_dir, Consts.cache_dir)
+    A_sub_dir, B_sub_dir = Consts.male_to_female
+    preprocessor.preprocess(data_directory=Consts.vc16_data_dir,
+                            A_dir=A_sub_dir,
+                            B_dir=B_sub_dir,
+                            cache_directory=Consts.cache_dir)

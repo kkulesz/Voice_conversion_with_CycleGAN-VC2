@@ -46,7 +46,12 @@ class PreprocessedDataset(Dataset):
             B_data_shrinked = self._get_random_frames_chunk(B_data)
             B_ready.append(B_data_shrinked)
 
-        return np.array(A_ready), np.array(B_ready)
+        A_numpy = np.array(A_ready)
+        B_numpy = np.array(B_ready)
+
+        A_torch = torch.from_numpy(A_numpy)
+        B_torch = torch.from_numpy(B_numpy)
+        return A_torch, B_torch
 
     def _get_random_frames_chunk(self, data):
         all_data_frames = data.shape[1]

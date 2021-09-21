@@ -27,6 +27,10 @@ def delete_cache_dirs():
     shutil.rmtree(Consts.cache_dir)
 
 
-if __name__ == '__main__':
+def prepare_project_dir():
     delete_cache_dirs()
     create_cache_dirs()
+
+
+if __name__ == '__main__':
+    prepare_project_dir()
