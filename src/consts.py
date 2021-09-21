@@ -2,13 +2,26 @@ import os
 
 
 class Consts:
-    # preprocessing constants
+    # preprocessing
     f0_floor = 71.0
     f0_ceil = 800.0
     number_of_mcpes = 24
     sampling_rate = 16000
     frame_period_in_ms = 5.0
     number_of_frames = 128
+
+    # training
+    mini_batch_size = 1
+    generator_lr = 0.0002
+    discriminator_lr = 0.0001
+    generator_lr_decay = generator_lr/200000
+    discriminator_lr_decay = discriminator_lr/200000
+    start_decay_after = 200000
+    adam_optimizer_betas = (0.5, 0.999)
+    cycle_loss_lambda = 10
+    identity_loss_lambda = 5
+    zero_identity_loss_lambda_after = 10000
+
 
     # directories
     project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\src\\"

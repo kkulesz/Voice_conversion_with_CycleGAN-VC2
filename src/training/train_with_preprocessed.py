@@ -1,3 +1,5 @@
+from torch.utils.data import DataLoader
+
 from src.consts import Consts
 
 from src.preprocessing.prepare_project_directory import prepare_project_dir
@@ -25,3 +27,15 @@ if __name__ == '__main__':
     dataset = PreprocessedDataset(A_dataset_file=Consts.A_preprocessed_dataset_file,
                                   B_dataset_file=Consts.B_preprocessed_dataset_file,
                                   number_of_frames=Consts.number_of_frames)
+
+    dataloader = DataLoader(dataset=dataset,
+                            batch_size=Consts.mini_batch_size,
+                            shuffle=False,
+                            drop_last=False)
+
+    generator = Generator()
+    discriminator = Discriminator()
+    for i, (real_A, real_B) in enumerate(dataloader):
+        # TODO for some reason need to make .float so it is 'float32' instead of 'float64'
+        after_generator = generator(real_A.float())
+        x = discriminator(after_generator)
