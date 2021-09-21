@@ -6,6 +6,8 @@ class Consts:
     f0_floor = 71.0
     f0_ceil = 800.0
 
+    number_of_frames = 128
+
     # directories
     project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\src\\"
 
@@ -26,4 +28,6 @@ class Consts:
     mcep_file = "mcep_normalization.npz"
     f0_file = "f0_normalization.npz"
     spectral_envelope_file = "spectral_envelope.pickle"
+    A_preprocessed_dataset_file = os.path.join(A_cache_dir, spectral_envelope_file)
+    B_preprocessed_dataset_file = os.path.join(B_cache_dir, spectral_envelope_file)
 
