@@ -15,5 +15,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test pipeline
-        run: python &{{env.TEST_DIR}}/test_pipeline.py
+        run: python ${{env.TEST_DIR}}/test_pipeline.py
         shell: sh
