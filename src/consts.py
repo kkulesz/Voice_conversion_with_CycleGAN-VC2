@@ -14,21 +14,20 @@ class Consts:
     mini_batch_size = 1
     generator_lr = 0.0002
     discriminator_lr = 0.0001
-    generator_lr_decay = generator_lr/200000
-    discriminator_lr_decay = discriminator_lr/200000
+    generator_lr_decay = generator_lr / 200000
+    discriminator_lr_decay = discriminator_lr / 200000
     start_decay_after = 200000
     adam_optimizer_betas = (0.5, 0.999)
     cycle_loss_lambda = 10
     identity_loss_lambda = 5
     zero_identity_loss_lambda_after = 10000
 
-
     # directories
     project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\src\\"
 
     # train directories
     data_dir = os.path.join(project_dir_path, "data")
-    vc16_data_dir = os.path.join(data_dir, "vc-challenge-2016\\vcc2016_training")
+    data_dir_vc16 = os.path.join(data_dir, "vc-challenge-2016\\vcc2016_training")
     male_1 = "SM1"
     male_2 = "SM2"
     female_1 = "SF1"
@@ -42,9 +41,8 @@ class Consts:
     cache_dir = os.path.join(project_dir_path, "cache")
     A_cache_dir = os.path.join(cache_dir, "A")
     B_cache_dir = os.path.join(cache_dir, "B")
-    mcep_file = "mcep_normalization.npz"
-    f0_file = "f0_normalization.npz"
+    mcep_norm_file = "mcep_normalization.npz"
+    log_f0_norm_file = "f0_normalization.npz"
     spectral_envelope_file = "spectral_envelope.pickle"
     A_preprocessed_dataset_file = os.path.join(A_cache_dir, spectral_envelope_file)
     B_preprocessed_dataset_file = os.path.join(B_cache_dir, spectral_envelope_file)
-

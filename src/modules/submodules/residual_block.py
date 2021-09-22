@@ -1,5 +1,5 @@
 import torch.nn as nn
-from src.model.modules.glu import GLU
+from src.modules.submodules.glu import GLU
 
 
 class ResidualBlock(nn.Module):

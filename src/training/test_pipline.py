@@ -1,25 +1,30 @@
+import torch
 from torch.utils.data import DataLoader
 
 from src.consts import Consts
 
-from src.preprocessing.prepare_project_directory import prepare_project_dir
+from src.preprocessing.prepare_project_directory import reset_cache_dirs
 from src.preprocessing.pyworld_preprocessor import PyWorldPreprocessor
-
 from src.dataset.preprocessed_dataset import PreprocessedDataset
+from src.modules.generator import Generator
+from src.modules.discriminator import Discriminator
 
-from src.model.generator import Generator
-from src.model.discriminator import Discriminator
+
+def print_tensor_info(source: str, x: torch.Tensor) -> None:
+    print(f"{source}:\n"
+          f"\tshape={x.shape}\n"
+          f"\ttype={x.dtype}\n")
+
 
 if __name__ == '__main__':
-    # testing pipeline
+    reset_cache_dirs()
 
-    prepare_project_dir()
     preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes,
                                        sampling_rate=Consts.sampling_rate,
                                        frame_period_in_ms=Consts.frame_period_in_ms)
 
     A_dir, B_dir = Consts.male_to_female
-    preprocessor.preprocess(data_directory=Consts.vc16_data_dir,
+    preprocessor.preprocess(data_directory=Consts.data_dir_vc16,
                             A_dir=A_dir,
                             B_dir=B_dir,
                             cache_directory=Consts.cache_dir)
@@ -36,6 +41,16 @@ if __name__ == '__main__':
     generator = Generator()
     discriminator = Discriminator()
     for i, (real_A, real_B) in enumerate(dataloader):
-        # TODO for some reason need to make .float so it is 'float32' instead of 'float64'
-        after_generator = generator(real_A.float())
-        x = discriminator(after_generator)
+        print_tensor_info('Input', real_A)
+
+        after_generator = generator(real_A)
+        print_tensor_info('Generator output', after_generator)
+
+        after_discriminator = discriminator(after_generator)
+        print_tensor_info('Discriminator output', after_discriminator)
+
+        # TODO: make unit tests later
+        assert real_A.shape == after_generator.shape
+        print(after_discriminator[0][0][0])
+
+        exit(0)  # do not iterate, one is enough

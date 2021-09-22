@@ -3,10 +3,10 @@ import torch.nn as nn
 
 import numpy as np
 
-from src.model.modules.glu import GLU
-from src.model.modules.down_sample_1d_layer import DownSample1DLayer
-from src.model.modules.up_sample import UpSampleLayer
-from src.model.modules.residual_block import ResidualBlock
+from src.modules.submodules.glu import GLU
+from src.modules.submodules.down_sample_1d_layer import DownSample1DLayer
+from src.modules.submodules.up_sample import UpSampleLayer
+from src.modules.submodules.residual_block import ResidualBlock
 
 
 # TODO: find out what padding is for and decide its value
@@ -23,6 +23,7 @@ class Generator(nn.Module):
         self.down_sample_1 = DownSample1DLayer(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
         self.down_sample_2 = DownSample1DLayer(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
 
+        # TODO: probably need to create 6 residual blocks instead of iterating 6 times through the same
         self.residual_block = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
         self.number_of_residual_block_iteration = 6
 

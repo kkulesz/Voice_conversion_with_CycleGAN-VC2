@@ -21,7 +21,7 @@ class PyWorldPreprocessor(Preprocessor):
     def _preprocess_domain(self, data_directory, cache_directory):
         signals = self._load_signals(data_directory)
 
-        f0s, time_axes, _, _, spectral_envelopes = self._decompose_signals(signals)
+        f0s, _, _, _, spectral_envelopes = self._decompose_signals(signals)
 
         log_f0s_concatenated = np.ma.log(np.concatenate(f0s))
         log_f0_mean = log_f0s_concatenated.mean()
@@ -60,21 +60,26 @@ class PyWorldPreprocessor(Preprocessor):
     def _decompose_signal(self, signal):
         signal = signal.astype(np.float64)
 
-        # Note form PyWorld github: Is SNR(signal-to-noise-ratio) is low then use 'harvest' instead of 'dio'
+        # Note form PyWorld github: If SNR(signal-to-noise-ratio) is low then use 'harvest' instead of 'dio'
         f0, time = pw.dio(signal, self._sampling_rate, f0_floor=Consts.f0_floor, f0_ceil=Consts.f0_ceil)
-        # f0 = pw.stonemask(signal, f0, time, self._sampling_rate) # pitch_refinement - OPTIONAL - TODO: check whether it does not break anything
+
+        # OPTIONAL - TODO: check whether it does not break anything
+        # f0 = pw.stonemask(signal, f0, time, self._sampling_rate) # pitch_refinement
+
         smoothed_spectogram = pw.cheaptrick(signal, f0, time, self._sampling_rate)
         aperiodicity = pw.d4c(signal, f0, time, self._sampling_rate)
 
         return f0, time, smoothed_spectogram, aperiodicity
 
-    def _transpose_in_list(self, to_transpose):
+    @staticmethod
+    def _transpose_in_list(to_transpose):
         transposed_lst = list()
         for array in to_transpose:
             transposed_lst.append(array.T)
         return transposed_lst
 
-    def _normalize_spectral_envelope(self, spectral_envelopes):
+    @staticmethod
+    def _normalize_spectral_envelope(spectral_envelopes):
         concatenated = np.concatenate(spectral_envelopes, axis=1)
         mean = np.mean(concatenated, axis=1, keepdims=True)
         std = np.std(concatenated, axis=1, keepdims=True)
@@ -84,11 +89,12 @@ class PyWorldPreprocessor(Preprocessor):
 
         return normalized, mean, std
 
-    def _save_preprocessed_data(self, cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
-        mcep_file = os.path.join(cache_directory, Consts.mcep_file)
+    @staticmethod
+    def _save_preprocessed_data(cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
+        mcep_file = os.path.join(cache_directory, Consts.mcep_norm_file)
         np.savez(mcep_file, mean=mcep_mean, std=mcep_std)
 
-        log_f0_file = os.path.join(cache_directory, Consts.f0_file)
+        log_f0_file = os.path.join(cache_directory, Consts.log_f0_norm_file)
         np.savez(log_f0_file, mean=log_f0_mean, std=log_f0_std)
 
         spectral_envelope_file = os.path.join(cache_directory, Consts.spectral_envelope_file)
@@ -97,12 +103,12 @@ class PyWorldPreprocessor(Preprocessor):
 
 
 if __name__ == '__main__':
-    preprocessor = PyWorldPreprocessor(number_of_mceps=24,
-                                       sampling_rate=16000,
-                                       frame_period_in_ms=5.0)
+    preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes,
+                                       sampling_rate=Consts.sampling_rate,
+                                       frame_period_in_ms=Consts.frame_period_in_ms)
 
     A_sub_dir, B_sub_dir = Consts.male_to_female
-    preprocessor.preprocess(data_directory=Consts.vc16_data_dir,
+    preprocessor.preprocess(data_directory=Consts.data_dir_vc16,
                             A_dir=A_sub_dir,
                             B_dir=B_sub_dir,
                             cache_directory=Consts.cache_dir)

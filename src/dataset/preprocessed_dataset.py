@@ -9,12 +9,12 @@ from src.consts import Consts
 class PreprocessedDataset(Dataset):
     def __init__(self, A_dataset_file, B_dataset_file, number_of_frames):
         with open(A_dataset_file, 'rb') as A_file:
-            self._A_dataset = pickle.load(A_file)
+            self._A_file_content = pickle.load(A_file)
         with open(B_dataset_file, 'rb') as B_file:
-            self._B_dataset = pickle.load(B_file)
+            self._B_file_content = pickle.load(B_file)
         self._number_of_frames = number_of_frames
 
-        self._A_dataset, self._B_dataset = self._increase_randomness()
+        self._A_dataset, self._B_dataset = self._prepare_datasets()
 
     def __len__(self):
         return min(len(self._A_dataset), len(self._B_dataset))
@@ -22,11 +22,11 @@ class PreprocessedDataset(Dataset):
     def __getitem__(self, idx):
         return self._A_dataset[idx], self._B_dataset[idx]
 
-    def _increase_randomness(self):
-        number_of_samples = min(len(self._A_dataset), len(self._B_dataset))  # __len__()?
+    def _prepare_datasets(self):
+        number_of_samples = min(len(self._A_file_content), len(self._B_file_content))
 
-        A_indexes = np.arange(len(self._A_dataset))
-        B_indexes = np.arange(len(self._B_dataset))
+        A_indexes = np.arange(len(self._A_file_content))
+        B_indexes = np.arange(len(self._B_file_content))
 
         A_indexes_shuffled = np.random.permutation(A_indexes)
         B_indexes_shuffled = np.random.permutation(B_indexes)
@@ -37,8 +37,8 @@ class PreprocessedDataset(Dataset):
         A_ready = list()
         B_ready = list()
         for (A_idx, B_idx) in zip(A_indexes_shrinked, B_indexes_shrinked):
-            A_data = self._A_dataset[A_idx]
-            B_data = self._B_dataset[B_idx]
+            A_data = self._A_file_content[A_idx]
+            B_data = self._B_file_content[B_idx]
 
             A_data_shrinked = self._get_random_frames_chunk(A_data)
             A_ready.append(A_data_shrinked)
@@ -51,7 +51,10 @@ class PreprocessedDataset(Dataset):
 
         A_torch = torch.from_numpy(A_numpy)
         B_torch = torch.from_numpy(B_numpy)
-        return A_torch, B_torch
+
+        # '.float()' because network for some reason is expecting float32 instead of float64
+        # TODO
+        return A_torch.float(), B_torch.float()
 
     def _get_random_frames_chunk(self, data):
         all_data_frames = data.shape[1]
