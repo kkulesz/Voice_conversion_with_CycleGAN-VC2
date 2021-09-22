@@ -5,12 +5,19 @@ import numpy as np
 
 from src.consts import Consts
 
+ignore_errors = True
+
 
 class FilesOperator:
     @staticmethod
     def reset_cache_dirs():
         FilesOperator.__delete_cache_dirs()
         FilesOperator.__create_cache_dirs()
+
+    @staticmethod
+    def reset_validation_dirs():
+        FilesOperator.__delete_validation_dirs()
+        FilesOperator.__create_validation_dirs()
 
     @staticmethod
     def save_preprocessed_data(cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
@@ -54,4 +61,14 @@ class FilesOperator:
 
     @staticmethod
     def __delete_cache_dirs():
-        shutil.rmtree(Consts.cache_dir)
+        shutil.rmtree(Consts.cache_dir, ignore_errors=ignore_errors)
+
+    @staticmethod
+    def __create_validation_dirs():
+        os.mkdir(Consts.validation_output_dir)
+        os.mkdir(Consts.A_output_dir)
+        os.mkdir(Consts.B_output_dir)
+
+    @staticmethod
+    def __delete_validation_dirs():
+        shutil.rmtree(Consts.validation_output_dir, ignore_errors=ignore_errors)

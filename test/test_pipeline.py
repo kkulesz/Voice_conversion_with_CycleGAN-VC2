@@ -17,6 +17,7 @@ def print_tensor_info(source: str, x: torch.Tensor) -> None:
 
 if __name__ == '__main__':
     FilesOperator.reset_cache_dirs()
+    FilesOperator.reset_validation_dirs()
 
     preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes,
                                        sampling_rate=Consts.sampling_rate,

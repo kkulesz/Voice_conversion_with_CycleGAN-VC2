@@ -2,7 +2,9 @@ import os
 
 
 class Consts:
-    # preprocessing
+    # ------------------------------ #
+    #  preprocessing                 #
+    # ------------------------------ #
     f0_floor = 71.0
     f0_ceil = 800.0
     number_of_mcpes = 24
@@ -10,7 +12,9 @@ class Consts:
     frame_period_in_ms = 5.0
     number_of_frames = 128
 
-    # training
+    # ------------------------------ #
+    #  training params               #
+    # ------------------------------ #
     mini_batch_size = 1
     generator_lr = 0.0002
     discriminator_lr = 0.0001
@@ -21,11 +25,16 @@ class Consts:
     cycle_loss_lambda = 10
     identity_loss_lambda = 5
     zero_identity_loss_lambda_after = 10000
+    number_of_epochs = 5000
 
-    # directories
+    # ------------------------------ #
+    #  FILES AND DIRECTORIES         #
+    # ------------------------------ #
     project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\src\\"
 
-    # train directories
+    # ------------------------------ #
+    #  trains directories            #
+    # ------------------------------ #
     data_dir = os.path.join(project_dir_path, "data")
     data_dir_vc16 = os.path.join(data_dir, "vc-challenge-2016\\vcc2016_training")
     male_1 = "SM1"
@@ -37,7 +46,9 @@ class Consts:
     female_to_male = (female_1, male_1)
     female_to_female = (female_1, female_2)
 
-    # cache directories
+    # ------------------------------ #
+    #  cache directories             #
+    # ------------------------------ #
     cache_dir = os.path.join(project_dir_path, "cache")
     A_cache_dir = os.path.join(cache_dir, "A")
     B_cache_dir = os.path.join(cache_dir, "B")
@@ -46,3 +57,11 @@ class Consts:
     spectral_envelope_file = "spectral_envelope.pickle"
     A_preprocessed_dataset_file = os.path.join(A_cache_dir, spectral_envelope_file)
     B_preprocessed_dataset_file = os.path.join(B_cache_dir, spectral_envelope_file)
+
+    # ------------------------------ #
+    #  validation directories        #
+    # ------------------------------ #
+    validation_output_dir = os.path.join(project_dir_path, "validation")
+    A_output_dir = os.path.join(validation_output_dir, "A")
+    B_output_dir = os.path.join(validation_output_dir, "B")
+
