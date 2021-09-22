@@ -2,8 +2,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from src.consts import Consts
-
-from src.preprocessing.prepare_project_directory import reset_cache_dirs
+from src.utils.files_operator import FilesOperator
 from src.preprocessing.pyworld_preprocessor import PyWorldPreprocessor
 from src.dataset.preprocessed_dataset import PreprocessedDataset
 from src.modules.generator import Generator
@@ -17,7 +16,7 @@ def print_tensor_info(source: str, x: torch.Tensor) -> None:
 
 
 if __name__ == '__main__':
-    reset_cache_dirs()
+    FilesOperator.reset_cache_dirs()
 
     preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes,
                                        sampling_rate=Consts.sampling_rate,

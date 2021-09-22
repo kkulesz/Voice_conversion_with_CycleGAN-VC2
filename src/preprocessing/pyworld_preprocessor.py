@@ -4,6 +4,7 @@ import pyworld as pw
 import pickle
 
 from src.consts import Consts
+from src.utils.files_operator import FilesOperator
 from src.preprocessing.preprocessor import Preprocessor
 
 
@@ -31,12 +32,12 @@ class PyWorldPreprocessor(Preprocessor):
         spectral_envelopes_normalized, spectral_envelopes_mean, spectral_envelopes_std = \
             self._normalize_spectral_envelope(spectral_envelopes_transposed)
 
-        self._save_preprocessed_data(cache_directory,
-                                     spectral_envelopes_normalized,
-                                     log_f0_mean,
-                                     log_f0_std,
-                                     spectral_envelopes_mean,
-                                     spectral_envelopes_std)
+        FilesOperator.save_preprocessed_data(cache_directory,
+                                             spectral_envelopes_normalized,
+                                             log_f0_mean,
+                                             log_f0_std,
+                                             spectral_envelopes_mean,
+                                             spectral_envelopes_std)
 
     def _decompose_signals(self, signals):
         f0s = list()
@@ -88,18 +89,6 @@ class PyWorldPreprocessor(Preprocessor):
             normalized.append((single - mean) / std)
 
         return normalized, mean, std
-
-    @staticmethod
-    def _save_preprocessed_data(cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
-        mcep_file = os.path.join(cache_directory, Consts.mcep_norm_file)
-        np.savez(mcep_file, mean=mcep_mean, std=mcep_std)
-
-        log_f0_file = os.path.join(cache_directory, Consts.log_f0_norm_file)
-        np.savez(log_f0_file, mean=log_f0_mean, std=log_f0_std)
-
-        spectral_envelope_file = os.path.join(cache_directory, Consts.spectral_envelope_file)
-        with open(spectral_envelope_file, 'wb') as file:
-            pickle.dump(spectral_envelope, file)
 
 
 if __name__ == '__main__':
