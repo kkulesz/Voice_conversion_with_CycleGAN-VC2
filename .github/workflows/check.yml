@@ -1,4 +1,4 @@
-name: Check if nothing is screwed up by mistake
+name: Dummy test
 
 on:
   pull_request:
@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Test pipeline
-        run: python ${{env.TEST_DIR}}/test_pipeline.py
+      - name: Dummy test
+        run: python ${{env.TEST_DIR}}/dummy_test.py
         shell: sh
