@@ -30,7 +30,7 @@ class FilesOperator:
             return pickle.load(f)
 
     @staticmethod
-    def load_numpey_npz_file(file):
+    def load_numpy_npz_file(file):
         return np.load(file)
 
     @staticmethod

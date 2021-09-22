@@ -1,0 +1,19 @@
+name: Check if nothing is screwed up by mistake
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+env:
+  TEST_DIR: test/
+
+jobs:
+  check:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test pipeline
+        run: python &{{env.TEST_DIR}}/test_pipeline.py
+        shell: sh
