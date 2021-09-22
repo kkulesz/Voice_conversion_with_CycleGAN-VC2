@@ -26,17 +26,12 @@ class FilesOperator:
 
     @staticmethod
     def load_pickle_file(file):
-        """
-        TODO:
-        """
-        pass
+        with open(file, 'rb') as f:
+            return pickle.load(f)
 
     @staticmethod
-    def load_npz_file(file):
-        """
-        TODO:
-        """
-        pass
+    def load_numpey_npz_file(file):
+        return np.load(file)
 
     @staticmethod
     def __create_cache_files(directory):

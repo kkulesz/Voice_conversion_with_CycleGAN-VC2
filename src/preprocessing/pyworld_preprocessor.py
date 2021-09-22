@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import pyworld as pw
-import pickle
 
 from src.consts import Consts
 from src.utils.files_operator import FilesOperator

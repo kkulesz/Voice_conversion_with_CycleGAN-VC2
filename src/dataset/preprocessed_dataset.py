@@ -1,17 +1,16 @@
-import pickle
 import numpy as np
 import torch
 from torch.utils.data import Dataset
 
 from src.consts import Consts
+from src.utils.files_operator import FilesOperator
 
 
 class PreprocessedDataset(Dataset):
     def __init__(self, A_dataset_file, B_dataset_file, number_of_frames):
-        with open(A_dataset_file, 'rb') as A_file:
-            self._A_file_content = pickle.load(A_file)
-        with open(B_dataset_file, 'rb') as B_file:
-            self._B_file_content = pickle.load(B_file)
+        self._A_file_content = FilesOperator.load_pickle_file(A_dataset_file)
+        self._B_file_content = FilesOperator.load_pickle_file(B_dataset_file)
+
         self._number_of_frames = number_of_frames
 
         self._A_dataset, self._B_dataset = self._prepare_datasets()
@@ -73,5 +72,3 @@ if __name__ == '__main__':
     print(len(dataset[0][0]))
     print(dataset[0][0].shape)
     print(len(dataset[0][0][0]))
-
-
