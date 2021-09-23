@@ -46,7 +46,7 @@ class PyWorldPreprocessor(Preprocessor):
         spectral_envelopes = list()
 
         for signal in signals:
-            f0, time, sp, ap = self._decompose_signal(signal)
+            f0, time, sp, ap = PyWorldPreprocessor.decompose_signal(signal, self._sampling_rate)
             sp_envelope = pw.code_spectral_envelope(sp, self._sampling_rate, self._number_of_mceps)  # get MCEPs
 
             f0s.append(f0)
@@ -57,17 +57,18 @@ class PyWorldPreprocessor(Preprocessor):
 
         return f0s, time_axes, sps, aps, spectral_envelopes
 
-    def _decompose_signal(self, signal):
+    @staticmethod
+    def decompose_signal(signal, sampling_rate):
         signal = signal.astype(np.float64)
 
         # Note form PyWorld github: If SNR(signal-to-noise-ratio) is low then use 'harvest' instead of 'dio'
-        f0, time = pw.dio(signal, self._sampling_rate, f0_floor=Consts.f0_floor, f0_ceil=Consts.f0_ceil)
+        f0, time = pw.dio(signal, sampling_rate, f0_floor=Consts.f0_floor, f0_ceil=Consts.f0_ceil)
 
         # OPTIONAL - TODO: check whether it does not break anything
         # f0 = pw.stonemask(signal, f0, time, self._sampling_rate) # pitch_refinement
 
-        smoothed_spectogram = pw.cheaptrick(signal, f0, time, self._sampling_rate)
-        aperiodicity = pw.d4c(signal, f0, time, self._sampling_rate)
+        smoothed_spectogram = pw.cheaptrick(signal, f0, time, sampling_rate)
+        aperiodicity = pw.d4c(signal, f0, time, sampling_rate)
 
         return f0, time, smoothed_spectogram, aperiodicity
 

@@ -1,3 +1,4 @@
+import os
 import torch
 from torch.utils.data import DataLoader
 
@@ -85,6 +86,8 @@ class CycleGanTraining:
         for epoch_num in range(self.number_of_epochs):
             print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
+            if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
+                self._validate(epoch_num+1)
         print("Finished training")
 
     def _train_single_epoch(self, epoch_num):
@@ -165,11 +168,8 @@ class CycleGanTraining:
             self.disc_optimizer.step()
 
             # ------------------------------ #
-            #  validation                    #
+            #  printing                      #
             # ------------------------------ #
-            if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                print("dumb files")
-
             if (iteration + 1) % self.print_losses_iteration_frequency == 0:
                 CycleGanTraining._print_losses(iteration=iteration,
                                                generator_loss=generator_loss,
@@ -229,21 +229,43 @@ class CycleGanTraining:
 
     @staticmethod
     def _print_losses(iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss):
-        losses_str = "{}: \n" + \
-                     "\tGenerator-loss:     {:.4f}\n" + \
-                     "\tDiscriminator-loss: {:.4f}\n" + \
-                     "\tCycle-loss:         {:.4f}\n" + \
-                     "\tIdentity-loss       {:.4f}\n" \
-                         .format(iteration + 1,
-                                 generator_loss.item(),
-                                 discriminator_loss.item(),
-                                 cycle_loss.item(),
-                                 identity_loss.item())
+        losses_str = f"{iteration + 1}: \n" + \
+                     f"\tGenerator-loss:     {generator_loss.item()}\n" + \
+                     f"\tDiscriminator-loss: {discriminator_loss.item()}\n" + \
+                     f"\tCycle-loss:         {cycle_loss.item()}\n" + \
+                     f"\tIdentity-loss       {identity_loss.item()}\n"
 
         print(losses_str)
 
-    def _validate(self):
-        """
-        TODO
-        """
-        pass
+    def _validate(self, epoch):
+        self._validate_single_generator(epoch=epoch,
+                                        generator=self.A2B_gen,
+                                        validation_directory=self.A_validation_dir,
+                                        output_dir=self.A_output_dir,
+                                        is_A=True)
+
+        self._validate_single_generator(epoch=epoch,
+                                        generator=self.B2A_gen,
+                                        validation_directory=self.B_validation_dir,
+                                        output_dir=self.B_output_dir,
+                                        is_A=False)
+
+    def _validate_single_generator(self, epoch,  generator, validation_directory, output_dir, is_A):
+        epoch_output_dir = os.path.join(output_dir, str(epoch))
+        os.mkdir(epoch_output_dir)
+        for file in os.listdir(validation_directory):
+            file_path = os.path.join(validation_directory, file)
+            output_file_path = os.path.join(epoch_output_dir, file)
+
+            input_signal, f0_and_ap = self.validator.load_and_normalize(file_path=file_path,
+                                                                        is_A=is_A)
+            signal_tensor = torch.from_numpy(input_signal)
+            ready_signal = signal_tensor.to(self.device).float()
+            f0, ap = f0_and_ap
+            converted = generator(ready_signal)
+
+            self.validator.denormalize_and_save(signal=converted.cpu().detach(),
+                                                ap=ap,
+                                                f0=f0,
+                                                file_path=output_file_path,
+                                                is_A=is_A)

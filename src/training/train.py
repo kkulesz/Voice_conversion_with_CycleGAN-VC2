@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 from src.consts import Consts
 from src.utils.files_operator import FilesOperator
@@ -26,7 +27,7 @@ if __name__ == '__main__':
     data_dir = Consts.data_dir_vc16
 
     # TODO: make it more convenient than comment-uncomment
-    # prepare_fo_training(data_dir, A_dir, B_dir)
+    prepare_fo_training(data_dir, A_dir, B_dir)
 
     A_validation_source_dir = os.path.join(data_dir, A_dir)
     B_validation_source_dir = os.path.join(data_dir, B_dir)
@@ -44,4 +45,5 @@ if __name__ == '__main__':
         B_cache_dir=Consts.B_cache_dir
     )
 
-    cycleGanTraining.train()
+    with np.errstate(divide='ignore'):  # np.log 'throws' warning
+        cycleGanTraining.train()
