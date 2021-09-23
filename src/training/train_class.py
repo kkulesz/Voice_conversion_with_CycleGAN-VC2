@@ -7,6 +7,7 @@ from src.utils.utils import Utils
 from src.dataset.preprocessed_dataset import PreprocessedDataset
 from src.modules.generator import Generator
 from src.modules.discriminator import Discriminator
+from src.training.validator import Validator
 
 
 class CycleGanTraining:
@@ -18,7 +19,9 @@ class CycleGanTraining:
                  A_validation_dir,
                  B_validation_dir,
                  A_output_dir,
-                 B_output_dir):
+                 B_output_dir,
+                 A_cache_dir,
+                 B_cache_dir):
 
         # ------------------------------ #
         #  hyper parameters              #
@@ -70,6 +73,7 @@ class CycleGanTraining:
         # ------------------------------ #
         #  validation                    #
         # ------------------------------ #
+        self.validator = CycleGanTraining._prepare_validator(A_cache_dir, B_cache_dir)
         self.A_validation_dir = A_validation_dir
         self.B_validation_dir = B_validation_dir
         self.A_output_dir = A_output_dir
@@ -193,6 +197,15 @@ class CycleGanTraining:
 
         return dataloader
 
+    @staticmethod
+    def _prepare_validator(A_cache_dir, B_cache_dir):
+        validator = Validator(
+            A_cache_dir=A_cache_dir,
+            B_cache_dir=B_cache_dir
+        )
+
+        return validator
+
     def _adjust_generator_lr(self):
         self.gen_lr = max(0., self.gen_lr - self.gen_lr_decay)
         for param_groups in self.gen_optimizer.param_groups:
@@ -221,7 +234,7 @@ class CycleGanTraining:
                      "\tDiscriminator-loss: {:.4f}\n" + \
                      "\tCycle-loss:         {:.4f}\n" + \
                      "\tIdentity-loss       {:.4f}\n" \
-                         .format(iteration+1,
+                         .format(iteration + 1,
                                  generator_loss.item(),
                                  discriminator_loss.item(),
                                  cycle_loss.item(),

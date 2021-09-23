@@ -39,7 +39,9 @@ if __name__ == '__main__':
         A_validation_dir=A_validation_source_dir,
         B_validation_dir=B_validation_source_dir,
         A_output_dir=Consts.A_output_dir,
-        B_output_dir=Consts.B_output_dir
+        B_output_dir=Consts.B_output_dir,
+        A_cache_dir=Consts.A_cache_dir,
+        B_cache_dir=Consts.B_cache_dir
     )
 
     cycleGanTraining.train()
