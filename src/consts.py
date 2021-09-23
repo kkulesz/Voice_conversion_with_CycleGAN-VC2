@@ -59,9 +59,11 @@ class Consts:
     B_preprocessed_dataset_file = os.path.join(B_cache_dir, spectral_envelope_file)
 
     # ------------------------------ #
-    #  validation directories        #
+    #  validation                    #
     # ------------------------------ #
     validation_output_dir = os.path.join(project_dir_path, "validation")
     A_output_dir = os.path.join(validation_output_dir, "A")
     B_output_dir = os.path.join(validation_output_dir, "B")
+    dump_validation_file_epoch_frequency = 50
+    print_losses_iteration_frequency = 50
 
