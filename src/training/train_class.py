@@ -2,10 +2,10 @@ import os
 import torch
 from torch.utils.data import DataLoader
 
-from src.consts import Consts
+from src.utils.consts import Consts
 from src.utils.utils import Utils
 
-from src.dataset.preprocessed_dataset import PreprocessedDataset
+from src.data_processing.dataset import PreprocessedDataset
 from src.modules.generator import Generator
 from src.modules.discriminator import Discriminator
 from src.training.validator import Validator

@@ -3,7 +3,7 @@ import shutil
 import pickle
 import numpy as np
 
-from src.consts import Consts
+from src.utils.consts import Consts
 
 ignore_errors = True
 

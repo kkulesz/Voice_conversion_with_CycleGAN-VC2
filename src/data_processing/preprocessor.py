@@ -1,10 +1,32 @@
 import os
+import librosa
 import numpy as np
 import pyworld as pw
+from abc import ABC
+from abc import abstractmethod
 
-from src.consts import Consts
+from src.utils.consts import Consts
 from src.utils.files_operator import FilesOperator
-from src.preprocessing.preprocessor import Preprocessor
+
+
+class Preprocessor(ABC):
+    def __init__(self, number_of_mceps, sampling_rate, frame_period_in_ms):
+        self._number_of_mceps = number_of_mceps
+        self._sampling_rate = sampling_rate
+        self._frame_period_in_ms = frame_period_in_ms
+
+    @abstractmethod
+    def preprocess(self, data_directory: str, A_dir: str, B_dir: str, cache_directory: str) -> None:
+        pass
+
+    def _load_signals(self, data_directory: str) -> list:
+        signals = list()
+        for file in os.listdir(data_directory):
+            file_path = os.path.join(data_directory, file)
+            signal, _ = librosa.load(file_path, sr=self._sampling_rate, mono=True)
+            signals.append(signal)
+
+        return signals
 
 
 class PyWorldPreprocessor(Preprocessor):

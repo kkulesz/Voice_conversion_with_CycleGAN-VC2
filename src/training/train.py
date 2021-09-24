@@ -1,10 +1,10 @@
 import os
 import numpy as np
 
-from src.consts import Consts
+from src.utils.consts import Consts
 from src.utils.files_operator import FilesOperator
 
-from src.preprocessing.pyworld_preprocessor import PyWorldPreprocessor
+from src.data_processing.preprocessor import PyWorldPreprocessor
 from src.training.train_class import CycleGanTraining
 
 

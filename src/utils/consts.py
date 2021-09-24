@@ -3,7 +3,7 @@ import os
 
 class Consts:
     # ------------------------------ #
-    #  preprocessing                 #
+    #  data_processing                 #
     # ------------------------------ #
     f0_floor = 71.0
     f0_ceil = 800.0
@@ -64,6 +64,6 @@ class Consts:
     validation_output_dir = os.path.join(project_dir_path, "validation")
     A_output_dir = os.path.join(validation_output_dir, "AtoB")
     B_output_dir = os.path.join(validation_output_dir, "BtoA")
-    dump_validation_file_epoch_frequency = 5
+    dump_validation_file_epoch_frequency = 1
     print_losses_iteration_frequency = 50
 
