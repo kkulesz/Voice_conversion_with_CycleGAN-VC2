@@ -6,8 +6,8 @@ from src.utils.consts import Consts
 from src.utils.utils import Utils
 
 from src.data_processing.dataset import PreprocessedDataset
-from src.modules.generator import Generator
-from src.modules.discriminator import Discriminator
+from src.model.generator import Generator
+from src.model.discriminator import Discriminator
 from src.data_processing.validator import Validator
 
 

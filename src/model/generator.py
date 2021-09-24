@@ -3,10 +3,10 @@ import torch.nn as nn
 
 import numpy as np
 
-from src.modules.submodules.glu import GLU
-from src.modules.submodules.down_sample_1d_layer import DownSample1DLayer
-from src.modules.submodules.up_sample import UpSampleLayer
-from src.modules.submodules.residual_block import ResidualBlock
+from src.model.submodules.glu import GLU
+from src.model.submodules.down_sample_1d_layer import DownSample1DLayer
+from src.model.submodules.up_sample import UpSampleLayer
+from src.model.submodules.residual_block import ResidualBlock
 
 
 # TODO: find out what padding is for and decide its value

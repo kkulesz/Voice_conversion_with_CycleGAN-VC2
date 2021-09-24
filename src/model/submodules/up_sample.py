@@ -2,8 +2,8 @@ from typing import Tuple
 
 import torch
 import torch.nn as nn
-from src.modules.submodules.glu import GLU
-from src.modules.submodules.pixel_shuffle import PixelShuffle
+from src.model.submodules.glu import GLU
+from src.model.submodules.pixel_shuffle import PixelShuffle
 
 
 class UpSampleLayer(nn.Module):

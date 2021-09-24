@@ -2,21 +2,21 @@ from typing import Tuple
 
 import torch
 import torch.nn as nn
-from src.modules.submodules.glu import GLU
+from src.model.submodules.glu import GLU
 
 
-class DownSample1DLayer(nn.Module):
+class DownSample2DLayer(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
-        super(DownSample1DLayer, self).__init__()
+        super(DownSample2DLayer, self).__init__()
         self.sequential = nn.Sequential(
-            torch.nn.Conv1d(
+            torch.nn.Conv2d(
                 in_channels=in_channels,
                 out_channels=out_channels,
                 kernel_size=kernel_size,
                 stride=stride,
                 padding=padding
             ),
-            torch.nn.InstanceNorm1d(
+            torch.nn.InstanceNorm2d(
                 num_features=out_channels,
                 affine=True
             ),
