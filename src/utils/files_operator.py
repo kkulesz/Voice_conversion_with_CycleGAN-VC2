@@ -1,6 +1,7 @@
 import os
 import shutil
 import pickle
+import librosa
 import numpy as np
 
 from src.utils.consts import Consts
@@ -18,6 +19,16 @@ class FilesOperator:
     def reset_validation_dirs():
         FilesOperator.__delete_validation_dirs()
         FilesOperator.__create_validation_dirs()
+
+    @staticmethod
+    def load_signals(data_directory, sampling_rate):
+        signals = list()
+        for file in os.listdir(data_directory):
+            file_path = os.path.join(data_directory, file)
+            signal, _ = librosa.load(file_path, sr=sampling_rate, mono=True)
+            signals.append(signal)
+
+        return signals
 
     @staticmethod
     def save_preprocessed_data(cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):

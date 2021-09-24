@@ -8,7 +8,7 @@ from src.utils.utils import Utils
 from src.data_processing.dataset import PreprocessedDataset
 from src.modules.generator import Generator
 from src.modules.discriminator import Discriminator
-from src.training.validator import Validator
+from src.data_processing.validator import Validator
 
 
 class CycleGanTraining:
@@ -87,7 +87,7 @@ class CycleGanTraining:
             print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                self._validate(epoch_num+1)
+                self._validate(epoch_num + 1)
         print("Finished training")
 
     def _train_single_epoch(self, epoch_num):
@@ -250,21 +250,19 @@ class CycleGanTraining:
                                         output_dir=self.B_output_dir,
                                         is_A=False)
 
-    def _validate_single_generator(self, epoch,  generator, validation_directory, output_dir, is_A):
+    def _validate_single_generator(self, epoch, generator, validation_directory, output_dir, is_A):
         epoch_output_dir = os.path.join(output_dir, str(epoch))
         os.mkdir(epoch_output_dir)
         for file in os.listdir(validation_directory):
             file_path = os.path.join(validation_directory, file)
             output_file_path = os.path.join(epoch_output_dir, file)
 
-            input_signal, f0_and_ap = self.validator.load_and_normalize(file_path=file_path,
-                                                                        is_A=is_A)
+            input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A)
             signal_tensor = torch.from_numpy(input_signal)
             ready_signal = signal_tensor.to(self.device).float()
-            f0, ap = f0_and_ap
-            converted = generator(ready_signal)
+            generated = generator(ready_signal)
 
-            self.validator.denormalize_and_save(signal=converted.cpu().detach(),
+            self.validator.denormalize_and_save(signal=generated.cpu().detach(),
                                                 ap=ap,
                                                 f0=f0,
                                                 file_path=output_file_path,
