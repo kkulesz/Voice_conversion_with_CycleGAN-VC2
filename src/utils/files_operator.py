@@ -11,16 +11,6 @@ ignore_errors = True
 
 class FilesOperator:
     @staticmethod
-    def reset_cache_dirs():
-        FilesOperator.__delete_cache_dirs()
-        FilesOperator.__create_cache_dirs()
-
-    @staticmethod
-    def reset_validation_dirs():
-        FilesOperator.__delete_validation_dirs()
-        FilesOperator.__create_validation_dirs()
-
-    @staticmethod
     def load_signals(data_directory, sampling_rate):
         signals = list()
         for file in os.listdir(data_directory):
@@ -71,25 +61,20 @@ class FilesOperator:
         open(A_spectral_envelope_file, "w")
 
     @staticmethod
-    def __create_cache_dirs():
+    def __create_cache_dirs(A_cache_dir, B_cache_dir):
         os.mkdir(Consts.cache_dir)
 
         os.mkdir(Consts.A_cache_dir)
         os.mkdir(Consts.B_cache_dir)
 
-        FilesOperator.__create_cache_files(Consts.A_cache_dir)
-        FilesOperator.__create_cache_files(Consts.B_cache_dir)
+        FilesOperator.__create_cache_files(A_cache_dir)
+        FilesOperator.__create_cache_files(B_cache_dir)
 
     @staticmethod
-    def __delete_cache_dirs():
-        shutil.rmtree(Consts.cache_dir, ignore_errors=ignore_errors)
+    def delete_directory(directory):
+        shutil.rmtree(directory, ignore_errors=ignore_errors)
 
     @staticmethod
-    def __create_validation_dirs():
-        os.mkdir(Consts.validation_output_dir)
-        os.mkdir(Consts.A_output_dir)
-        os.mkdir(Consts.B_output_dir)
+    def create_directory(directory):
+        os.mkdir(directory)
 
-    @staticmethod
-    def __delete_validation_dirs():
-        shutil.rmtree(Consts.validation_output_dir, ignore_errors=ignore_errors)
