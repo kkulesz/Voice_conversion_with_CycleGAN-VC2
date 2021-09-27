@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-from src.utils.consts import Consts
+from consts import Consts
 
 from src.training.train_class import CycleGanTraining
 

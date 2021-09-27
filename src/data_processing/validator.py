@@ -3,7 +3,7 @@ import pyworld as pw
 import numpy as np
 import soundfile as sf
 
-from src.utils.consts import Consts
+from consts import Consts
 from src.utils.files_operator import FilesOperator
 from src.data_processing.processing_utils import ProcessingUtils
 

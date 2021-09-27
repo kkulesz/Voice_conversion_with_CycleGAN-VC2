@@ -4,7 +4,7 @@ import pickle
 import librosa
 import numpy as np
 
-from src.utils.consts import Consts
+from consts import Consts
 
 # errors behaviour
 ignore_errors = True

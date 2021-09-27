@@ -30,7 +30,7 @@ class Consts:
     # ------------------------------ #
     #  FILES AND DIRECTORIES         #
     # ------------------------------ #
-    project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\"
+    project_dir_path = "/\\"
     output_dir_path = os.path.join(project_dir_path, "output")
     A_dir_name = "A"
     B_dir_name = "B"

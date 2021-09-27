@@ -1,7 +1,7 @@
 import pyworld as pw
 import numpy as np
 
-from src.utils.consts import Consts
+from consts import Consts
 
 
 class ProcessingUtils:

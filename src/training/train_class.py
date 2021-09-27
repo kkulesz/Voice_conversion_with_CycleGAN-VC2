@@ -2,7 +2,7 @@ import os
 import torch
 from torch.utils.data import DataLoader
 
-from src.utils.consts import Consts
+from consts import Consts
 from src.utils.utils import Utils
 
 from src.data_processing.dataset import PreprocessedDataset

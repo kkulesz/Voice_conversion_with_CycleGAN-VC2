@@ -1,6 +1,6 @@
 import os
 
-from src.utils.consts import Consts
+from consts import Consts
 from src.utils.files_operator import FilesOperator
 from src.data_processing.preprocessor import PyWorldPreprocessor
 

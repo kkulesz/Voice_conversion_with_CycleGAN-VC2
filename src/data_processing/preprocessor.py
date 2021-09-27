@@ -3,7 +3,7 @@ from abc import ABC
 from abc import abstractmethod
 
 from src.data_processing.processing_utils import ProcessingUtils
-from src.utils.consts import Consts
+from consts import Consts
 from src.utils.files_operator import FilesOperator
 
 
