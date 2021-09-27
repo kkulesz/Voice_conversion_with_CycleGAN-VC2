@@ -38,38 +38,43 @@ class Consts:
     # ------------------------------ #
     #  train directories             #
     # ------------------------------ #
-    data_dir = os.path.join(project_dir_path, "src\\data")
-    data_dir_vc16 = os.path.join(data_dir, "vc-challenge-2016\\vcc2016_training")
-    male_1 = "SM1"
-    male_2 = "SM2"
-    female_1 = "SF1"
-    female_2 = "SF2"
-    male_to_female = (male_1, female_1)
-    male_to_male = (male_1, male_2)
-    female_to_male = (female_1, male_1)
-    female_to_female = (female_1, female_2)
+    data_directory_path = os.path.join(project_dir_path, "data")
+
+    vc16_data_directory_path = os.path.join(data_directory_path, "vc-challenge-2016")
+    vc16_training_directory_path = os.path.join(vc16_data_directory_path, "vcc2016_training")
+    vc16_validation_directory_path = os.path.join(vc16_data_directory_path, "evaluation_all")
+    vc16_url_prefix = "https://datashare.is.ed.ac.uk/bitstream/handle/10283/2211/"
+    vc16_download_directories = ["vcc2016_training.zip", "evaluation_all.zip"]
+
+    male_source = "SM1"
+    male_target = "TM1"
+    female_source = "SF1"
+    female_target = "TF1"
+    male_to_female = (male_source, female_target)
+    male_to_male = (male_source, male_target)
+    female_to_male = (female_source, male_target)
+    female_to_female = (female_source, female_target)
 
     # ------------------------------ #
     #  cache directories             #
     # ------------------------------ #
 
-    cache_dir = os.path.join(output_dir_path, "cache")
-    A_cache_dir = os.path.join(cache_dir, A_dir_name)
-    B_cache_dir = os.path.join(cache_dir, B_dir_name)
-    mcep_norm_file = "mcep_normalization.npz"
-    log_f0_norm_file = "log_f0_normalization.npz"
-    spectral_envelope_file = "mcep.pickle"
-    A_preprocessed_dataset_file = os.path.join(A_cache_dir, spectral_envelope_file)
-    B_preprocessed_dataset_file = os.path.join(B_cache_dir, spectral_envelope_file)
+    cache_directory_path = os.path.join(output_dir_path, "cache")
+    A_cache_directory_path = os.path.join(cache_directory_path, A_dir_name)
+    B_cache_directory_path = os.path.join(cache_directory_path, B_dir_name)
+    mcep_norm_filename = "mcep_normalization.npz"
+    log_f0_norm_filename = "log_f0_normalization.npz"
+    spectral_envelope_filename = "mcep.pickle"
+    A_preprocessed_dataset_file_path = os.path.join(A_cache_directory_path, spectral_envelope_filename)
+    B_preprocessed_dataset_file_path = os.path.join(B_cache_directory_path, spectral_envelope_filename)
 
     # ------------------------------ #
     #  validation                    #
     # ------------------------------ #
-    validation_output_dir = os.path.join(output_dir_path, "validation")
-    A_val_dir_name = "AtoB"
-    B_val_dir_name = "BtoA"
-    A_output_dir = os.path.join(validation_output_dir, A_val_dir_name)
-    B_output_dir = os.path.join(validation_output_dir, B_val_dir_name)
-    dump_validation_file_epoch_frequency = 1
-    print_losses_iteration_frequency = 50
-
+    validation_output_directory = os.path.join(output_dir_path, "validation")
+    A_validation_output_directory_name = "AtoB"
+    B_validation_output_directory_name = "BtoA"
+    A_validation_output_directory_path = os.path.join(validation_output_directory, A_validation_output_directory_name)
+    B_validation_output_directory_path = os.path.join(validation_output_directory, B_validation_output_directory_name)
+    dump_validation_file_epoch_frequency = 50
+    print_losses_iteration_frequency = 10

@@ -230,11 +230,11 @@ class CycleGanTraining:
     @staticmethod
     def _print_losses(iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss):
         losses_str = f"{iteration + 1}: \n" + \
-                     f"\tGenerator-loss:     {generator_loss.item()}\n" + \
-                     f"\tDiscriminator-loss: {discriminator_loss.item()}\n" + \
-                     f"\tCycle-loss:         {cycle_loss.item()}\n" + \
-                     f"\tIdentity-loss       {identity_loss.item()}\n"
-
+                     f"\tGenerator-loss:     {generator_loss.item():.4f}\n" + \
+                     f"\tDiscriminator-loss: {discriminator_loss.item():.4f}\n" + \
+                     f"\tCycle-loss:         {cycle_loss.item():.4f}\n" + \
+                     f"\tIdentity-loss       {identity_loss.item():.4f}\n"
+        losses_str = losses_str.replace("\n", "")
         print(losses_str)
 
     def _validate(self, epoch):

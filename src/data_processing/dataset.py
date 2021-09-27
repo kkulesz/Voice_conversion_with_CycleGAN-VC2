@@ -64,8 +64,8 @@ class PreprocessedDataset(Dataset):
 
 
 if __name__ == '__main__':
-    dataset = PreprocessedDataset(A_dataset_file=Consts.A_preprocessed_dataset_file,
-                                  B_dataset_file=Consts.B_preprocessed_dataset_file,
+    dataset = PreprocessedDataset(A_dataset_file=Consts.A_preprocessed_dataset_file_path,
+                                  B_dataset_file=Consts.B_preprocessed_dataset_file_path,
                                   number_of_frames=Consts.number_of_frames)
 
     print(len(dataset[0]))

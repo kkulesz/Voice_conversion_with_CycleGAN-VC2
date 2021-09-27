@@ -24,22 +24,22 @@ class FilesOperator:
 
     @staticmethod
     def save_preprocessed_data(cache_directory, spectral_envelope, log_f0_mean, log_f0_std, mcep_mean, mcep_std):
-        mcep_file_path = os.path.join(cache_directory, Consts.mcep_norm_file)
+        mcep_file_path = os.path.join(cache_directory, Consts.mcep_norm_filename)
         np.savez(mcep_file_path, mean=mcep_mean, std=mcep_std)
 
-        log_f0_file_path = os.path.join(cache_directory, Consts.log_f0_norm_file)
+        log_f0_file_path = os.path.join(cache_directory, Consts.log_f0_norm_filename)
         np.savez(log_f0_file_path, mean=log_f0_mean, std=log_f0_std)
 
-        spectral_envelope_file_path = os.path.join(cache_directory, Consts.spectral_envelope_file)
+        spectral_envelope_file_path = os.path.join(cache_directory, Consts.spectral_envelope_filename)
         with open(spectral_envelope_file_path, 'wb') as file:
             pickle.dump(spectral_envelope, file)
 
     @staticmethod
     def load_preprocessed_data_normalization_files(cache_directory):
-        mcep_file_path = os.path.join(cache_directory, Consts.mcep_norm_file)
+        mcep_file_path = os.path.join(cache_directory, Consts.mcep_norm_filename)
         mcep = FilesOperator.load_numpy_npz_file(mcep_file_path)
 
-        log_f0_file_path = os.path.join(cache_directory, Consts.log_f0_norm_file)
+        log_f0_file_path = os.path.join(cache_directory, Consts.log_f0_norm_filename)
         log_f0 = FilesOperator.load_numpy_npz_file(log_f0_file_path)
 
         return mcep, log_f0
