@@ -25,7 +25,6 @@ def prepare_training_class(A_validation_src_directory, B_validation_src_director
 
 
 if __name__ == '__main__':
-    # What to train
     A_dir, B_dir = Consts.male_to_female
 
     download_destination = Consts.vc16_data_directory_path

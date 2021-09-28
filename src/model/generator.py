@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 
-import numpy as np
-
 from src.model.submodules.glu import GLU
 from src.model.submodules.down_sample_1d_layer import DownSample1DLayer
 from src.model.submodules.up_sample import UpSampleLayer
@@ -23,9 +21,15 @@ class Generator(nn.Module):
         self.down_sample_1 = DownSample1DLayer(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
         self.down_sample_2 = DownSample1DLayer(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
 
-        # TODO: probably need to create 6 residual blocks instead of iterating 6 times through the same
-        self.residual_block = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
-        self.number_of_residual_block_iteration = 6
+        # need to be done in that ugly-repetitive way because:
+        #   1. missing copy() implementation
+        #   2. if layers are given in list then external `.to(device)` does not work
+        self.rb_1 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
+        self.rb_2 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
+        self.rb_3 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
+        self.rb_4 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
+        self.rb_5 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
+        self.rb_6 = ResidualBlock(in_channels=512, out_channels=1024, kernel_size=3, padding=1)
 
         self.up_sample_1 = UpSampleLayer(in_channels=512, out_channels=1024, kernel_size=5, stride=1, padding=2)
         self.up_sample_2 = UpSampleLayer(in_channels=512, out_channels=512, kernel_size=5, stride=1, padding=2)
@@ -37,12 +41,14 @@ class Generator(nn.Module):
         after_first_down_sampling = self.down_sample_1(after_initial_conv)
         after_down_sampling = self.down_sample_2(after_first_down_sampling)
 
-        for_residual_blocks = after_down_sampling
-        for i in range(self.number_of_residual_block_iteration):
-            for_residual_blocks = self.residual_block(for_residual_blocks)
-        after_residual_block = for_residual_blocks
+        after_rb_1 = self.rb_1(after_down_sampling)
+        after_rb_2 = self.rb_2(after_rb_1)
+        after_rb_3 = self.rb_3(after_rb_2)
+        after_rb_4 = self.rb_4(after_rb_3)
+        after_rb_5 = self.rb_5(after_rb_4)
+        after_residual_blocks = self.rb_6(after_rb_5)
 
-        after_first_up_sampling = self.up_sample_1(after_residual_block)
+        after_first_up_sampling = self.up_sample_1(after_residual_blocks)
         after_up_sampling = self.up_sample_2(after_first_up_sampling)
 
         result = self.last_conv(after_up_sampling)

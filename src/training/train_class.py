@@ -84,7 +84,7 @@ class CycleGanTraining:
 
     def train(self):
         for epoch_num in range(self.number_of_epochs):
-            print(f"Epoch {epoch_num + 1}")
+            # print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
                 self._validate(epoch_num + 1)
@@ -233,7 +233,7 @@ class CycleGanTraining:
                      f"\tGenerator-loss:     {generator_loss.item():.4f}\n" + \
                      f"\tDiscriminator-loss: {discriminator_loss.item():.4f}\n" + \
                      f"\tCycle-loss:         {cycle_loss.item():.4f}\n" + \
-                     f"\tIdentity-loss       {identity_loss.item():.4f}\n"
+                     f"\tIdentity-loss:      {identity_loss.item():.4f}\n"
         losses_str = losses_str.replace("\n", "")
         print(losses_str)
 
