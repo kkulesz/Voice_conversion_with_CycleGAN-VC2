@@ -261,7 +261,7 @@ class CycleGanTraining:
             signal_tensor = torch.from_numpy(input_signal)
             ready_signal = signal_tensor.to(self.device).float()
             generated = generator(ready_signal)
-            detached = ready_signal.cpu().detach()
+            detached = generated.cpu().detach()
 
             self.validator.denormalize_and_save(signal=detached,
                                                 ap=ap,
