@@ -114,8 +114,8 @@ class CycleGanTraining:
             fake_A = self.B2A_gen(real_B)
             cycle_B = self.B2A_gen(fake_A)
 
-            # identity_A = self.B2A_gen(real_A)
-            # identity_B = self.A2B_gen(real_B)
+            identity_A = self.B2A_gen(real_A)
+            identity_B = self.A2B_gen(real_B)
 
             d_fake_A = self.A_disc(fake_A)
             d_fake_B = self.B_disc(fake_B)
@@ -126,16 +126,16 @@ class CycleGanTraining:
             cycle_loss = torch.mean(torch.abs(real_A - cycle_A)) + \
                          torch.mean(torch.abs(real_B - cycle_B))
 
-            # identity_loss = torch.mean(torch.abs(real_A - identity_A)) + \
-            #                 torch.mean(torch.abs(real_B - identity_B))
+            identity_loss = torch.mean(torch.abs(real_A - identity_A)) + \
+                            torch.mean(torch.abs(real_B - identity_B))
 
             A2B_gen_loss = torch.mean((1 - d_fake_B) ** 2)
             B2A_gen_loss = torch.mean((1 - d_fake_A) ** 2)
 
             generator_loss = A2B_gen_loss + \
                              B2A_gen_loss + \
-                             self.cycle_loss_lambda * cycle_loss #+ \
-                             # self.identity_loss_lambda * identity_loss
+                             self.cycle_loss_lambda * cycle_loss + \
+                             self.identity_loss_lambda * identity_loss
             self.gen_loss_store.append(generator_loss.item())
 
             self._reset_grad()
@@ -174,8 +174,8 @@ class CycleGanTraining:
                 CycleGanTraining._print_losses(iteration=iteration,
                                                generator_loss=generator_loss,
                                                discriminator_loss=d_loss,
-                                               cycle_loss=cycle_loss)
-                                               # ,identity_loss=identity_loss)
+                                               cycle_loss=cycle_loss,
+                                               identity_loss=identity_loss)
 
     @staticmethod
     def _prepare_dataset(A_data_file, B_data_file, number_of_frames):
@@ -228,12 +228,12 @@ class CycleGanTraining:
         return (d_loss_real + d_loss_fake) / 2.0
 
     @staticmethod
-    def _print_losses(iteration, generator_loss, discriminator_loss, cycle_loss):#, identity_loss):
+    def _print_losses(iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss):
         losses_str = f"{iteration + 1}: \n" + \
                      f"\tGenerator-loss:     {generator_loss.item():.4f}\n" + \
                      f"\tDiscriminator-loss: {discriminator_loss.item():.4f}\n" + \
-                     f"\tCycle-loss:         {cycle_loss.item():.4f}\n"# + \
-                     # f"\tIdentity-loss:      {identity_loss.item():.4f}\n"
+                     f"\tCycle-loss:         {cycle_loss.item():.4f}\n" + \
+                     f"\tIdentity-loss:      {identity_loss.item():.4f}\n"
         losses_str = losses_str.replace("\n", "")
         print(losses_str)
 
@@ -261,8 +261,9 @@ class CycleGanTraining:
             signal_tensor = torch.from_numpy(input_signal)
             ready_signal = signal_tensor.to(self.device).float()
             generated = generator(ready_signal)
+            detached = ready_signal.cpu().detach()
 
-            self.validator.denormalize_and_save(signal=generated.cpu().detach(),
+            self.validator.denormalize_and_save(signal=detached,
                                                 ap=ap,
                                                 f0=f0,
                                                 file_path=output_file_path,
