@@ -117,8 +117,8 @@ class CycleGanTraining:
             identity_A = self.B2A_gen(real_A)
             identity_B = self.A2B_gen(real_B)
 
-            d_loss_A = self.A_disc(fake_A)
-            d_loss_B = self.B_disc(fake_B)
+            d_fake_A = self.A_disc(fake_A)
+            d_fake_B = self.B_disc(fake_B)
 
             # ------------------------------ #
             #  count generator loss          #
@@ -129,8 +129,8 @@ class CycleGanTraining:
             identity_loss = torch.mean(torch.abs(real_A - identity_A)) + \
                             torch.mean(torch.abs(real_B - identity_B))
 
-            A2B_gen_loss = torch.mean((1 - d_loss_B) ** 2)
-            B2A_gen_loss = torch.mean((1 - d_loss_A) ** 2)
+            A2B_gen_loss = torch.mean((1 - d_fake_B) ** 2)
+            B2A_gen_loss = torch.mean((1 - d_fake_A) ** 2)
 
             generator_loss = A2B_gen_loss + \
                              B2A_gen_loss + \
