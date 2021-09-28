@@ -109,10 +109,10 @@ class CycleGanTraining:
             #  GENERATORS                    #
             # ------------------------------ #
             fake_B = self.A2B_gen(real_A)
-            cycle_B = self.B2A_gen(fake_B)
+            cycle_A = self.B2A_gen(fake_B)
 
             fake_A = self.B2A_gen(real_B)
-            cycle_A = self.B2A_gen(fake_A)
+            cycle_B = self.B2A_gen(fake_A)
 
             identity_A = self.B2A_gen(real_A)
             identity_B = self.A2B_gen(real_B)
