@@ -101,7 +101,8 @@ class CycleGanTraining:
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                self._validate(epoch_num + 1)
+                with torch.no_grad:  # TODO: check it later
+                    self._validate(epoch_num + 1)
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
                 print("Checkpoint... ", end='')
