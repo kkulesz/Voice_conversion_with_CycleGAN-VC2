@@ -1,6 +1,5 @@
 import os
 import torch
-import pandas as pd
 from typing import Optional
 from torch.utils.data import DataLoader
 
@@ -101,7 +100,7 @@ class CycleGanTraining:
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                with torch.no_grad:  # TODO: check it later
+                with torch.no_grad():  # TODO: check it later
                     self._validate(epoch_num + 1)
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
@@ -182,7 +181,7 @@ class CycleGanTraining:
             d_loss_B = CycleGanTraining._count_discriminator_loss(d_real_B, d_fake_B)
 
             d_loss = (d_loss_A + d_loss_B) / 2.0
-            self.disc_loss_store.append(d_loss.cpu().detach().numpy())
+            self.disc_loss_store.append(d_loss.cpu().detach().numpy())  # TODO: check whether this detach does not break anything
 
             self._reset_grad()
             d_loss.backward()

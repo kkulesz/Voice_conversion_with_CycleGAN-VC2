@@ -1,0 +1,5 @@
+torch.no_grad():
+    self._validate()
+
+todo:
+- check torch.detach()

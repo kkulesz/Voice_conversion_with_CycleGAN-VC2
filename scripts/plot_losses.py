@@ -12,8 +12,8 @@ if __name__ == '__main__':
     disc_df = pd.read_csv(discriminators_losses_file_path)
     gen_df = pd.read_csv(generators_losses_file_path)
 
-    disc_df.plot(x=0, y=1, kind='scatter', title="Discriminator")
-    gen_df.plot(x=0, y=1, kind='scatter', title='Generator')
+    disc_df.plot(x=0, y=1, kind='scatter', title="Discriminator", ylabel='Loss', xlabel="Iteration")
+    gen_df.plot(x=0, y=1, kind='scatter', title='Generator',  ylabel='Loss', xlabel="Iteration")
 
     plt.show()
 
