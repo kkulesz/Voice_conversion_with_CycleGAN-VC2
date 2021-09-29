@@ -3,4 +3,5 @@ venv/
 data/
 cache/
 validation/
+*.pth
 __pycache__/

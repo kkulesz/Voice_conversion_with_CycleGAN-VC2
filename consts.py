@@ -82,7 +82,7 @@ class Consts:
     # ------------------------------ #
     #  model storage                 #
     # ------------------------------ #
-    models_saving_epoch_frequency = 1
+    models_saving_epoch_frequency = 50
     models_storage_directory_path = os.path.join(output_dir_path, "models_storage")
 
     A2B_generator_file_name = "A2B_gen.pth"
