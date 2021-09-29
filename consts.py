@@ -78,3 +78,18 @@ class Consts:
     B_validation_output_directory_path = os.path.join(validation_output_directory, B_validation_output_directory_name)
     dump_validation_file_epoch_frequency = 50
     print_losses_iteration_frequency = 10
+
+    # ------------------------------ #
+    #  model storage                 #
+    # ------------------------------ #
+    models_saving_epoch_frequency = 1
+    models_storage_directory_path = os.path.join(output_dir_path, "models_storage")
+
+    A2B_generator_file_name = "A2B_gen.pth"
+    B2A_generator_file_name = "B2A_gen.pth"
+    A_discriminator_file_name = "A_disc.pth"
+    B_discriminator_file_name = "B_disc.pth"
+
+    generator_loss_storage_file = "generators_loss.csv"
+    discriminator_loss_storage_file = "discriminators_loss.csv"
+

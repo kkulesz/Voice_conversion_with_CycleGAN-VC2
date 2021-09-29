@@ -1,8 +1,11 @@
 import os
 import torch
+import pandas as pd
+from typing import Optional
 from torch.utils.data import DataLoader
 
 from consts import Consts
+from src.utils.files_operator import FilesOperator
 from src.utils.utils import Utils
 
 from src.data_processing.dataset import PreprocessedDataset
@@ -12,23 +15,24 @@ from src.data_processing.validator import Validator
 
 
 class CycleGanTraining:
-    def __init__(self,  # only dataset parameters are given explicitly in constructor
+    # only directories are given explicitly in constructor, rest training parameters are given in the `const.py` file
+    def __init__(self,
                  A_data_file,
                  B_data_file,
-                 number_of_frames,
-                 batch_size,
                  A_validation_dir,
                  B_validation_dir,
                  A_output_dir,
                  B_output_dir,
                  A_cache_dir,
-                 B_cache_dir):
+                 B_cache_dir,
+                 save_models_dir: str,
+                 load_models_dir: Optional[str]):
 
         # ------------------------------ #
         #  hyper parameters              #
         # ------------------------------ #
         self.number_of_epochs = Consts.number_of_epochs
-        self.batch_size = batch_size
+        self.batch_size = Consts.mini_batch_size
         self.cycle_loss_lambda = Consts.cycle_loss_lambda
         self.identity_loss_lambda = Consts.identity_loss_lambda
         self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
@@ -38,9 +42,9 @@ class CycleGanTraining:
         # ------------------------------ #
         #  dataloader                    #
         # ------------------------------ #
-        dataset = CycleGanTraining._prepare_dataset(A_data_file, B_data_file, number_of_frames)
-        self.dataloader = CycleGanTraining._prepare_dataloader(dataset, batch_size)
-        self.number_of_frames = number_of_frames
+        self.number_of_frames = Consts.number_of_frames
+        dataset = CycleGanTraining._prepare_dataset(A_data_file, B_data_file, self.number_of_frames)
+        self.dataloader = CycleGanTraining._prepare_dataloader(dataset, self.batch_size)
         self.number_of_samples_in_dataset = len(dataset)
 
         # ------------------------------ #
@@ -82,12 +86,28 @@ class CycleGanTraining:
         self.dump_validation_file_epoch_frequency = Consts.dump_validation_file_epoch_frequency
         self.print_losses_iteration_frequency = Consts.print_losses_iteration_frequency
 
+        # ------------------------------ #
+        #  model storage                 #
+        # ------------------------------ #
+        self.models_saving_epoch_frequency = Consts.models_saving_epoch_frequency
+        self.save_models_directory = save_models_dir
+        self.load_models_directory = load_models_dir
+        if self.load_models_directory:
+            self._load_models()
+
     def train(self):
         for epoch_num in range(self.number_of_epochs):
             # print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
+
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
                 self._validate(epoch_num + 1)
+
+            if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
+                print("Checkpoint... ", end='')
+                self._checkpoint()
+                print("Done")
+
         print("Finished training")
 
     def _train_single_epoch(self, epoch_num):
@@ -161,7 +181,7 @@ class CycleGanTraining:
             d_loss_B = CycleGanTraining._count_discriminator_loss(d_real_B, d_fake_B)
 
             d_loss = (d_loss_A + d_loss_B) / 2.0
-            self.disc_loss_store.append(d_loss)
+            self.disc_loss_store.append(d_loss.cpu().detach().numpy())
 
             self._reset_grad()
             d_loss.backward()
@@ -268,3 +288,25 @@ class CycleGanTraining:
                                                 f0=f0,
                                                 file_path=output_file_path,
                                                 is_A=is_A)
+
+    def _checkpoint(self):
+        save_dir = self.save_models_directory
+        self._save_models(save_dir)
+        self._save_models_losses(save_dir)
+
+    def _load_models(self):
+        load_dir = self.load_models_directory
+        self.A2B_gen.load_state_dict(FilesOperator.load_model(load_dir, Consts.A2B_generator_file_name))
+        self.B2A_gen.load_state_dict(FilesOperator.load_model(load_dir, Consts.B2A_generator_file_name))
+        self.A_disc.load_state_dict(FilesOperator.load_model(load_dir, Consts.A_discriminator_file_name))
+        self.B_disc.load_state_dict(FilesOperator.load_model(load_dir, Consts.B_discriminator_file_name))
+
+    def _save_models(self, save_dir):
+        FilesOperator.save_model(self.A2B_gen, save_dir, Consts.A2B_generator_file_name)
+        FilesOperator.save_model(self.B2A_gen, save_dir, Consts.B2A_generator_file_name)
+        FilesOperator.save_model(self.A_disc, save_dir, Consts.A_discriminator_file_name)
+        FilesOperator.save_model(self.B_disc, save_dir, Consts.B_discriminator_file_name)
+
+    def _save_models_losses(self, save_dir):
+        FilesOperator.save_list(self.gen_loss_store, save_dir, Consts.generator_loss_storage_file)
+        FilesOperator.save_list(self.disc_loss_store, save_dir, Consts.discriminator_loss_storage_file)

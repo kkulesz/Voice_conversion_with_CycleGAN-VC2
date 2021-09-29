@@ -2,7 +2,9 @@ import os
 import shutil
 import pickle
 import librosa
+import torch
 import numpy as np
+import pandas as pd
 
 from consts import Consts
 
@@ -52,6 +54,21 @@ class FilesOperator:
     @staticmethod
     def load_numpy_npz_file(file):
         return np.load(file)
+
+    @staticmethod
+    def save_model(model, save_directory, storage_file_name):
+        storage_path = os.path.join(save_directory, storage_file_name)
+        torch.save(model.state_dict(), storage_path)
+
+    @staticmethod
+    def load_model(load_directory, storage_file_name):
+        storage_path = os.path.join(load_directory, storage_file_name)
+        return torch.load(storage_path)
+
+    @staticmethod
+    def save_list(loss_array, save_directory, file_name):
+        storage_path = os.path.join(save_directory, file_name)
+        pd.DataFrame(loss_array).to_csv(storage_path)
 
     @staticmethod
     def delete_directory(directory):

@@ -67,9 +67,18 @@ def reduction_sandpit():
     print_value(".max().item()", base.max().item())
 
 
+def checking_if_switching_device_copies_tensor():
+    cuda = torch.zeros(1).cuda()
+    print_value("Initial cuda:", cuda.sum())
+    cpu = cuda.cpu()
+    print_value("Cpu:", cpu.sum())
+    print_value("Initial cuda:", cuda.sum())  # not changes
+
+
 if __name__ == '__main__':
     # axes_sandpit()
     # access_sandpit()
     # reshaping_sandpit()
     # element_wise_and_broadcasting_sandpit()
-    reduction_sandpit()
+    # reduction_sandpit()
+    checking_if_switching_device_copies_tensor()
