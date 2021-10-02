@@ -17,7 +17,8 @@ jobs:
 #        with:
 #          path: "requirements.txt"
       - name: Install dependencies and prepare modules
-        run: python setup.py install
+        run: |
+            python -m pip install --upgrade pip
       - name: Dummy test
         run: python ${{env.TEST_DIR}}/modules_test.py
         shell: sh
