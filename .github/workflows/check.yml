@@ -6,16 +6,18 @@ env:
   TEST_DIR: test
 
 jobs:
-  downloadDependenciesAndTest:
+  installDependenciesAndTest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install dependencies
-        uses: py-actions/py-dependency-install@v2
-        with:
-          path: "requirements.txt"
+#      - name: Install dependencies
+#        uses: py-actions/py-dependency-install@v2
+#        with:
+#          path: "requirements.txt"
+      - name: Install dependencies and prepare modules
+        run: python setup.py install
       - name: Dummy test
         run: python ${{env.TEST_DIR}}/modules_test.py
         shell: sh
