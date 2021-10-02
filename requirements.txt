@@ -1,0 +1,8 @@
+pandas==1.2.3
+numpy==1.20.1
+matplotlib==3.4.1
+PySoundFile==0.9.0.post1
+librosa==0.8.1
+pyworld==0.3.0
+soundfile==0.10.3.post1
+torch==1.9.1
