@@ -1,20 +1,21 @@
-name: Dummy test
+name: Sanity checks
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
+on: push
 
 env:
   TEST_DIR: test
 
 jobs:
-  check:
-    name: Checks
+  downloadDependenciesAndTest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Download dependencies
+        uses: py-actions/py-dependency-install@v2
+        with:
+          path: "/requirements.txt"
       - name: Dummy test
-        run: python ${{env.TEST_DIR}}/dummy_test.py
+        run: python ${{env.TEST_DIR}}/modules_test.py
         shell: sh
