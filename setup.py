@@ -2,5 +2,6 @@ from setuptools import setup, find_packages
 
 setup(name='crazy setup',
       version='0.0.1',
-      packages=['src', 'src/model', 'test']
+      install_requiers=[],
+      packages=find_packages()
       )
