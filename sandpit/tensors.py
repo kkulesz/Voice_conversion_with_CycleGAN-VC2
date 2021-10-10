@@ -1,13 +1,8 @@
 import torch
-import torch.nn as nn
 
+from src.utils.utils import Utils
 
-def print_shape(message: str, t: torch.Tensor):
-    print("{0: <20}: {1}".format(message, t.shape))
-
-
-def print_value(message: str, val: any):
-    print("{0: <20}: {1}".format(message, val))
+from sandpit.sandpit_utils import print_shape, print_value
 
 
 def axes_sandpit():
@@ -67,18 +62,11 @@ def reduction_sandpit():
     print_value(".max().item()", base.max().item())
 
 
-def checking_if_switching_device_copies_tensor():
-    cuda = torch.zeros(1).cuda()
-    print_value("Initial cuda:", cuda.sum())
-    cpu = cuda.cpu()
-    print_value("Cpu:", cpu.sum())
-    print_value("Initial cuda:", cuda.sum())  # not changes
-
-
 if __name__ == '__main__':
+    Utils.get_device()
     # axes_sandpit()
     # access_sandpit()
     # reshaping_sandpit()
     # element_wise_and_broadcasting_sandpit()
     # reduction_sandpit()
-    checking_if_switching_device_copies_tensor()
+
