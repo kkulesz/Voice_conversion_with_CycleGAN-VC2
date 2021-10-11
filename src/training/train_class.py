@@ -99,9 +99,10 @@ class CycleGanTraining:
             # print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
 
-            if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                with torch.no_grad():  # TODO: check it later
-                    self._validate(epoch_num + 1)
+            # if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
+            #     print("Dumping validation files... ", end='')
+            #     self._validate(epoch_num + 1)
+            #     print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
                 print("Checkpoint... ", end='')
@@ -181,7 +182,8 @@ class CycleGanTraining:
             d_loss_B = CycleGanTraining._count_discriminator_loss(d_real_B, d_fake_B)
 
             d_loss = (d_loss_A + d_loss_B) / 2.0
-            self.disc_loss_store.append(d_loss.cpu().detach().numpy())  # TODO: check whether this detach does not break anything
+            d_loss_for_store = d_loss.clone().cpu().detach().numpy()
+            self.disc_loss_store.append(d_loss_for_store)
 
             self._reset_grad()
             d_loss.backward()
@@ -277,17 +279,19 @@ class CycleGanTraining:
             file_path = os.path.join(validation_directory, file)
             output_file_path = os.path.join(epoch_output_dir, file)
 
-            input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A)
-            signal_tensor = torch.from_numpy(input_signal)
-            ready_signal = signal_tensor.to(self.device).float()
-            generated = generator(ready_signal)
-            detached = generated.cpu().detach()
+            with torch.no_grad():
+                input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A)
 
-            self.validator.denormalize_and_save(signal=detached,
-                                                ap=ap,
-                                                f0=f0,
-                                                file_path=output_file_path,
-                                                is_A=is_A)
+                signal_tensor = torch.from_numpy(input_signal)
+                gpu_input = signal_tensor.to(self.device).float()
+                gpu_generated = generator(gpu_input)
+                cpu_generated = gpu_generated.cpu()
+
+                self.validator.denormalize_and_save(signal=cpu_generated,
+                                                    ap=ap,
+                                                    f0=f0,
+                                                    file_path=output_file_path,
+                                                    is_A=is_A)
 
     def _checkpoint(self):
         save_dir = self.save_models_directory

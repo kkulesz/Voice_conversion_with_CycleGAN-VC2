@@ -1,0 +1,3 @@
+no validation between - but changed to run it with `torch.no_grad()` context manager
+loss.clone().detach() for storing
+
