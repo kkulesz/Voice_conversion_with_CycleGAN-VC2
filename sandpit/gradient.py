@@ -1,13 +1,9 @@
 import torch
 import torch.nn as nn
 
-import torchviz
-
 from src.utils.utils import Utils
 
 from sandpit.sandpit_utils import print_tensor, print_grad, dump_torchviz_graph
-
-import os
 
 
 def autograd():
@@ -29,7 +25,7 @@ def autograd():
 
     loss.backward()
     print_grad("w1.grad after backward", w1)
-    # dump_torchviz_graph(loss, {"w1": w1, "w2": w2})
+    dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
 
     optimizer.step()
     print_grad("w1.grad after step", w1)
@@ -47,16 +43,32 @@ def detach():
     y_pred = x1 + w1
 
     loss = torch.abs(y_pred - y)
+    dump_torchviz_graph(loss, {"w1": w1, "loss": loss})
     loss_detached = loss.detach()
-    dump_torchviz_graph(loss)
+    dump_torchviz_graph(loss_detached, {"w1": w1, "loss_detached": loss_detached}, "GRAPH_DETACHED")
 
-    print_tensor("loss", loss)
-    print_tensor("loss_detached", loss_detached)
-    print_tensor("loss", loss)
+
+def no_grad():
+    loss_fn = nn.MSELoss()
+
+    x1 = torch.tensor([.1, .1, .1])
+    w1 = torch.tensor([.5, .5, .5], requires_grad=True)
+    w2 = torch.tensor([.2, .3, .4], requires_grad=True)
+    optimizer = torch.optim.Adam([w1, w2], lr=.01)
+    y = torch.tensor([1.0, 1.0, 1.0])
+
+    with torch.no_grad():
+        y_pred = x1 + w1 + w2
+        loss = loss_fn(y_pred, y)
+        # loss.backward() #cannot use because tensor does not have grad_fn
+        dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
+        optimizer.step()
+        optimizer.zero_grad()
 
 
 if __name__ == '__main__':
     Utils.get_device()
 
-    autograd()
+    # autograd()
     # detach()
+    no_grad()
