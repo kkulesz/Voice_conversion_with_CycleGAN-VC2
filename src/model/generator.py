@@ -53,12 +53,3 @@ class Generator(nn.Module):
 
         result = self.last_conv(after_up_sampling)
         return result
-
-
-if __name__ == '__main__':
-    # Dimensionality Testing
-    generator = Generator()
-
-    x = torch.randn(158, 24, 128)
-    output = generator(x)
-    print("Generator-output shape:", output.shape)

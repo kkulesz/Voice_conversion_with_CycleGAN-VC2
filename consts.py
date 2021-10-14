@@ -93,3 +93,8 @@ class Consts:
     generator_loss_storage_file = "generators_loss.csv"
     discriminator_loss_storage_file = "discriminators_loss.csv"
 
+    # ------------------------------ #
+    #  my storage                    #
+    # ------------------------------ #
+    my_storage = os.path.join(project_dir_path, "storage")
+

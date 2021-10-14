@@ -35,12 +35,3 @@ class Discriminator(nn.Module):
 
         return result
 
-
-if __name__ == '__main__':
-    # Dimensionality Testing
-    discriminator = Discriminator()
-
-    x = torch.randn(158, 24, 128)
-    output = discriminator(x)
-    print("Discriminator-output shape:", output.shape)
-
