@@ -3,10 +3,13 @@ import shutil
 import pickle
 import librosa
 import torch
+import torchviz
 import numpy as np
 import pandas as pd
 
 from consts import Consts
+
+os.environ["PATH"] += os.pathsep + 'C:\\Program Files\\Graphviz\\bin'
 
 # errors behaviour
 ignore_errors = True
@@ -77,4 +80,9 @@ class FilesOperator:
     @staticmethod
     def create_directory(directory):
         os.makedirs(directory, exist_ok=exist_ok)
+
+    @staticmethod
+    def dump_torchviz_graph(what_to_graph, params={}, file_name="GRAPH"):
+        torchviz.make_dot(what_to_graph, params=params).render(file_name, format="png")
+        os.remove(file_name)
 

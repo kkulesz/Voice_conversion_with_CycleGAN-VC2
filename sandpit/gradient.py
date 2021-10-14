@@ -2,8 +2,9 @@ import torch
 import torch.nn as nn
 
 from src.utils.utils import Utils
+from src.utils.files_operator import FilesOperator
 
-from sandpit.sandpit_utils import print_tensor, print_grad, dump_torchviz_graph
+from sandpit.sandpit_utils import print_tensor, print_grad
 
 
 def autograd():
@@ -25,7 +26,7 @@ def autograd():
 
     loss.backward()
     print_grad("w1.grad after backward", w1)
-    dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
+    FilesOperator.dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
 
     optimizer.step()
     print_grad("w1.grad after step", w1)
@@ -43,9 +44,9 @@ def detach():
     y_pred = x1 + w1
 
     loss = torch.abs(y_pred - y)
-    dump_torchviz_graph(loss, {"w1": w1, "loss": loss})
+    FilesOperator.dump_torchviz_graph(loss, {"w1": w1, "loss": loss})
     loss_detached = loss.detach()
-    dump_torchviz_graph(loss_detached, {"w1": w1, "loss_detached": loss_detached}, "GRAPH_DETACHED")
+    FilesOperator.dump_torchviz_graph(loss_detached, {"w1": w1, "loss_detached": loss_detached}, "GRAPH_DETACHED")
 
 
 def no_grad():
@@ -61,7 +62,7 @@ def no_grad():
         y_pred = x1 + w1 + w2
         loss = loss_fn(y_pred, y)
         # loss.backward() #cannot use because tensor does not have grad_fn
-        dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
+        FilesOperator.dump_torchviz_graph(loss, {"w1": w1, "w2": w2, "loss": loss})
         optimizer.step()
         optimizer.zero_grad()
 
