@@ -1,4 +1,5 @@
 import os
+import platform
 import shutil
 import pickle
 import librosa
@@ -9,7 +10,13 @@ import pandas as pd
 
 from consts import Consts
 
-os.environ["PATH"] += os.pathsep + 'C:\\Program Files\\Graphviz\\bin'
+
+if platform.system() == "Linux":
+    pass
+elif platform.system() == "Windows":
+    os.environ["PATH"] += os.pathsep + 'C:\\Program Files\\Graphviz\\bin'  # TODO:
+else:
+    raise Exception("oj nie byczku -1")
 
 # errors behaviour
 ignore_errors = True
