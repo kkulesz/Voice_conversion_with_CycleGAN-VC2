@@ -30,7 +30,7 @@ class Consts:
     # ------------------------------ #
     #  FILES AND DIRECTORIES         #
     # ------------------------------ #
-    project_dir_path = "E:\\STUDIA\\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\"
+    project_dir_path = os.path.dirname(os.path.abspath(__file__))
     output_dir_path = os.path.join(project_dir_path, "output")
     A_dir_name = "A"
     B_dir_name = "B"
@@ -97,4 +97,5 @@ class Consts:
     #  my storage                    #
     # ------------------------------ #
     my_storage = os.path.join(project_dir_path, "storage")
+    submodules_graph_storage = os.path.join(my_storage, "submodules_graph")
 
