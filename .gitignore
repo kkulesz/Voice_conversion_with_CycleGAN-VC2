@@ -7,3 +7,4 @@ validation/
 *.pth
 GRAPH*.png
 __pycache__/
+sandpit/output/

@@ -1,4 +1,10 @@
 import torch
+import os
+
+_sandpit_path = os.path.dirname(os.path.abspath(__file__))
+
+sandpit_datasets_dir_path = os.path.join(_sandpit_path, "data")
+sandpit_output_dir_path = os.path.join(_sandpit_path, "output")
 
 
 def print_tensor(message: str, t: torch.Tensor):
