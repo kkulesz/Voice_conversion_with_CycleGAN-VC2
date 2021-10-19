@@ -1,0 +1,1 @@
+niestabilnie z jakiegos powodu - jedyna zmiana to dodanie zapisywania lossów za pomoca `.cpu().detach()`
