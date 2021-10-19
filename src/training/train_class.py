@@ -189,8 +189,8 @@ class CycleGanTraining:
                                                discriminator_loss=d_loss,
                                                cycle_loss=cycle_loss,
                                                identity_loss=identity_loss)
-                self.gen_loss_store.append(g_loss.cpu().detach().item())  # TODO: it sometimes crushes training
-                self.disc_loss_store.append(d_loss.cpu().detach().item())
+            self.gen_loss_store.append(g_loss.cpu().detach().item())
+            self.disc_loss_store.append(d_loss.cpu().detach().item())
 
     @staticmethod
     def _prepare_dataset(A_data_file, B_data_file, number_of_frames):
