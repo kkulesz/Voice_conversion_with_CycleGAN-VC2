@@ -71,12 +71,12 @@ def train(gen, gen_optimizer, disc, disc_optimizer, dataloader):
             # Training Discriminator
             fake = gen(noise)
             d_real = disc(real).reshape(-1)
-            d_fake = disc(fake).reshape(-1)
+            d_fake = disc(fake.detach()).reshape(-1)
 
             d_loss = disc_loss_fn(d_real=d_real, d_fake=d_fake)
 
             disc.zero_grad()
-            d_loss.backward(retain_graph=True)  # retain_graph=True because we want to use it later for generator
+            d_loss.backward()
             disc_optimizer.step()
 
             # Training Generator
@@ -96,7 +96,7 @@ def train(gen, gen_optimizer, disc, disc_optimizer, dataloader):
                     to_save = gen(fixed_noise).reshape(-1, 1, 28, 28)
                     img_grid_to_save = torchvision.utils.make_grid(to_save, normalize=True)
 
-                    prefix = ''  # so images are not overwritten - ugly but works
+                    prefix = 'false'  # so images are not overwritten - ugly but works
                     file_to_save_path = os.path.join(sandpit_output_dir_path, prefix + str(epoch_idx) + '.png')
 
                     torchvision.utils.save_image(img_grid_to_save,
