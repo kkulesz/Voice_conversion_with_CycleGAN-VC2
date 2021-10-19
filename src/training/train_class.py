@@ -37,6 +37,8 @@ class CycleGanTraining:
         self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
         self.start_decay_after = Consts.start_decay_after
         self.device = Utils.get_device()
+        self.MSE_fn = torch.nn.MSELoss()
+        self.L1L_fn = torch.nn.L1Loss()
 
         # ------------------------------ #
         #  dataloader                    #
@@ -123,81 +125,72 @@ class CycleGanTraining:
             if iteration > self.zero_identity_lambda_loss_after:
                 self.identity_loss_lambda = 0
             if iteration > self.start_decay_after:
-                self._adjust_generator_lr()
-                self._adjust_discriminator_lr()
+                self._adjust_lr()
 
             # ------------------------------ #
-            #  GENERATORS                    #
+            #  training discriminators       #
             # ------------------------------ #
-            fake_B = self.A2B_gen(real_A)
-            cycle_A = self.B2A_gen(fake_B)
-
             fake_A = self.B2A_gen(real_B)
-            cycle_B = self.B2A_gen(fake_A)
+            fake_B = self.A2B_gen(real_A)
 
-            identity_A = self.B2A_gen(real_A)
-            identity_B = self.A2B_gen(real_B)
+            d_fake_A = self.A_disc(fake_A.detach())
+            d_fake_B = self.B_disc(fake_B.detach())
 
-            d_fake_A = self.A_disc(fake_A)
-            d_fake_B = self.B_disc(fake_B)
-
-            # ------------------------------ #
-            #  count generator loss          #
-            # ------------------------------ #
-            cycle_loss = torch.mean(torch.abs(real_A - cycle_A)) + \
-                         torch.mean(torch.abs(real_B - cycle_B))
-
-            identity_loss = torch.mean(torch.abs(real_A - identity_A)) + \
-                            torch.mean(torch.abs(real_B - identity_B))
-
-            A2B_gen_loss = torch.mean((1 - d_fake_B) ** 2)
-            B2A_gen_loss = torch.mean((1 - d_fake_A) ** 2)
-
-            generator_loss = A2B_gen_loss + \
-                             B2A_gen_loss + \
-                             self.cycle_loss_lambda * cycle_loss + \
-                             self.identity_loss_lambda * identity_loss
-            self.gen_loss_store.append(generator_loss.item())
-
-            self._reset_grad()
-            generator_loss.backward()
-            self.gen_optimizer.step()
-
-            # ------------------------------ #
-            #  DISCRIMINATORS                #
-            # ------------------------------ #
             d_real_A = self.A_disc(real_A)
             d_real_B = self.B_disc(real_B)
 
-            fake_A = self.B2A_gen(real_B)
-            d_fake_A = self.A_disc(fake_A)
+            d_fake_loss_A = self._adversarial_loss_fn(d_fake_A, torch.zeros_like(d_fake_A))
+            d_real_loss_A = self._adversarial_loss_fn(d_real_A, torch.ones_like(d_real_A))
+            d_loss_A = d_fake_loss_A + d_real_loss_A
 
-            fake_B = self.A2B_gen(real_A)
-            d_fake_B = self.B_disc(fake_B)
+            d_fake_loss_B = self._adversarial_loss_fn(d_fake_B, torch.zeros_like(d_fake_B))
+            d_real_loss_B = self._adversarial_loss_fn(d_real_B, torch.ones_like(d_real_B))
+            d_loss_B = d_fake_loss_B + d_real_loss_B
 
-            # ------------------------------ #
-            #  count discriminator loss      #
-            # ------------------------------ #
-            d_loss_A = CycleGanTraining._count_discriminator_loss(d_real_A, d_fake_A)
-            d_loss_B = CycleGanTraining._count_discriminator_loss(d_real_B, d_fake_B)
+            d_loss = (d_loss_A + d_loss_B) / 2
 
-            d_loss = (d_loss_A + d_loss_B) / 2.0
-            d_loss_for_store = d_loss.clone().cpu().detach().numpy()
-            self.disc_loss_store.append(d_loss_for_store)
-
-            self._reset_grad()
+            self.disc_optimizer.zero_grad()
             d_loss.backward()
             self.disc_optimizer.step()
+
+            # ------------------------------ #
+            #  training generators           #
+            # ------------------------------ #
+            d_fake_A = self.A_disc(fake_A)
+            d_fake_B = self.B_disc(fake_B)
+            adv_loss_A = self._adversarial_loss_fn(d_fake_A, torch.ones_like(d_fake_A))
+            adv_loss_B = self._adversarial_loss_fn(d_fake_B, torch.ones_like(d_fake_B))
+            adversarial_loss = adv_loss_A + adv_loss_B
+
+            cycle_A = self.B2A_gen(fake_B)
+            cycle_B = self.A2B_gen(fake_A)
+            cycle_loss_A = self._cycle_loss_fn(real_A, cycle_A)
+            cycle_loss_B = self._cycle_loss_fn(real_B, cycle_B)
+            cycle_loss = self.cycle_loss_lambda * cycle_loss_A + self.cycle_loss_lambda * cycle_loss_B
+
+            identity_A = self.B2A_gen(real_A)
+            identity_B = self.A2B_gen(real_B)
+            identity_loss_A = self._identity_loss_fn(real_A, identity_A)
+            identity_loss_B = self._identity_loss_fn(real_B, identity_B)
+            identity_loss = self.identity_loss_lambda * identity_loss_A + self.identity_loss_lambda * identity_loss_B
+
+            g_loss = adversarial_loss + cycle_loss + identity_loss
+
+            self.gen_optimizer.zero_grad()
+            g_loss.backward()
+            self.gen_optimizer.step()
 
             # ------------------------------ #
             #  printing                      #
             # ------------------------------ #
             if (iteration + 1) % self.print_losses_iteration_frequency == 0:
                 CycleGanTraining._print_losses(iteration=iteration,
-                                               generator_loss=generator_loss,
+                                               generator_loss=g_loss,
                                                discriminator_loss=d_loss,
                                                cycle_loss=cycle_loss,
                                                identity_loss=identity_loss)
+                self.gen_loss_store.append(g_loss.cpu().detach().item())  # TODO: it sometimes crushes training
+                self.disc_loss_store.append(d_loss.cpu().detach().item())
 
     @staticmethod
     def _prepare_dataset(A_data_file, B_data_file, number_of_frames):
@@ -228,6 +221,10 @@ class CycleGanTraining:
 
         return validator
 
+    def _adjust_lr(self):
+        self._adjust_discriminator_lr()
+        self._adjust_generator_lr()
+
     def _adjust_generator_lr(self):
         self.gen_lr = max(0., self.gen_lr - self.gen_lr_decay)
         for param_groups in self.gen_optimizer.param_groups:
@@ -238,16 +235,14 @@ class CycleGanTraining:
         for param_groups in self.disc_optimizer.param_groups:
             param_groups['lr'] = self.disc_lr
 
-    def _reset_grad(self):
-        self.gen_optimizer.zero_grad()
-        self.disc_optimizer.zero_grad()
+    def _adversarial_loss_fn(self, x, y):
+        return self.MSE_fn(x, y)
 
-    @staticmethod
-    def _count_discriminator_loss(d_real, d_fake):
-        d_loss_real = torch.mean((1 - d_real) ** 2)
-        d_loss_fake = torch.mean(d_fake ** 2)
+    def _cycle_loss_fn(self, x, y):
+        return self.L1L_fn(x, y)
 
-        return (d_loss_real + d_loss_fake) / 2.0
+    def _identity_loss_fn(self, x, y):
+        return self.L1L_fn(x, y)
 
     @staticmethod
     def _print_losses(iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss):
