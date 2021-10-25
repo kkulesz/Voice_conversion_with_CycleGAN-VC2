@@ -72,12 +72,12 @@ class Consts:
     #  validation                    #
     # ------------------------------ #
     validation_output_directory = os.path.join(output_dir_path, "validation")
-    A_validation_output_directory_name = "AtoB"
-    B_validation_output_directory_name = "BtoA"
-    A_validation_output_directory_path = os.path.join(validation_output_directory, A_validation_output_directory_name)
-    B_validation_output_directory_path = os.path.join(validation_output_directory, B_validation_output_directory_name)
+    A2B_validation_output_directory_name = "AtoB"
+    B2A_validation_output_directory_name = "BtoA"
+    A2B_validation_output_directory_path = os.path.join(validation_output_directory, A2B_validation_output_directory_name)
+    B2A_validation_output_directory_path = os.path.join(validation_output_directory, B2A_validation_output_directory_name)
     dump_validation_file_epoch_frequency = 50
-    print_losses_iteration_frequency = 10
+    print_losses_iteration_frequency = 100
 
     # ------------------------------ #
     #  model storage                 #

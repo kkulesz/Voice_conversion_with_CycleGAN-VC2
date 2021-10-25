@@ -22,8 +22,8 @@ def _reset_cache_directories(cache_dir=Consts.cache_directory_path, A=Consts.A_d
 
 
 def _reset_validation_directories(validation_dir=Consts.validation_output_directory,
-                                  A=Consts.A_validation_output_directory_name,
-                                  B=Consts.B_validation_output_directory_name):
+                                  A=Consts.A2B_validation_output_directory_name,
+                                  B=Consts.B2A_validation_output_directory_name):
     FilesOperator.delete_directory(validation_dir)
     FilesOperator.create_directory(validation_dir)
 

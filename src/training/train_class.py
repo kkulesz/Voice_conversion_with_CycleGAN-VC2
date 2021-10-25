@@ -18,10 +18,10 @@ class CycleGanTraining:
     def __init__(self,
                  A_data_file,
                  B_data_file,
-                 A_validation_dir,
-                 B_validation_dir,
-                 A_output_dir,
-                 B_output_dir,
+                 A_validation_source_dir,
+                 B_validation_source_dir,
+                 A2B_validation_output_dir,
+                 B2A_validation_output_dir,
                  A_cache_dir,
                  B_cache_dir,
                  save_models_dir: str,
@@ -80,10 +80,10 @@ class CycleGanTraining:
         #  validation                    #
         # ------------------------------ #
         self.validator = CycleGanTraining._prepare_validator(A_cache_dir, B_cache_dir)
-        self.A_validation_dir = A_validation_dir
-        self.B_validation_dir = B_validation_dir
-        self.A_output_dir = A_output_dir
-        self.B_output_dir = B_output_dir
+        self.A_validation_source_dir = A_validation_source_dir
+        self.B_validation_source_dir = B_validation_source_dir
+        self.A2B_validation_output_dir = A2B_validation_output_dir
+        self.B2A_validation_output_dir = B2A_validation_output_dir
         self.dump_validation_file_epoch_frequency = Consts.dump_validation_file_epoch_frequency
         self.print_losses_iteration_frequency = Consts.print_losses_iteration_frequency
 
@@ -101,10 +101,10 @@ class CycleGanTraining:
             # print(f"Epoch {epoch_num + 1}")
             self._train_single_epoch(epoch_num)
 
-            # if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-            #     print("Dumping validation files... ", end='')
-            #     self._validate(epoch_num + 1)
-            #     print("Done")
+            if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
+                print("Dumping validation files... ", end='')
+                self._validate(epoch_num + 1)
+                print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
                 print("Checkpoint... ", end='')
@@ -147,7 +147,7 @@ class CycleGanTraining:
             d_real_loss_B = self._adversarial_loss_fn(d_real_B, torch.ones_like(d_real_B))
             d_loss_B = d_fake_loss_B + d_real_loss_B
 
-            d_loss = (d_loss_A + d_loss_B) / 2
+            d_loss = (d_loss_A + d_loss_B) / 2  # todo: what is dividing by two for?
 
             self.disc_optimizer.zero_grad()
             d_loss.backward()
@@ -257,17 +257,17 @@ class CycleGanTraining:
     def _validate(self, epoch):
         self._validate_single_generator(epoch=epoch,
                                         generator=self.A2B_gen,
-                                        validation_directory=self.A_validation_dir,
-                                        output_dir=self.A_output_dir,
-                                        is_A=True)
+                                        validation_directory=self.A_validation_source_dir,
+                                        output_dir=self.A2B_validation_output_dir,
+                                        is_A2B=True)
 
         self._validate_single_generator(epoch=epoch,
                                         generator=self.B2A_gen,
-                                        validation_directory=self.B_validation_dir,
-                                        output_dir=self.B_output_dir,
-                                        is_A=False)
+                                        validation_directory=self.B_validation_source_dir,
+                                        output_dir=self.B2A_validation_output_dir,
+                                        is_A2B=False)
 
-    def _validate_single_generator(self, epoch, generator, validation_directory, output_dir, is_A):
+    def _validate_single_generator(self, epoch, generator, validation_directory, output_dir, is_A2B):
         epoch_output_dir = os.path.join(output_dir, str(epoch))
         os.mkdir(epoch_output_dir)
         for file in os.listdir(validation_directory):
@@ -275,7 +275,7 @@ class CycleGanTraining:
             output_file_path = os.path.join(epoch_output_dir, file)
 
             with torch.no_grad():
-                input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A)
+                input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A2B)
 
                 signal_tensor = torch.from_numpy(input_signal)
                 gpu_input = signal_tensor.to(self.device).float()
@@ -286,7 +286,7 @@ class CycleGanTraining:
                                                     ap=ap,
                                                     f0=f0,
                                                     file_path=output_file_path,
-                                                    is_A=is_A)
+                                                    is_A=is_A2B)
 
     def _checkpoint(self):
         save_dir = self.save_models_directory
