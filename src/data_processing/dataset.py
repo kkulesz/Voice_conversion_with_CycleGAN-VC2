@@ -55,7 +55,7 @@ class PreprocessedDataset(Dataset):
         # TODO
         return A_torch.float(), B_torch.float()
 
-    def _get_random_frames_chunk(self, data):
+    def _get_random_frames_chunk(self, data):  # TODO: maybe get rid of this
         all_data_frames = data.shape[1]
         start = np.random.randint(all_data_frames - self._number_of_frames + 1)
         end = start + self._number_of_frames
