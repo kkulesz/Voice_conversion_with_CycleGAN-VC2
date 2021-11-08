@@ -45,6 +45,7 @@ class CycleGanTraining:
         # ------------------------------ #
         self.number_of_frames = Consts.number_of_frames
         self.dataset = CycleGanTraining._prepare_dataset(A_data_file, B_data_file, self.number_of_frames)
+        self.dataset.prepare_and_shuffle()
         self.dataloader = CycleGanTraining._prepare_dataloader(self.dataset, self.batch_size)
         self.number_of_samples_in_dataset = len(self.dataset)
 
@@ -98,7 +99,7 @@ class CycleGanTraining:
 
     def train(self):
         for epoch_num in range(self.number_of_epochs):
-            # print(f"Epoch {epoch_num + 1}")
+            print(f"Epoch {epoch_num + 1}")
             self.dataset.prepare_and_shuffle()
             self.dataloader = CycleGanTraining._prepare_dataloader(self.dataset, self.batch_size)
             self._train_single_epoch(epoch_num)
