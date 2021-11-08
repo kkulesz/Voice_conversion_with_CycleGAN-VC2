@@ -13,7 +13,8 @@ class PreprocessedDataset(Dataset):
 
         self._number_of_frames = number_of_frames
 
-        self._A_dataset, self._B_dataset = self._prepare_datasets()
+        self._A_dataset = []
+        self._B_dataset = []
 
     def __len__(self):
         return min(len(self._A_dataset), len(self._B_dataset))
@@ -21,7 +22,7 @@ class PreprocessedDataset(Dataset):
     def __getitem__(self, idx):
         return self._A_dataset[idx], self._B_dataset[idx]
 
-    def _prepare_datasets(self):
+    def prepare_and_shuffle(self):
         number_of_samples = min(len(self._A_file_content), len(self._B_file_content))
 
         A_indexes = np.arange(len(self._A_file_content))
@@ -52,10 +53,9 @@ class PreprocessedDataset(Dataset):
         B_torch = torch.from_numpy(B_numpy)
 
         # '.float()' because network for some reason is expecting float32 instead of float64
-        # TODO
-        return A_torch.float(), B_torch.float()
+        self._A_dataset, self._B_dataset = A_torch.float(), B_torch.float()
 
-    def _get_random_frames_chunk(self, data):  # TODO: maybe get rid of this
+    def _get_random_frames_chunk(self, data):
         all_data_frames = data.shape[1]
         start = np.random.randint(all_data_frames - self._number_of_frames + 1)
         end = start + self._number_of_frames
