@@ -26,12 +26,12 @@ class PyWorldPreprocessor(Preprocessor):
         A_dataset_dir = os.path.join(data_directory, A_dir)
         B_dataset_dir = os.path.join(data_directory, B_dir)
 
-        A_mcep, A_f0 = self._preprocess_domain(A_dataset_dir)
-        B_mcep, B_f0 = self._preprocess_domain(B_dataset_dir)
+        A_mcep, A_f0 = self._preprocess_domain(A_dataset_dir, A_dir)
+        B_mcep, B_f0 = self._preprocess_domain(B_dataset_dir, B_dir)
 
         return (A_mcep, A_f0), (B_mcep, B_f0)
 
-    def _preprocess_domain(self, data_directory):
+    def _preprocess_domain(self, data_directory, dir_log_message):
         signals = FilesOperator.load_signals(data_directory, self._sampling_rate)
 
         f0s, _, _, _, mceps = ProcessingUtils \
@@ -42,6 +42,9 @@ class PyWorldPreprocessor(Preprocessor):
         mceps_normalized, mcpes_mean, mceps_std = ProcessingUtils \
             .transpose_and_normalize_mceps(mceps)
 
+        print(f"{dir_log_message}: logf0_Mean: {log_f0_mean: .4f}, logf0_Std: {log_f0_std: .4f}")
+        # print(f"{dir_log_message}: MCEP_Mean: {mcpes_mean}, MCEP_Std: {mceps_std}")
+
         return (mceps_normalized, mcpes_mean, mceps_std), (log_f0_mean, log_f0_std)
 
 
@@ -50,7 +53,7 @@ if __name__ == '__main__':
                                        sampling_rate=Consts.sampling_rate,
                                        frame_period_in_ms=Consts.frame_period_in_ms)
 
-    A_sub_dir, B_sub_dir = Consts.male_to_female
-    preprocessor.preprocess(data_directory=Consts.data_dir_vc16,
+    A_sub_dir, B_sub_dir = Consts.female_to_male
+    preprocessor.preprocess(data_directory=Consts.vc16_training_directory_path,
                             A_dir=A_sub_dir,
                             B_dir=B_sub_dir)
