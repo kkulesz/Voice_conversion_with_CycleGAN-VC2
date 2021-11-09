@@ -30,7 +30,7 @@ class ProcessingUtils:
         signal = signal.astype(np.float64)
 
         # Note form PyWorld github: If SNR(signal-to-noise-ratio) is low then use 'harvest' instead of 'dio'
-        f0, time = pw.dio(signal, sampling_rate, f0_floor=Consts.f0_floor, f0_ceil=Consts.f0_ceil)
+        f0, time = pw.harvest(signal, sampling_rate, frame_period=Consts.frame_period_in_ms, f0_floor=Consts.f0_floor, f0_ceil=Consts.f0_ceil)
 
         # OPTIONAL - TODO: check whether it does not break anything
         # f0 = pw.stonemask(signal, f0, time, self._sampling_rate) # pitch_refinement
@@ -89,8 +89,7 @@ class ProcessingUtils:
     @staticmethod
     def count_padding(number_of_frames, sampling_rate, frame_period, multiple):
         parameter = (sampling_rate * frame_period / 1000)
-        padding_number = (np.ceil(
-            (np.floor(number_of_frames / parameter) + 1) / multiple + 1) * multiple - 1) * parameter
+        padding_number = (np.ceil((np.floor(number_of_frames / parameter) + 1) / multiple + 1) * multiple - 1) * parameter
         return int(padding_number)
 
     @staticmethod
