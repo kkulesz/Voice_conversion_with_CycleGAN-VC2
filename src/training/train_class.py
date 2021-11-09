@@ -150,7 +150,7 @@ class CycleGanTraining:
             d_real_loss_B = self._adversarial_loss_fn(d_real_B, torch.ones_like(d_real_B))
             d_loss_B = d_fake_loss_B + d_real_loss_B
 
-            d_loss = (d_loss_A + d_loss_B) / 2  # todo: what is dividing by two for?
+            d_loss = (d_loss_A + d_loss_B) / 2.0  # todo: what is dividing by two for?
 
             self.disc_optimizer.zero_grad()
             d_loss.backward()
@@ -209,7 +209,7 @@ class CycleGanTraining:
         dataloader = DataLoader(
             dataset=dataset,
             batch_size=batch_size,
-            shuffle=False,
+            shuffle=True,
             drop_last=False
         )
 
@@ -281,15 +281,15 @@ class CycleGanTraining:
                 input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A2B)
 
                 signal_tensor = torch.from_numpy(input_signal)
-                gpu_input = signal_tensor.to(self.device).float()
-                gpu_generated = generator(gpu_input)
-                cpu_generated = gpu_generated.cpu()
+                device_input = signal_tensor.to(self.device).float()
+                device_generated = generator(device_input)
+                cpu_generated = device_generated.cpu()
 
                 self.validator.denormalize_and_save(signal=cpu_generated,
                                                     ap=ap,
                                                     f0=f0,
                                                     file_path=output_file_path,
-                                                    is_A=is_A2B)
+                                                    is_A=not is_A2B)  # negation, because now we are in the "opposite" domain
 
     def _checkpoint(self):
         save_dir = self.save_models_directory
