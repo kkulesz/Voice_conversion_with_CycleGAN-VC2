@@ -76,13 +76,13 @@ class Consts:
     B2A_validation_output_directory_name = "BtoA"
     A2B_validation_output_directory_path = os.path.join(validation_output_directory, A2B_validation_output_directory_name)
     B2A_validation_output_directory_path = os.path.join(validation_output_directory, B2A_validation_output_directory_name)
-    dump_validation_file_epoch_frequency = 50
+    dump_validation_file_epoch_frequency = 2
     print_losses_iteration_frequency = 100
 
     # ------------------------------ #
     #  model storage                 #
     # ------------------------------ #
-    models_saving_epoch_frequency = 50
+    models_saving_epoch_frequency = 2
     models_storage_directory_path = os.path.join(output_dir_path, "models_storage")
 
     A2B_generator_file_name = "A2B_gen.pth"

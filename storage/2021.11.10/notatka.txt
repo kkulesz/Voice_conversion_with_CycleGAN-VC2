@@ -1,0 +1,4 @@
+- same data as `2021-11-8`, but with pyworld.harvest() instead of pyworld.dio()
+
+- look like generators do not learn
+- which is weird coz discriminators behave normally(i think)

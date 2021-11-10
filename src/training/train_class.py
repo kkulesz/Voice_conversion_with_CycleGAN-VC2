@@ -99,20 +99,20 @@ class CycleGanTraining:
 
     def train(self):
         for epoch_num in range(self.number_of_epochs):
-            print(f"Epoch {epoch_num + 1}")
+            # print(f"Epoch {epoch_num + 1}")
             self.dataset.prepare_and_shuffle()
             self.dataloader = CycleGanTraining._prepare_dataloader(self.dataset, self.batch_size)
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                print("Dumping validation files... ", end='')
+                # print("Dumping validation files... ", end='')
                 self._validate(epoch_num + 1)
-                print("Done")
+                # print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
-                print("Checkpoint... ", end='')
+                # print("Checkpoint... ", end='')
                 self._checkpoint()
-                print("Done")
+                # print("Done")
 
         print("Finished training")
 
@@ -192,6 +192,8 @@ class CycleGanTraining:
                                                discriminator_loss=d_loss,
                                                cycle_loss=cycle_loss,
                                                identity_loss=identity_loss)
+            if iteration % (10 * self.print_losses_iteration_frequency) == 0:
+                self._print_params()
             self.gen_loss_store.append(g_loss.cpu().detach().item())
             self.disc_loss_store.append(d_loss.cpu().detach().item())
 
@@ -256,6 +258,10 @@ class CycleGanTraining:
                      f"\tIdentity-loss:      {identity_loss.item():.4f}\n"
         losses_str = losses_str.replace("\n", "")
         print(losses_str)
+
+    def _print_params(self):
+        params_str = f"gen_lr: {self.gen_lr}, disc_lr:{self.disc_lr}"
+        print(params_str)
 
     def _validate(self, epoch):
         self._validate_single_generator(epoch=epoch,

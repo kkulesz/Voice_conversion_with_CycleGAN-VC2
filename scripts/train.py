@@ -35,6 +35,7 @@ def prepare_training_class(A_validation_src_directory,
 if __name__ == '__main__':
     # ==========================================================
     A_dir, B_dir = Consts.female_to_male
+    print(f"FROM: {A_dir} TO: {B_dir}")
 
     download_destination = Consts.vc16_data_directory_path
     training_data_dir = Consts.vc16_training_directory_path
