@@ -42,7 +42,7 @@ class PyWorldPreprocessor(Preprocessor):
         mceps_normalized, mcpes_mean, mceps_std = ProcessingUtils \
             .transpose_and_normalize_mceps(mceps)
 
-        print(f"{dir_log_message}: logf0_Mean: {log_f0_mean: .4f}, logf0_Std: {log_f0_std: .4f}")
+        print(f"- {dir_log_message}: logf0_Mean: {log_f0_mean: .4f}, logf0_Std: {log_f0_std: .4f}")
         # print(f"{dir_log_message}: MCEP_Mean: {mcpes_mean}, MCEP_Std: {mceps_std}")
 
         return (mceps_normalized, mcpes_mean, mceps_std), (log_f0_mean, log_f0_std)

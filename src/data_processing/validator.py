@@ -18,10 +18,10 @@ class Validator:
         self.B_mcep_mean, self.B_mcep_std, self.B_log_f0_mean, self.B_log_f0_std = \
             Validator._unpack_normalizations(B_mcep, B_log_f0)
 
-        print(f"A_ds: logf0_Mean: {self.A_log_f0_mean: .4f}, logf0_Std: {self.A_log_f0_std: .4f}")
+        print(f"- A_ds: logf0_Mean: {self.A_log_f0_mean: .4f}, logf0_Std: {self.A_log_f0_std: .4f}")
         # print(f"A_ds: MCEP_Mean: {self.A_mcep_mean}, MCEP_Std: {self.A_mcep_std}")
 
-        print(f"B_ds: logf0_Mean: {self.B_log_f0_mean: .4f}, logf0_Std: {self.B_log_f0_std: .4f}")
+        print(f"- B_ds: logf0_Mean: {self.B_log_f0_mean: .4f}, logf0_Std: {self.B_log_f0_std: .4f}")
         # print(f"B_ds: MCEP_Mean: {self.B_mcep_mean}, MCEP_Std: {self.B_mcep_std}")
 
     def load_and_normalize(self, file_path: str, is_A: bool):

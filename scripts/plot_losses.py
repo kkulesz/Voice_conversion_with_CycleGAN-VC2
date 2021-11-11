@@ -9,7 +9,7 @@ if __name__ == '__main__':
     discriminators_losses_file_path = os.path.join(directory_path, Consts.discriminator_loss_storage_file)
     generators_losses_file_path = os.path.join(directory_path, Consts.generator_loss_storage_file)
 
-    plot_after = 0
+    plot_after = int(0 * 1e+3)
 
     disc_df = pd.read_csv(discriminators_losses_file_path)
     gen_df = pd.read_csv(generators_losses_file_path)

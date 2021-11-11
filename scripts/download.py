@@ -12,21 +12,21 @@ def _check_if_already_downloaded(path):
 def _unzip(zipped_file_path, destination_dir):
     unzipped_directory_name = zipped_file_path[:-len(".zip")]
     if os.path.exists(unzipped_directory_name):
-        print(f"Already unzipped: {unzipped_directory_name}")
+        print(f"- already unzipped: {unzipped_directory_name}")
     else:
-        print(f"Unzipping: {zipped_file_path}")
+        print(f"- unzipping: {zipped_file_path}")
         with zipfile.ZipFile(zipped_file_path) as zipped_file:
             zipped_file.extractall(destination_dir)
-        print(f"Unzipped: {unzipped_directory_name}")
+        print(f"- unzipped: {unzipped_directory_name}")
 
 
 def _download(url, file_path):
     if not _check_if_already_downloaded(file_path):
         print(f"Downloading: {url}")
         urlretrieve(url, file_path)
-        print(f"Finished downloading: {file_path}")
+        print(f"- finished downloading: {file_path}")
     else:
-        print(f"Already downloaded: {file_path}")
+        print(f"- already downloaded: {file_path}")
 
 
 def download_vc2016_dataset(destination_directory):
