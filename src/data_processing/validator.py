@@ -92,3 +92,18 @@ class Validator:
             return self.A_mcep_mean, self.A_mcep_std
         else:
             return self.B_mcep_mean, self.B_mcep_std
+
+
+if __name__ == '__main__':
+    validator = Validator(A_cache_dir=Consts.A_cache_directory_path,
+                          B_cache_dir=Consts.B_cache_directory_path)
+
+    input_file = './input.wav'
+    output_file = './output.wav'
+    loaded_signal, (f0, ap) = validator.load_and_normalize(file_path=input_file, is_A=True)
+    validator.denormalize_and_save(signal=loaded_signal,
+                                   f0=f0,
+                                   ap=ap,
+                                   file_path=output_file,
+                                   is_A=True)
+    # result: .wav files are a little different, but the same happens in follow-up works, so it should not be the problem
