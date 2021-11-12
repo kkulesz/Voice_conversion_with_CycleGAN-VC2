@@ -3,7 +3,7 @@ import numpy as np
 
 from consts import Consts
 
-from src.training.train_class import CycleGanTraining
+from src.model.train_class import CycleGanTraining
 
 from scripts.prepare_for_training import prepare_for_training
 from scripts.download import download_vc2016_dataset

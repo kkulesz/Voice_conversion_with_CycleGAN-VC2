@@ -33,7 +33,7 @@ class Validator:
                                             multiple=4)  # TODO: find out what the 'multiple' is for
         f0, _, sp, ap = ProcessingUtils.decompose_signal(padded, sampling_rate=Consts.sampling_rate)
         f0_converted = self._convert_pitch(f0, is_A=is_A)
-        mcep = pw.code_spectral_envelope(sp, Consts.sampling_rate, Consts.number_of_mcpes)
+        mcep = pw.code_spectral_envelope(sp, Consts.sampling_rate, Consts.number_of_mcpes_cycle_gan_2)
         transposed = mcep.T
         normalized = self._normalize(transposed, is_A=is_A)
 

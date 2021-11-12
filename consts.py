@@ -7,7 +7,8 @@ class Consts:
     # ------------------------------ #
     f0_floor = 71.0
     f0_ceil = 800.0
-    number_of_mcpes = 24
+    number_of_mcpes_cycle_gan_2 = 36
+    number_of_mcpes_cycle_gan_1 = 24
     sampling_rate = 16000
     frame_period_in_ms = 5.0
     number_of_frames = 128
@@ -72,6 +73,7 @@ class Consts:
     #  validation                    #
     # ------------------------------ #
     validation_output_directory = os.path.join(output_dir_path, "validation")
+    log_file_path = os.path.join(output_dir_path, "log_file.txt")
     A2B_validation_output_directory_name = "AtoB"
     B2A_validation_output_directory_name = "BtoA"
     A2B_validation_output_directory_path = os.path.join(validation_output_directory, A2B_validation_output_directory_name)

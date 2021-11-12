@@ -49,7 +49,7 @@ class PyWorldPreprocessor(Preprocessor):
 
 
 if __name__ == '__main__':
-    preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes,
+    preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes_cycle_gan_2,
                                        sampling_rate=Consts.sampling_rate,
                                        frame_period_in_ms=Consts.frame_period_in_ms)
 
