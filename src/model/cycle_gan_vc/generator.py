@@ -1,7 +1,7 @@
 import torch.nn as nn
 
 from src.model.cycle_gan_vc.submodules.glu import GLU
-from src.model.cycle_gan_vc.submodules.down_sample_1d_layer import DownSample1DLayer
+from src.model.cycle_gan_vc.submodules.down_sample_generator import DownSampleGenerator
 from src.model.cycle_gan_vc.submodules.up_sample import UpSampleLayer
 from src.model.cycle_gan_vc.submodules.residual_block import ResidualBlock
 
@@ -17,8 +17,8 @@ class Generator(nn.Module):
             GLU()
         )
 
-        self.down_sample_1 = DownSample1DLayer(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
-        self.down_sample_2 = DownSample1DLayer(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
+        self.down_sample_1 = DownSampleGenerator(in_channels=128, out_channels=256, kernel_size=5, stride=2, padding=1)
+        self.down_sample_2 = DownSampleGenerator(in_channels=256, out_channels=512, kernel_size=5, stride=2, padding=2)
 
         # need to be done in that ugly-repetitive way because:
         #   1. missing copy() implementation

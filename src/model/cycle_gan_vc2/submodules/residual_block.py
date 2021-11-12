@@ -2,9 +2,9 @@ import torch.nn as nn
 import torch
 
 
-class ResidualLayer(nn.Module):
+class ResidualBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
-        super(ResidualLayer, self).__init__()
+        super(ResidualBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv1d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size, stride=1, padding=padding),
             nn.InstanceNorm1d(num_features=out_channels, affine=True)

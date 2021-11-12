@@ -3,7 +3,7 @@ import torch
 
 from src.model.cycle_gan_vc2.submodules.up_sample_generator import UpSampleGenerator
 from src.model.cycle_gan_vc2.submodules.down_sample_generator import DownSampleGenerator
-from src.model.cycle_gan_vc2.submodules.residual_block import ResidualLayer
+from src.model.cycle_gan_vc2.submodules.residual_block import ResidualBlock
 
 
 class GeneratorCycleGan2(nn.Module):
@@ -22,12 +22,12 @@ class GeneratorCycleGan2(nn.Module):
             nn.InstanceNorm1d(num_features=256, affine=True)
         )
 
-        self.rd1 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
-        self.rd2 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
-        self.rd3 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
-        self.rd4 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
-        self.rd5 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
-        self.rd6 = ResidualLayer(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_1 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_2 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_3 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_4 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_5 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
+        self.rb_6 = ResidualBlock(in_channels=256, out_channels=512, kernel_size=3, stride=1, padding=1)
 
         # 1D -> 2D
         self.conv_1d_to_2d = nn.Sequential(
@@ -53,15 +53,15 @@ class GeneratorCycleGan2(nn.Module):
         reshaped_to_1d = reshaped_to_1d.squeeze(2)
         after_conv2dto1d = self.conv_2d_to_1d(reshaped_to_1d)
 
-        rd1 = self.rd1(after_conv2dto1d)
-        rd2 = self.rd2(rd1)
-        rd3 = self.rd3(rd2)
-        rd4 = self.rd4(rd3)
-        rd5 = self.rd5(rd4)
-        rd6 = self.rd6(rd5)
+        after_rb_1 = self.rb_1(after_conv2dto1d)
+        after_rb_2 = self.rb_2(after_rb_1)
+        after_rb_3 = self.rb_3(after_rb_2)
+        after_rb_4 = self.rb_4(after_rb_3)
+        after_rb_5 = self.rb_5(after_rb_4)
+        after_rb_6 = self.rb_6(after_rb_5)
 
         # 1D -> 2D
-        after_conv1dto2d = self.conv_1d_to_2d(rd6)
+        after_conv1dto2d = self.conv_1d_to_2d(after_rb_6)
         reshaped_to_2d = after_conv1dto2d.unsqueeze(2)
         reshaped_to_2d = reshaped_to_2d.view(reshaped_to_2d.size(0), 256, 9, -1)
 

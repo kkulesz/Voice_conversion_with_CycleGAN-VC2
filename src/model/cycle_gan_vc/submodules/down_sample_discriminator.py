@@ -3,9 +3,9 @@ import torch.nn as nn
 from src.model.cycle_gan_vc.submodules.glu import GLU
 
 
-class DownSample2DLayer(nn.Module):
+class DownSampleDiscriminator(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
-        super(DownSample2DLayer, self).__init__()
+        super(DownSampleDiscriminator, self).__init__()
         self.sequential = nn.Sequential(
             torch.nn.Conv2d(
                 in_channels=in_channels,
