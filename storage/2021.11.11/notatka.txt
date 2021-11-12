@@ -1,0 +1,5 @@
+-SF1 to TM1
+-350epochs of 52files each - 18200 iterations
+-first/initial version of cycle-gan-2
+
+looks great, generated .wav actually sound like human, words are available to hear and it really gets better with epochs counting up
