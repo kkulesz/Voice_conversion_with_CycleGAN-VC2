@@ -1,10 +1,9 @@
-import torch
 import torch.nn as nn
 
-from src.model.submodules.glu import GLU
-from src.model.submodules.down_sample_1d_layer import DownSample1DLayer
-from src.model.submodules.up_sample import UpSampleLayer
-from src.model.submodules.residual_block import ResidualBlock
+from src.model.cycle_gan_vc.submodules.glu import GLU
+from src.model.cycle_gan_vc.submodules.down_sample_1d_layer import DownSample1DLayer
+from src.model.cycle_gan_vc.submodules.up_sample import UpSampleLayer
+from src.model.cycle_gan_vc.submodules.residual_block import ResidualBlock
 
 
 # TODO: find out what padding is for and decide its value

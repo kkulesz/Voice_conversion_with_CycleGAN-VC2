@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from src.model.submodules.glu import GLU
-from src.model.submodules.down_sample_2d_layer import DownSample2DLayer
+from src.model.cycle_gan_vc.submodules.glu import GLU
+from src.model.cycle_gan_vc.submodules.down_sample_2d_layer import DownSample2DLayer
 
 
 class Discriminator(nn.Module):

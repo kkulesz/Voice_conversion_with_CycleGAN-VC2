@@ -1,8 +1,8 @@
 import os
 import torch
 
-from src.model.generator import Generator
-from src.model.discriminator import Discriminator
+from src.model.cycle_gan_vc.generator import Generator
+from src.model.cycle_gan_vc.discriminator import Discriminator
 
 from consts import Consts
 from src.utils.files_operator import FilesOperator
