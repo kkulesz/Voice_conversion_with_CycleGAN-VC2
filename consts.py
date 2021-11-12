@@ -7,8 +7,9 @@ class Consts:
     # ------------------------------ #
     f0_floor = 71.0
     f0_ceil = 800.0
-    number_of_mcpes_cycle_gan_2 = 36
-    number_of_mcpes_cycle_gan_1 = 24
+    cycle_gan_1_mceps = 24
+    cycle_gan_2_mceps = 36
+    number_of_mceps = cycle_gan_2_mceps  # change here to preprocess and validate files correctly
     sampling_rate = 16000
     frame_period_in_ms = 5.0
     number_of_frames = 128

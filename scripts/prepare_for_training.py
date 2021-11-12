@@ -72,7 +72,7 @@ def prepare_for_training(data_dir, A_dir, B_dir, storage_dir):
     _reset_validation_directories()
     _make_sure_storage_dir_exist(storage_dir)
 
-    preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mcpes_cycle_gan_2,
+    preprocessor = PyWorldPreprocessor(number_of_mceps=Consts.number_of_mceps,
                                        sampling_rate=Consts.sampling_rate,
                                        frame_period_in_ms=Consts.frame_period_in_ms)
 
