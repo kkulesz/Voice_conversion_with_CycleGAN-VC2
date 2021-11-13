@@ -20,11 +20,12 @@ def print_first_param(model):
 
 
 if __name__ == '__main__':
+    storage_dir = '2021.11.13'
     project_dir = Consts.project_dir_path
-    cache_dir = os.path.join(project_dir, 'storage\\2021.11.11\\cache')
-    model_storage_path = os.path.join(project_dir, 'storage\\2021.11.11')
-    data_src_dir = os.path.join(project_dir, 'data\\vc-challenge-2016\\vcc2016_training')
-    input_file_name = '100002.wav'
+    cache_dir = os.path.join(project_dir, f'storage\\{storage_dir}\\cache')
+    model_storage_path = os.path.join(project_dir, f'storage\\{storage_dir}')
+    data_src_dir = os.path.join(project_dir, 'data\\vc-challenge-2016\\evaluation_all')
+    input_file_name = '200040.wav'
 
     (A, B) = Consts.female_to_male
 
@@ -37,7 +38,6 @@ if __name__ == '__main__':
     # B2A_gen = Generator()
     # A_disc = Discriminator()
     # B_disc = Discriminator()
-    print("M")
     A2B_gen = GeneratorCycleGan2()
     B2A_gen = GeneratorCycleGan2()
     A_disc = DiscriminatorCycleGan2()

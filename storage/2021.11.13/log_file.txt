@@ -1,0 +1,399 @@
+
+
+---------
+NEXT RUN
+---------
+    0: 	G_loss: 23.8297	D_loss: 0.2557	Cycle_loss: 1.5480	Identity_loss:1.5599	A2B_loss: 0.2706	B2A_loss: 0.2791	d_A_loss: 0.2567	d_B_loss: 0.2548
+  100: 	G_loss: 22.3240	D_loss: 0.0374	Cycle_loss: 1.4195	Identity_loss:1.3448	A2B_loss: 0.7255	B2A_loss: 0.6792	d_A_loss: 0.0402	d_B_loss: 0.0346
+  200: 	G_loss: 22.6439	D_loss: 0.0121	Cycle_loss: 1.4352	Identity_loss:1.3233	A2B_loss: 0.8455	B2A_loss: 0.8299	d_A_loss: 0.0104	d_B_loss: 0.0139
+  300: 	G_loss: 22.1348	D_loss: 0.0042	Cycle_loss: 1.3942	Identity_loss:1.2808	A2B_loss: 0.8904	B2A_loss: 0.8986	d_A_loss: 0.0037	d_B_loss: 0.0047
+  400: 	G_loss: 20.5869	D_loss: 0.0288	Cycle_loss: 1.2875	Identity_loss:1.1873	A2B_loss: 0.8565	B2A_loss: 0.9192	d_A_loss: 0.0023	d_B_loss: 0.0553
+  500: 	G_loss: 18.2259	D_loss: 0.0043	Cycle_loss: 1.1386	Identity_loss:0.9994	A2B_loss: 0.9286	B2A_loss: 0.9139	d_A_loss: 0.0046	d_B_loss: 0.0039
+  600: 	G_loss: 18.9259	D_loss: 0.0014	Cycle_loss: 1.1847	Identity_loss:1.0376	A2B_loss: 0.9426	B2A_loss: 0.9486	d_A_loss: 0.0014	d_B_loss: 0.0013
+
+
+---------
+NEXT RUN
+---------
+    0: 	G_loss: 26.4771	D_loss: 0.5146	Cycle_loss: 17.1828	Identity_loss:8.6421	A2B_loss: 0.0000	B2A_loss: 0.0000	d_A_loss: 0.0000	d_B_loss: 0.0000
+  100: 	G_loss: 22.0224	D_loss: 0.0602	Cycle_loss: 14.0098	Identity_loss:6.5852	A2B_loss: 0.0000	B2A_loss: 0.0000	d_A_loss: 0.0000	d_B_loss: 0.0000
+  200: 	G_loss: 21.0541	D_loss: 0.0275	Cycle_loss: 13.1736	Identity_loss:6.2082	A2B_loss: 0.0000	B2A_loss: 0.0000	d_A_loss: 0.0000	d_B_loss: 0.0000
+  300: 	G_loss: 19.7963	D_loss: 0.0116	Cycle_loss: 12.3328	Identity_loss:5.6657	A2B_loss: 0.0000	B2A_loss: 0.0000	d_A_loss: 0.0000	d_B_loss: 0.0000
+
+
+---------
+NEXT RUN
+---------
+    0: 	G_loss: 27.3550	D_loss: 0.5155	Cycle_loss: 17.8522	Identity_loss:8.9346	A2B_loss: 0.2818	B2A_loss: 0.2864	d_A_loss: 0.5130	d_B_loss: 0.5180
+  100: 	G_loss: 22.1321	D_loss: 0.0714	Cycle_loss: 14.1305	Identity_loss:6.6128	A2B_loss: 0.7035	B2A_loss: 0.6853	d_A_loss: 0.0756	d_B_loss: 0.0672
+  200: 	G_loss: 21.3045	D_loss: 0.0230	Cycle_loss: 13.5033	Identity_loss:6.1060	A2B_loss: 0.8541	B2A_loss: 0.8412	d_A_loss: 0.0228	d_B_loss: 0.0231
+  300: 	G_loss: 20.3840	D_loss: 0.0237	Cycle_loss: 12.7783	Identity_loss:5.8474	A2B_loss: 0.8667	B2A_loss: 0.8916	d_A_loss: 0.0127	d_B_loss: 0.0348
+  400: 	G_loss: 20.5861	D_loss: 0.0061	Cycle_loss: 13.0673	Identity_loss:5.6795	A2B_loss: 0.9200	B2A_loss: 0.9193	d_A_loss: 0.0074	d_B_loss: 0.0048
+  500: 	G_loss: 18.1049	D_loss: 0.0049	Cycle_loss: 11.1141	Identity_loss:5.1200	A2B_loss: 0.9381	B2A_loss: 0.9326	d_A_loss: 0.0056	d_B_loss: 0.0041
+  600: 	G_loss: 20.6684	D_loss: 0.0024	Cycle_loss: 13.0519	Identity_loss:5.7269	A2B_loss: 0.9441	B2A_loss: 0.9455	d_A_loss: 0.0027	d_B_loss: 0.0022
+  700: 	G_loss: 17.7878	D_loss: 0.0031	Cycle_loss: 10.9269	Identity_loss:4.9562	A2B_loss: 0.9502	B2A_loss: 0.9545	d_A_loss: 0.0025	d_B_loss: 0.0037
+  800: 	G_loss: 19.0409	D_loss: 0.0066	Cycle_loss: 11.8005	Identity_loss:5.3413	A2B_loss: 0.9549	B2A_loss: 0.9442	d_A_loss: 0.0106	d_B_loss: 0.0025
+  900: 	G_loss: 16.2761	D_loss: 0.0016	Cycle_loss: 9.8546	Identity_loss:4.4951	A2B_loss: 0.9615	B2A_loss: 0.9650	d_A_loss: 0.0012	d_B_loss: 0.0019
+ 1000: 	G_loss: 16.5310	D_loss: 0.0011	Cycle_loss: 10.0785	Identity_loss:4.5185	A2B_loss: 0.9676	B2A_loss: 0.9665	d_A_loss: 0.0011	d_B_loss: 0.0011
+ 1100: 	G_loss: 16.6404	D_loss: 0.0022	Cycle_loss: 10.1075	Identity_loss:4.6136	A2B_loss: 0.9472	B2A_loss: 0.9720	d_A_loss: 0.0010	d_B_loss: 0.0035
+ 1200: 	G_loss: 17.0156	D_loss: 0.0013	Cycle_loss: 10.4421	Identity_loss:4.6382	A2B_loss: 0.9611	B2A_loss: 0.9743	d_A_loss: 0.0005	d_B_loss: 0.0020
+ 1300: 	G_loss: 16.3757	D_loss: 0.0010	Cycle_loss: 10.0363	Identity_loss:4.3973	A2B_loss: 0.9643	B2A_loss: 0.9778	d_A_loss: 0.0004	d_B_loss: 0.0016
+ 1400: 	G_loss: 15.4754	D_loss: 0.0005	Cycle_loss: 9.4028	Identity_loss:4.1206	A2B_loss: 0.9749	B2A_loss: 0.9771	d_A_loss: 0.0005	d_B_loss: 0.0005
+ 1500: 	G_loss: 15.2514	D_loss: 0.0007	Cycle_loss: 9.1905	Identity_loss:4.1136	A2B_loss: 0.9672	B2A_loss: 0.9801	d_A_loss: 0.0004	d_B_loss: 0.0009
+ 1600: 	G_loss: 15.3439	D_loss: 0.0004	Cycle_loss: 9.2472	Identity_loss:4.1404	A2B_loss: 0.9749	B2A_loss: 0.9813	d_A_loss: 0.0003	d_B_loss: 0.0005
+ 1700: 	G_loss: 13.8362	D_loss: 0.0523	Cycle_loss: 8.3057	Identity_loss:3.6541	A2B_loss: 0.8921	B2A_loss: 0.9843	d_A_loss: 0.0003	d_B_loss: 0.1043
+ 1800: 	G_loss: 13.8349	D_loss: 0.2326	Cycle_loss: 8.4232	Identity_loss:3.8126	A2B_loss: 0.6166	B2A_loss: 0.9825	d_A_loss: 0.0002	d_B_loss: 0.4649
+ 1900: 	G_loss: 14.4585	D_loss: 0.1247	Cycle_loss: 8.7894	Identity_loss:4.0434	A2B_loss: 0.6414	B2A_loss: 0.9843	d_A_loss: 0.0002	d_B_loss: 0.2491
+ 2000: 	G_loss: 13.9277	D_loss: 0.1050	Cycle_loss: 8.5682	Identity_loss:3.8251	A2B_loss: 0.5485	B2A_loss: 0.9858	d_A_loss: 0.0002	d_B_loss: 0.2099
+ 2100: 	G_loss: 15.2393	D_loss: 0.2260	Cycle_loss: 9.4891	Identity_loss:4.2390	A2B_loss: 0.5274	B2A_loss: 0.9838	d_A_loss: 0.0002	d_B_loss: 0.4518
+ 2200: 	G_loss: 12.9126	D_loss: 0.1859	Cycle_loss: 8.0000	Identity_loss:3.5247	A2B_loss: 0.4587	B2A_loss: 0.9292	d_A_loss: 0.0244	d_B_loss: 0.3475
+ 2300: 	G_loss: 13.3133	D_loss: 0.2164	Cycle_loss: 8.2193	Identity_loss:3.6734	A2B_loss: 0.4636	B2A_loss: 0.9570	d_A_loss: 0.0024	d_B_loss: 0.4303
+ 2400: 	G_loss: 13.2848	D_loss: 0.2460	Cycle_loss: 8.3049	Identity_loss:3.6829	A2B_loss: 0.3314	B2A_loss: 0.9656	d_A_loss: 0.0010	d_B_loss: 0.4910
+ 2500: 	G_loss: 13.2011	D_loss: 0.1665	Cycle_loss: 8.0174	Identity_loss:3.6676	A2B_loss: 0.5422	B2A_loss: 0.9739	d_A_loss: 0.0014	d_B_loss: 0.3316
+ 2600: 	G_loss: 12.4253	D_loss: 0.1163	Cycle_loss: 7.4568	Identity_loss:3.3377	A2B_loss: 0.6526	B2A_loss: 0.9781	d_A_loss: 0.0006	d_B_loss: 0.2320
+ 2700: 	G_loss: 13.1266	D_loss: 0.1245	Cycle_loss: 7.9114	Identity_loss:3.6099	A2B_loss: 0.6268	B2A_loss: 0.9785	d_A_loss: 0.0005	d_B_loss: 0.2485
+ 2800: 	G_loss: 12.4300	D_loss: 0.2732	Cycle_loss: 7.5839	Identity_loss:3.4843	A2B_loss: 0.3783	B2A_loss: 0.9835	d_A_loss: 0.0003	d_B_loss: 0.5461
+ 2900: 	G_loss: 12.0045	D_loss: 0.1841	Cycle_loss: 7.3258	Identity_loss:3.2315	A2B_loss: 0.4631	B2A_loss: 0.9840	d_A_loss: 0.0002	d_B_loss: 0.3679
+ 3000: 	G_loss: 12.3559	D_loss: 0.1847	Cycle_loss: 7.5293	Identity_loss:3.3505	A2B_loss: 0.4961	B2A_loss: 0.9801	d_A_loss: 0.0004	d_B_loss: 0.3689
+ 3100: 	G_loss: 12.0647	D_loss: 0.1832	Cycle_loss: 7.2137	Identity_loss:3.3182	A2B_loss: 0.5489	B2A_loss: 0.9839	d_A_loss: 0.0002	d_B_loss: 0.3661
+ 3200: 	G_loss: 11.9371	D_loss: 0.2214	Cycle_loss: 7.2257	Identity_loss:3.3229	A2B_loss: 0.4035	B2A_loss: 0.9849	d_A_loss: 0.0003	d_B_loss: 0.4425
+ 3300: 	G_loss: 11.5331	D_loss: 0.1418	Cycle_loss: 6.8399	Identity_loss:3.1363	A2B_loss: 0.5700	B2A_loss: 0.9868	d_A_loss: 0.0001	d_B_loss: 0.2835
+ 3400: 	G_loss: 11.9228	D_loss: 0.1502	Cycle_loss: 7.1082	Identity_loss:3.2536	A2B_loss: 0.5732	B2A_loss: 0.9879	d_A_loss: 0.0002	d_B_loss: 0.3001
+ 3500: 	G_loss: 11.5896	D_loss: 0.1488	Cycle_loss: 6.8716	Identity_loss:3.1407	A2B_loss: 0.5897	B2A_loss: 0.9876	d_A_loss: 0.0001	d_B_loss: 0.2975
+ 3600: 	G_loss: 11.5671	D_loss: 0.0982	Cycle_loss: 6.8046	Identity_loss:3.1632	A2B_loss: 0.6115	B2A_loss: 0.9878	d_A_loss: 0.0001	d_B_loss: 0.1963
+ 3700: 	G_loss: 12.0335	D_loss: 0.1354	Cycle_loss: 7.2533	Identity_loss:3.2474	A2B_loss: 0.5449	B2A_loss: 0.9880	d_A_loss: 0.0001	d_B_loss: 0.2707
+ 3800: 	G_loss: 10.9196	D_loss: 0.1150	Cycle_loss: 6.4860	Identity_loss:2.9144	A2B_loss: 0.5607	B2A_loss: 0.9585	d_A_loss: 0.0017	d_B_loss: 0.2284
+ 3900: 	G_loss: 10.2277	D_loss: 0.1741	Cycle_loss: 6.0867	Identity_loss:2.6607	A2B_loss: 0.4968	B2A_loss: 0.9835	d_A_loss: 0.0017	d_B_loss: 0.3464
+ 4000: 	G_loss: 11.3493	D_loss: 0.1266	Cycle_loss: 6.7414	Identity_loss:3.0275	A2B_loss: 0.5912	B2A_loss: 0.9891	d_A_loss: 0.0001	d_B_loss: 0.2530
+ 4100: 	G_loss: 12.2223	D_loss: 0.1291	Cycle_loss: 7.3297	Identity_loss:3.2715	A2B_loss: 0.6311	B2A_loss: 0.9900	d_A_loss: 0.0001	d_B_loss: 0.2582
+ 4200: 	G_loss: 11.6104	D_loss: 0.1319	Cycle_loss: 6.8947	Identity_loss:3.1602	A2B_loss: 0.5645	B2A_loss: 0.9910	d_A_loss: 0.0001	d_B_loss: 0.2637
+ 4300: 	G_loss: 10.6237	D_loss: 0.0917	Cycle_loss: 6.1754	Identity_loss:2.8456	A2B_loss: 0.6125	B2A_loss: 0.9902	d_A_loss: 0.0001	d_B_loss: 0.1834
+ 4400: 	G_loss: 11.4943	D_loss: 0.1926	Cycle_loss: 6.7496	Identity_loss:3.1512	A2B_loss: 0.6020	B2A_loss: 0.9914	d_A_loss: 0.0001	d_B_loss: 0.3852
+ 4500: 	G_loss: 11.6907	D_loss: 0.1910	Cycle_loss: 6.9886	Identity_loss:3.2001	A2B_loss: 0.5231	B2A_loss: 0.9790	d_A_loss: 0.0011	d_B_loss: 0.3808
+ 4600: 	G_loss: 10.4945	D_loss: 0.2110	Cycle_loss: 6.3053	Identity_loss:2.7897	A2B_loss: 0.4222	B2A_loss: 0.9773	d_A_loss: 0.0009	d_B_loss: 0.4211
+ 4700: 	G_loss: 10.5332	D_loss: 0.2396	Cycle_loss: 6.2293	Identity_loss:2.8025	A2B_loss: 0.5155	B2A_loss: 0.9859	d_A_loss: 0.0002	d_B_loss: 0.4790
+ 4800: 	G_loss: 11.1823	D_loss: 0.1994	Cycle_loss: 6.6459	Identity_loss:3.0444	A2B_loss: 0.5038	B2A_loss: 0.9882	d_A_loss: 0.0002	d_B_loss: 0.3986
+ 4900: 	G_loss: 11.4792	D_loss: 0.1733	Cycle_loss: 6.7885	Identity_loss:3.1351	A2B_loss: 0.5651	B2A_loss: 0.9905	d_A_loss: 0.0002	d_B_loss: 0.3463
+ 5000: 	G_loss: 10.4172	D_loss: 0.1935	Cycle_loss: 6.1506	Identity_loss:2.7436	A2B_loss: 0.5333	B2A_loss: 0.9896	d_A_loss: 0.0002	d_B_loss: 0.3868
+ 5100: 	G_loss: 10.9479	D_loss: 0.0959	Cycle_loss: 6.4061	Identity_loss:2.8828	A2B_loss: 0.6678	B2A_loss: 0.9911	d_A_loss: 0.0001	d_B_loss: 0.1917
+ 5200: 	G_loss: 11.2214	D_loss: 0.1601	Cycle_loss: 6.7207	Identity_loss:3.0400	A2B_loss: 0.4796	B2A_loss: 0.9812	d_A_loss: 0.0003	d_B_loss: 0.3199
+ 5300: 	G_loss: 10.8351	D_loss: 0.1115	Cycle_loss: 6.3986	Identity_loss:2.7988	A2B_loss: 0.6460	B2A_loss: 0.9917	d_A_loss: 0.0002	d_B_loss: 0.2229
+ 5400: 	G_loss: 9.7447	D_loss: 0.2068	Cycle_loss: 5.6664	Identity_loss:2.5172	A2B_loss: 0.5700	B2A_loss: 0.9912	d_A_loss: 0.0001	d_B_loss: 0.4135
+ 5500: 	G_loss: 10.5320	D_loss: 0.1257	Cycle_loss: 6.1869	Identity_loss:2.7799	A2B_loss: 0.5729	B2A_loss: 0.9923	d_A_loss: 0.0000	d_B_loss: 0.2513
+ 5600: 	G_loss: 10.2896	D_loss: 0.1401	Cycle_loss: 6.0235	Identity_loss:2.6735	A2B_loss: 0.6012	B2A_loss: 0.9915	d_A_loss: 0.0001	d_B_loss: 0.2800
+ 5700: 	G_loss: 11.0545	D_loss: 0.1213	Cycle_loss: 6.4670	Identity_loss:2.9769	A2B_loss: 0.6171	B2A_loss: 0.9935	d_A_loss: 0.0003	d_B_loss: 0.2423
+ 5800: 	G_loss: 10.8162	D_loss: 0.0578	Cycle_loss: 6.1471	Identity_loss:2.9524	A2B_loss: 0.7227	B2A_loss: 0.9941	d_A_loss: 0.0001	d_B_loss: 0.1154
+ 5900: 	G_loss: 9.7022	D_loss: 0.1080	Cycle_loss: 5.6174	Identity_loss:2.5084	A2B_loss: 0.5827	B2A_loss: 0.9937	d_A_loss: 0.0000	d_B_loss: 0.2159
+ 6000: 	G_loss: 9.3842	D_loss: 0.1295	Cycle_loss: 5.4277	Identity_loss:2.3971	A2B_loss: 0.5675	B2A_loss: 0.9918	d_A_loss: 0.0001	d_B_loss: 0.2590
+ 6100: 	G_loss: 10.4728	D_loss: 0.0998	Cycle_loss: 6.0863	Identity_loss:2.7408	A2B_loss: 0.6515	B2A_loss: 0.9942	d_A_loss: 0.0000	d_B_loss: 0.1996
+ 6200: 	G_loss: 10.5418	D_loss: 0.1558	Cycle_loss: 6.1581	Identity_loss:2.8561	A2B_loss: 0.5329	B2A_loss: 0.9947	d_A_loss: 0.0000	d_B_loss: 0.3116
+ 6300: 	G_loss: 9.5154	D_loss: 0.1271	Cycle_loss: 5.5288	Identity_loss:2.3775	A2B_loss: 0.6197	B2A_loss: 0.9894	d_A_loss: 0.0001	d_B_loss: 0.2542
+ 6400: 	G_loss: 10.3877	D_loss: 0.1022	Cycle_loss: 5.9937	Identity_loss:2.7552	A2B_loss: 0.6444	B2A_loss: 0.9944	d_A_loss: 0.0000	d_B_loss: 0.2043
+ 6500: 	G_loss: 11.0784	D_loss: 0.1357	Cycle_loss: 6.4498	Identity_loss:2.9362	A2B_loss: 0.6988	B2A_loss: 0.9935	d_A_loss: 0.0000	d_B_loss: 0.2714
+ 6600: 	G_loss: 9.9419	D_loss: 0.1229	Cycle_loss: 5.7374	Identity_loss:2.6092	A2B_loss: 0.6004	B2A_loss: 0.9949	d_A_loss: 0.0000	d_B_loss: 0.2457
+ 6700: 	G_loss: 9.7658	D_loss: 0.1196	Cycle_loss: 5.5524	Identity_loss:2.5472	A2B_loss: 0.6727	B2A_loss: 0.9934	d_A_loss: 0.0000	d_B_loss: 0.2391
+ 6800: 	G_loss: 9.5943	D_loss: 0.0985	Cycle_loss: 5.4680	Identity_loss:2.5185	A2B_loss: 0.6130	B2A_loss: 0.9948	d_A_loss: 0.0000	d_B_loss: 0.1969
+ 6900: 	G_loss: 11.0909	D_loss: 0.1176	Cycle_loss: 6.5044	Identity_loss:2.9434	A2B_loss: 0.6479	B2A_loss: 0.9951	d_A_loss: 0.0000	d_B_loss: 0.2351
+ 7000: 	G_loss: 9.2265	D_loss: 0.1450	Cycle_loss: 5.2399	Identity_loss:2.3708	A2B_loss: 0.6209	B2A_loss: 0.9949	d_A_loss: 0.0000	d_B_loss: 0.2899
+ 7100: 	G_loss: 9.4907	D_loss: 0.1172	Cycle_loss: 5.3890	Identity_loss:2.4519	A2B_loss: 0.6544	B2A_loss: 0.9955	d_A_loss: 0.0000	d_B_loss: 0.2345
+ 7200: 	G_loss: 11.0977	D_loss: 0.1417	Cycle_loss: 6.4680	Identity_loss:3.0299	A2B_loss: 0.6048	B2A_loss: 0.9950	d_A_loss: 0.0000	d_B_loss: 0.2834
+ 7300: 	G_loss: 11.0684	D_loss: 0.0703	Cycle_loss: 6.4649	Identity_loss:2.9193	A2B_loss: 0.6886	B2A_loss: 0.9956	d_A_loss: 0.0000	d_B_loss: 0.1406
+ 7400: 	G_loss: 11.2308	D_loss: 0.1032	Cycle_loss: 6.5749	Identity_loss:3.0427	A2B_loss: 0.6180	B2A_loss: 0.9952	d_A_loss: 0.0000	d_B_loss: 0.2064
+ 7500: 	G_loss: 9.9563	D_loss: 0.1642	Cycle_loss: 5.7259	Identity_loss:2.5924	A2B_loss: 0.6528	B2A_loss: 0.9851	d_A_loss: 0.0023	d_B_loss: 0.3261
+ 7600: 	G_loss: 8.9264	D_loss: 0.0904	Cycle_loss: 5.0155	Identity_loss:2.2942	A2B_loss: 0.6303	B2A_loss: 0.9864	d_A_loss: 0.0004	d_B_loss: 0.1805
+ 7700: 	G_loss: 10.0052	D_loss: 0.1359	Cycle_loss: 5.7296	Identity_loss:2.6581	A2B_loss: 0.6259	B2A_loss: 0.9917	d_A_loss: 0.0001	d_B_loss: 0.2716
+ 7800: 	G_loss: 11.3723	D_loss: 0.1180	Cycle_loss: 6.6131	Identity_loss:3.1112	A2B_loss: 0.6544	B2A_loss: 0.9937	d_A_loss: 0.0000	d_B_loss: 0.2359
+ 7900: 	G_loss: 9.3540	D_loss: 0.1381	Cycle_loss: 5.2604	Identity_loss:2.4433	A2B_loss: 0.6588	B2A_loss: 0.9915	d_A_loss: 0.0001	d_B_loss: 0.2762
+ 8000: 	G_loss: 10.4129	D_loss: 0.0975	Cycle_loss: 5.9943	Identity_loss:2.7298	A2B_loss: 0.6956	B2A_loss: 0.9932	d_A_loss: 0.0001	d_B_loss: 0.1950
+ 8100: 	G_loss: 9.9716	D_loss: 0.1192	Cycle_loss: 5.7316	Identity_loss:2.6042	A2B_loss: 0.6429	B2A_loss: 0.9929	d_A_loss: 0.0001	d_B_loss: 0.2383
+ 8200: 	G_loss: 10.1591	D_loss: 0.0797	Cycle_loss: 5.7623	Identity_loss:2.7051	A2B_loss: 0.6987	B2A_loss: 0.9930	d_A_loss: 0.0000	d_B_loss: 0.1593
+ 8300: 	G_loss: 10.7338	D_loss: 0.1689	Cycle_loss: 6.1565	Identity_loss:2.8961	A2B_loss: 0.6874	B2A_loss: 0.9938	d_A_loss: 0.0000	d_B_loss: 0.3378
+ 8400: 	G_loss: 9.6502	D_loss: 0.0617	Cycle_loss: 5.4216	Identity_loss:2.5267	A2B_loss: 0.7084	B2A_loss: 0.9935	d_A_loss: 0.0000	d_B_loss: 0.1235
+ 8500: 	G_loss: 9.6867	D_loss: 0.0930	Cycle_loss: 5.5278	Identity_loss:2.4978	A2B_loss: 0.6665	B2A_loss: 0.9945	d_A_loss: 0.0000	d_B_loss: 0.1860
+ 8600: 	G_loss: 9.0866	D_loss: 0.0963	Cycle_loss: 5.0766	Identity_loss:2.2936	A2B_loss: 0.7223	B2A_loss: 0.9940	d_A_loss: 0.0000	d_B_loss: 0.1925
+ 8700: 	G_loss: 10.0171	D_loss: 0.0961	Cycle_loss: 5.6486	Identity_loss:2.6524	A2B_loss: 0.7204	B2A_loss: 0.9957	d_A_loss: 0.0000	d_B_loss: 0.1921
+ 8800: 	G_loss: 9.0284	D_loss: 0.1087	Cycle_loss: 5.0629	Identity_loss:2.3675	A2B_loss: 0.6024	B2A_loss: 0.9956	d_A_loss: 0.0000	d_B_loss: 0.2175
+ 8900: 	G_loss: 8.9177	D_loss: 0.0961	Cycle_loss: 4.9558	Identity_loss:2.2859	A2B_loss: 0.6817	B2A_loss: 0.9943	d_A_loss: 0.0000	d_B_loss: 0.1921
+ 9000: 	G_loss: 9.4062	D_loss: 0.1634	Cycle_loss: 5.3027	Identity_loss:2.4484	A2B_loss: 0.6596	B2A_loss: 0.9955	d_A_loss: 0.0000	d_B_loss: 0.3267
+ 9100: 	G_loss: 10.0903	D_loss: 0.0665	Cycle_loss: 5.6649	Identity_loss:2.6357	A2B_loss: 0.7937	B2A_loss: 0.9960	d_A_loss: 0.0000	d_B_loss: 0.1330
+ 9200: 	G_loss: 9.5629	D_loss: 0.0738	Cycle_loss: 5.3863	Identity_loss:2.4527	A2B_loss: 0.7280	B2A_loss: 0.9958	d_A_loss: 0.0000	d_B_loss: 0.1476
+ 9300: 	G_loss: 10.1583	D_loss: 0.1747	Cycle_loss: 5.8546	Identity_loss:2.7277	A2B_loss: 0.5796	B2A_loss: 0.9963	d_A_loss: 0.0000	d_B_loss: 0.3494
+ 9400: 	G_loss: 9.2413	D_loss: 0.0646	Cycle_loss: 5.1795	Identity_loss:2.3281	A2B_loss: 0.7384	B2A_loss: 0.9953	d_A_loss: 0.0000	d_B_loss: 0.1291
+ 9500: 	G_loss: 8.8601	D_loss: 0.1015	Cycle_loss: 4.9070	Identity_loss:2.2291	A2B_loss: 0.7279	B2A_loss: 0.9961	d_A_loss: 0.0000	d_B_loss: 0.2029
+ 9600: 	G_loss: 9.3208	D_loss: 0.1069	Cycle_loss: 5.2768	Identity_loss:2.4055	A2B_loss: 0.6422	B2A_loss: 0.9963	d_A_loss: 0.0000	d_B_loss: 0.2138
+ 9700: 	G_loss: 9.7026	D_loss: 0.0944	Cycle_loss: 5.5274	Identity_loss:2.5013	A2B_loss: 0.6781	B2A_loss: 0.9958	d_A_loss: 0.0000	d_B_loss: 0.1887
+ 9800: 	G_loss: 10.5056	D_loss: 0.0892	Cycle_loss: 6.0601	Identity_loss:2.7721	A2B_loss: 0.6767	B2A_loss: 0.9966	d_A_loss: 0.0000	d_B_loss: 0.1783
+ 9900: 	G_loss: 10.1526	D_loss: 0.1292	Cycle_loss: 5.7918	Identity_loss:2.6791	A2B_loss: 0.6848	B2A_loss: 0.9969	d_A_loss: 0.0000	d_B_loss: 0.2584
+10000: 	G_loss: 9.9218	D_loss: 0.0214	Cycle_loss: 5.5129	Identity_loss:2.5747	A2B_loss: 0.8374	B2A_loss: 0.9968	d_A_loss: 0.0000	d_B_loss: 0.0428
+10100: 	G_loss: 6.8127	D_loss: 0.1399	Cycle_loss: 5.1235	Identity_loss:0.0000	A2B_loss: 0.6925	B2A_loss: 0.9967	d_A_loss: 0.0000	d_B_loss: 0.2798
+10200: 	G_loss: 6.5702	D_loss: 0.0971	Cycle_loss: 4.8972	Identity_loss:0.0000	A2B_loss: 0.6765	B2A_loss: 0.9964	d_A_loss: 0.0000	d_B_loss: 0.1942
+10300: 	G_loss: 6.8292	D_loss: 0.1335	Cycle_loss: 5.1929	Identity_loss:0.0000	A2B_loss: 0.6392	B2A_loss: 0.9971	d_A_loss: 0.0000	d_B_loss: 0.2669
+10400: 	G_loss: 7.3972	D_loss: 0.1284	Cycle_loss: 5.7192	Identity_loss:0.0000	A2B_loss: 0.6822	B2A_loss: 0.9958	d_A_loss: 0.0000	d_B_loss: 0.2568
+10500: 	G_loss: 6.9243	D_loss: 0.1495	Cycle_loss: 5.1747	Identity_loss:0.0000	A2B_loss: 0.7531	B2A_loss: 0.9965	d_A_loss: 0.0000	d_B_loss: 0.2990
+10600: 	G_loss: 6.9344	D_loss: 0.1146	Cycle_loss: 5.2360	Identity_loss:0.0000	A2B_loss: 0.7026	B2A_loss: 0.9959	d_A_loss: 0.0000	d_B_loss: 0.2292
+10700: 	G_loss: 6.6338	D_loss: 0.0802	Cycle_loss: 4.9599	Identity_loss:0.0000	A2B_loss: 0.6778	B2A_loss: 0.9961	d_A_loss: 0.0000	d_B_loss: 0.1604
+10800: 	G_loss: 7.3146	D_loss: 0.1367	Cycle_loss: 5.6813	Identity_loss:0.0000	A2B_loss: 0.6361	B2A_loss: 0.9972	d_A_loss: 0.0001	d_B_loss: 0.2733
+10900: 	G_loss: 7.2378	D_loss: 0.1280	Cycle_loss: 5.5166	Identity_loss:0.0000	A2B_loss: 0.7241	B2A_loss: 0.9971	d_A_loss: 0.0000	d_B_loss: 0.2560
+11000: 	G_loss: 7.3798	D_loss: 0.0875	Cycle_loss: 5.6432	Identity_loss:0.0000	A2B_loss: 0.7392	B2A_loss: 0.9974	d_A_loss: 0.0000	d_B_loss: 0.1750
+11100: 	G_loss: 6.7856	D_loss: 0.1470	Cycle_loss: 5.0890	Identity_loss:0.0000	A2B_loss: 0.6995	B2A_loss: 0.9971	d_A_loss: 0.0000	d_B_loss: 0.2940
+11200: 	G_loss: 6.4425	D_loss: 0.1085	Cycle_loss: 4.7326	Identity_loss:0.0000	A2B_loss: 0.7131	B2A_loss: 0.9968	d_A_loss: 0.0000	d_B_loss: 0.2170
+11300: 	G_loss: 6.5878	D_loss: 0.0646	Cycle_loss: 4.8680	Identity_loss:0.0000	A2B_loss: 0.7228	B2A_loss: 0.9970	d_A_loss: 0.0000	d_B_loss: 0.1292
+11400: 	G_loss: 7.4815	D_loss: 0.1937	Cycle_loss: 5.8884	Identity_loss:0.0000	A2B_loss: 0.5960	B2A_loss: 0.9971	d_A_loss: 0.0000	d_B_loss: 0.3874
+11500: 	G_loss: 6.3134	D_loss: 0.0658	Cycle_loss: 4.5198	Identity_loss:0.0000	A2B_loss: 0.7958	B2A_loss: 0.9978	d_A_loss: 0.0000	d_B_loss: 0.1315
+11600: 	G_loss: 6.7107	D_loss: 0.0892	Cycle_loss: 4.9652	Identity_loss:0.0000	A2B_loss: 0.7490	B2A_loss: 0.9965	d_A_loss: 0.0000	d_B_loss: 0.1784
+11700: 	G_loss: 6.9997	D_loss: 0.1175	Cycle_loss: 5.2649	Identity_loss:0.0000	A2B_loss: 0.7369	B2A_loss: 0.9979	d_A_loss: 0.0000	d_B_loss: 0.2351
+11800: 	G_loss: 6.7538	D_loss: 0.1071	Cycle_loss: 5.0727	Identity_loss:0.0000	A2B_loss: 0.6830	B2A_loss: 0.9981	d_A_loss: 0.0000	d_B_loss: 0.2141
+11900: 	G_loss: 7.0878	D_loss: 0.1328	Cycle_loss: 5.3868	Identity_loss:0.0000	A2B_loss: 0.7031	B2A_loss: 0.9979	d_A_loss: 0.0000	d_B_loss: 0.2656
+12000: 	G_loss: 6.9033	D_loss: 0.0719	Cycle_loss: 5.1594	Identity_loss:0.0000	A2B_loss: 0.7460	B2A_loss: 0.9979	d_A_loss: 0.0000	d_B_loss: 0.1439
+12100: 	G_loss: 7.1653	D_loss: 0.0893	Cycle_loss: 5.4557	Identity_loss:0.0000	A2B_loss: 0.7113	B2A_loss: 0.9984	d_A_loss: 0.0000	d_B_loss: 0.1786
+12200: 	G_loss: 6.3046	D_loss: 0.0442	Cycle_loss: 4.5076	Identity_loss:0.0000	A2B_loss: 0.7991	B2A_loss: 0.9979	d_A_loss: 0.0000	d_B_loss: 0.0885
+12300: 	G_loss: 6.0452	D_loss: 0.3693	Cycle_loss: 4.4546	Identity_loss:0.0000	A2B_loss: 0.7615	B2A_loss: 0.8291	d_A_loss: 0.5981	d_B_loss: 0.1406
+12400: 	G_loss: 7.2764	D_loss: 0.3950	Cycle_loss: 5.9612	Identity_loss:0.0000	A2B_loss: 0.7399	B2A_loss: 0.5753	d_A_loss: 0.3876	d_B_loss: 0.4024
+12500: 	G_loss: 6.4633	D_loss: 0.3964	Cycle_loss: 5.3952	Identity_loss:0.0000	A2B_loss: 0.7670	B2A_loss: 0.3011	d_A_loss: 0.6688	d_B_loss: 0.1239
+12600: 	G_loss: 5.9204	D_loss: 0.3387	Cycle_loss: 4.8064	Identity_loss:0.0000	A2B_loss: 0.7287	B2A_loss: 0.3854	d_A_loss: 0.4544	d_B_loss: 0.2231
+12700: 	G_loss: 6.7900	D_loss: 0.3971	Cycle_loss: 5.7931	Identity_loss:0.0000	A2B_loss: 0.6657	B2A_loss: 0.3311	d_A_loss: 0.5711	d_B_loss: 0.2231
+12800: 	G_loss: 6.3260	D_loss: 0.2672	Cycle_loss: 5.2045	Identity_loss:0.0000	A2B_loss: 0.7495	B2A_loss: 0.3720	d_A_loss: 0.4171	d_B_loss: 0.1174
+12900: 	G_loss: 6.0929	D_loss: 0.2735	Cycle_loss: 4.9145	Identity_loss:0.0000	A2B_loss: 0.7548	B2A_loss: 0.4237	d_A_loss: 0.3758	d_B_loss: 0.1712
+13000: 	G_loss: 6.9638	D_loss: 0.3329	Cycle_loss: 5.8705	Identity_loss:0.0000	A2B_loss: 0.7491	B2A_loss: 0.3442	d_A_loss: 0.4607	d_B_loss: 0.2051
+13100: 	G_loss: 6.2056	D_loss: 0.2288	Cycle_loss: 5.0114	Identity_loss:0.0000	A2B_loss: 0.7926	B2A_loss: 0.4016	d_A_loss: 0.3176	d_B_loss: 0.1399
+13200: 	G_loss: 6.3824	D_loss: 0.2586	Cycle_loss: 5.2115	Identity_loss:0.0000	A2B_loss: 0.7697	B2A_loss: 0.4012	d_A_loss: 0.4388	d_B_loss: 0.0785
+13300: 	G_loss: 6.3828	D_loss: 0.3753	Cycle_loss: 5.2405	Identity_loss:0.0000	A2B_loss: 0.7658	B2A_loss: 0.3765	d_A_loss: 0.4071	d_B_loss: 0.3434
+13400: 	G_loss: 6.4580	D_loss: 0.2540	Cycle_loss: 5.2529	Identity_loss:0.0000	A2B_loss: 0.7747	B2A_loss: 0.4304	d_A_loss: 0.3405	d_B_loss: 0.1675
+13500: 	G_loss: 6.8174	D_loss: 0.2805	Cycle_loss: 5.6223	Identity_loss:0.0000	A2B_loss: 0.8149	B2A_loss: 0.3803	d_A_loss: 0.4645	d_B_loss: 0.0965
+13600: 	G_loss: 6.4184	D_loss: 0.3763	Cycle_loss: 5.3564	Identity_loss:0.0000	A2B_loss: 0.7876	B2A_loss: 0.2744	d_A_loss: 0.6036	d_B_loss: 0.1490
+13700: 	G_loss: 5.7897	D_loss: 0.3152	Cycle_loss: 4.7014	Identity_loss:0.0000	A2B_loss: 0.7547	B2A_loss: 0.3336	d_A_loss: 0.4907	d_B_loss: 0.1396
+13800: 	G_loss: 6.6599	D_loss: 0.2947	Cycle_loss: 5.4763	Identity_loss:0.0000	A2B_loss: 0.7911	B2A_loss: 0.3925	d_A_loss: 0.4070	d_B_loss: 0.1825
+13900: 	G_loss: 6.6150	D_loss: 0.3885	Cycle_loss: 5.5911	Identity_loss:0.0000	A2B_loss: 0.6614	B2A_loss: 0.3625	d_A_loss: 0.4995	d_B_loss: 0.2776
+14000: 	G_loss: 5.9014	D_loss: 0.3088	Cycle_loss: 4.7657	Identity_loss:0.0000	A2B_loss: 0.7489	B2A_loss: 0.3868	d_A_loss: 0.4063	d_B_loss: 0.2112
+14100: 	G_loss: 6.0900	D_loss: 0.3646	Cycle_loss: 5.0385	Identity_loss:0.0000	A2B_loss: 0.6993	B2A_loss: 0.3522	d_A_loss: 0.4775	d_B_loss: 0.2517
+14200: 	G_loss: 6.4949	D_loss: 0.2616	Cycle_loss: 5.3580	Identity_loss:0.0000	A2B_loss: 0.7369	B2A_loss: 0.4000	d_A_loss: 0.3301	d_B_loss: 0.1931
+14300: 	G_loss: 6.4303	D_loss: 0.2375	Cycle_loss: 5.0948	Identity_loss:0.0000	A2B_loss: 0.8395	B2A_loss: 0.4960	d_A_loss: 0.3284	d_B_loss: 0.1466
+14400: 	G_loss: 6.2412	D_loss: 0.3826	Cycle_loss: 5.2139	Identity_loss:0.0000	A2B_loss: 0.7086	B2A_loss: 0.3187	d_A_loss: 0.4283	d_B_loss: 0.3369
+14500: 	G_loss: 6.0188	D_loss: 0.2420	Cycle_loss: 4.7772	Identity_loss:0.0000	A2B_loss: 0.8113	B2A_loss: 0.4303	d_A_loss: 0.3684	d_B_loss: 0.1156
+14600: 	G_loss: 6.5751	D_loss: 0.2914	Cycle_loss: 5.4720	Identity_loss:0.0000	A2B_loss: 0.7323	B2A_loss: 0.3709	d_A_loss: 0.4541	d_B_loss: 0.1288
+14700: 	G_loss: 6.3710	D_loss: 0.2002	Cycle_loss: 5.0613	Identity_loss:0.0000	A2B_loss: 0.8239	B2A_loss: 0.4857	d_A_loss: 0.2802	d_B_loss: 0.1202
+14800: 	G_loss: 6.3852	D_loss: 0.2672	Cycle_loss: 5.1167	Identity_loss:0.0000	A2B_loss: 0.7680	B2A_loss: 0.5004	d_A_loss: 0.3233	d_B_loss: 0.2111
+14900: 	G_loss: 6.0324	D_loss: 0.2907	Cycle_loss: 4.8243	Identity_loss:0.0000	A2B_loss: 0.8297	B2A_loss: 0.3784	d_A_loss: 0.4707	d_B_loss: 0.1106
+15000: 	G_loss: 6.7499	D_loss: 0.2082	Cycle_loss: 5.5093	Identity_loss:0.0000	A2B_loss: 0.7945	B2A_loss: 0.4461	d_A_loss: 0.2578	d_B_loss: 0.1587
+15100: 	G_loss: 6.4463	D_loss: 0.1800	Cycle_loss: 5.0693	Identity_loss:0.0000	A2B_loss: 0.8677	B2A_loss: 0.5093	d_A_loss: 0.2647	d_B_loss: 0.0953
+15200: 	G_loss: 6.4406	D_loss: 0.3271	Cycle_loss: 5.1848	Identity_loss:0.0000	A2B_loss: 0.8025	B2A_loss: 0.4533	d_A_loss: 0.4415	d_B_loss: 0.2127
+15300: 	G_loss: 6.4877	D_loss: 0.3618	Cycle_loss: 5.3205	Identity_loss:0.0000	A2B_loss: 0.7593	B2A_loss: 0.4080	d_A_loss: 0.4612	d_B_loss: 0.2625
+15400: 	G_loss: 6.1621	D_loss: 0.2626	Cycle_loss: 4.8629	Identity_loss:0.0000	A2B_loss: 0.8619	B2A_loss: 0.4374	d_A_loss: 0.3874	d_B_loss: 0.1378
+15500: 	G_loss: 5.9605	D_loss: 0.2424	Cycle_loss: 4.7087	Identity_loss:0.0000	A2B_loss: 0.8114	B2A_loss: 0.4403	d_A_loss: 0.3921	d_B_loss: 0.0926
+15600: 	G_loss: 5.8755	D_loss: 0.2255	Cycle_loss: 4.6420	Identity_loss:0.0000	A2B_loss: 0.7710	B2A_loss: 0.4624	d_A_loss: 0.3330	d_B_loss: 0.1179
+15700: 	G_loss: 6.3585	D_loss: 0.2535	Cycle_loss: 5.0369	Identity_loss:0.0000	A2B_loss: 0.8118	B2A_loss: 0.5098	d_A_loss: 0.3410	d_B_loss: 0.1660
+15800: 	G_loss: 6.6525	D_loss: 0.1883	Cycle_loss: 5.2805	Identity_loss:0.0000	A2B_loss: 0.8460	B2A_loss: 0.5260	d_A_loss: 0.2665	d_B_loss: 0.1101
+15900: 	G_loss: 6.4887	D_loss: 0.3904	Cycle_loss: 5.3413	Identity_loss:0.0000	A2B_loss: 0.7999	B2A_loss: 0.3475	d_A_loss: 0.5415	d_B_loss: 0.2392
+16000: 	G_loss: 6.0694	D_loss: 0.2294	Cycle_loss: 4.6737	Identity_loss:0.0000	A2B_loss: 0.8444	B2A_loss: 0.5513	d_A_loss: 0.3690	d_B_loss: 0.0899
+16100: 	G_loss: 6.9371	D_loss: 0.2956	Cycle_loss: 5.6672	Identity_loss:0.0000	A2B_loss: 0.8064	B2A_loss: 0.4635	d_A_loss: 0.4073	d_B_loss: 0.1839
+16200: 	G_loss: 6.6422	D_loss: 0.3004	Cycle_loss: 5.2886	Identity_loss:0.0000	A2B_loss: 0.8657	B2A_loss: 0.4879	d_A_loss: 0.4353	d_B_loss: 0.1654
+16300: 	G_loss: 6.8613	D_loss: 0.2643	Cycle_loss: 5.5180	Identity_loss:0.0000	A2B_loss: 0.8005	B2A_loss: 0.5428	d_A_loss: 0.3185	d_B_loss: 0.2100
+16400: 	G_loss: 5.8648	D_loss: 0.2819	Cycle_loss: 4.6449	Identity_loss:0.0000	A2B_loss: 0.8369	B2A_loss: 0.3830	d_A_loss: 0.4717	d_B_loss: 0.0922
+16500: 	G_loss: 6.4993	D_loss: 0.2608	Cycle_loss: 5.3024	Identity_loss:0.0000	A2B_loss: 0.7866	B2A_loss: 0.4103	d_A_loss: 0.3831	d_B_loss: 0.1386
+16600: 	G_loss: 6.0744	D_loss: 0.2348	Cycle_loss: 4.7396	Identity_loss:0.0000	A2B_loss: 0.7987	B2A_loss: 0.5362	d_A_loss: 0.2894	d_B_loss: 0.1802
+16700: 	G_loss: 6.0280	D_loss: 0.2792	Cycle_loss: 4.7034	Identity_loss:0.0000	A2B_loss: 0.8064	B2A_loss: 0.5182	d_A_loss: 0.4397	d_B_loss: 0.1186
+16800: 	G_loss: 5.8889	D_loss: 0.2555	Cycle_loss: 4.6049	Identity_loss:0.0000	A2B_loss: 0.8289	B2A_loss: 0.4551	d_A_loss: 0.3384	d_B_loss: 0.1725
+16900: 	G_loss: 5.9547	D_loss: 0.1957	Cycle_loss: 4.5643	Identity_loss:0.0000	A2B_loss: 0.8368	B2A_loss: 0.5536	d_A_loss: 0.2485	d_B_loss: 0.1429
+17000: 	G_loss: 6.9608	D_loss: 0.2412	Cycle_loss: 5.6833	Identity_loss:0.0000	A2B_loss: 0.8491	B2A_loss: 0.4284	d_A_loss: 0.3984	d_B_loss: 0.0839
+17100: 	G_loss: 6.4037	D_loss: 0.1698	Cycle_loss: 4.9259	Identity_loss:0.0000	A2B_loss: 0.8752	B2A_loss: 0.6025	d_A_loss: 0.2651	d_B_loss: 0.0745
+17200: 	G_loss: 5.4109	D_loss: 0.1737	Cycle_loss: 4.0016	Identity_loss:0.0000	A2B_loss: 0.8857	B2A_loss: 0.5236	d_A_loss: 0.3126	d_B_loss: 0.0348
+17300: 	G_loss: 5.6232	D_loss: 0.2723	Cycle_loss: 4.3298	Identity_loss:0.0000	A2B_loss: 0.8525	B2A_loss: 0.4409	d_A_loss: 0.4180	d_B_loss: 0.1266
+17400: 	G_loss: 6.2332	D_loss: 0.3067	Cycle_loss: 5.0034	Identity_loss:0.0000	A2B_loss: 0.8171	B2A_loss: 0.4128	d_A_loss: 0.4602	d_B_loss: 0.1532
+17500: 	G_loss: 5.8817	D_loss: 0.2996	Cycle_loss: 4.6004	Identity_loss:0.0000	A2B_loss: 0.8402	B2A_loss: 0.4410	d_A_loss: 0.3979	d_B_loss: 0.2012
+17600: 	G_loss: 5.8473	D_loss: 0.2174	Cycle_loss: 4.4893	Identity_loss:0.0000	A2B_loss: 0.8384	B2A_loss: 0.5196	d_A_loss: 0.3451	d_B_loss: 0.0897
+17700: 	G_loss: 6.4242	D_loss: 0.2631	Cycle_loss: 5.1503	Identity_loss:0.0000	A2B_loss: 0.8118	B2A_loss: 0.4622	d_A_loss: 0.3806	d_B_loss: 0.1456
+17800: 	G_loss: 5.9074	D_loss: 0.2134	Cycle_loss: 4.5449	Identity_loss:0.0000	A2B_loss: 0.8333	B2A_loss: 0.5292	d_A_loss: 0.3052	d_B_loss: 0.1215
+17900: 	G_loss: 5.3468	D_loss: 0.1951	Cycle_loss: 3.9141	Identity_loss:0.0000	A2B_loss: 0.8698	B2A_loss: 0.5629	d_A_loss: 0.3263	d_B_loss: 0.0638
+18000: 	G_loss: 5.6447	D_loss: 0.2241	Cycle_loss: 4.2700	Identity_loss:0.0000	A2B_loss: 0.8117	B2A_loss: 0.5630	d_A_loss: 0.2680	d_B_loss: 0.1802
+18100: 	G_loss: 5.9257	D_loss: 0.1331	Cycle_loss: 4.4726	Identity_loss:0.0000	A2B_loss: 0.8922	B2A_loss: 0.5609	d_A_loss: 0.2202	d_B_loss: 0.0460
+18200: 	G_loss: 6.0657	D_loss: 0.2186	Cycle_loss: 4.6942	Identity_loss:0.0000	A2B_loss: 0.8619	B2A_loss: 0.5095	d_A_loss: 0.3129	d_B_loss: 0.1242
+18300: 	G_loss: 6.1750	D_loss: 0.2496	Cycle_loss: 4.8659	Identity_loss:0.0000	A2B_loss: 0.8090	B2A_loss: 0.5000	d_A_loss: 0.3734	d_B_loss: 0.1258
+18400: 	G_loss: 6.4310	D_loss: 0.2416	Cycle_loss: 5.0722	Identity_loss:0.0000	A2B_loss: 0.8483	B2A_loss: 0.5105	d_A_loss: 0.3911	d_B_loss: 0.0922
+18500: 	G_loss: 6.3189	D_loss: 0.1554	Cycle_loss: 4.8638	Identity_loss:0.0000	A2B_loss: 0.8841	B2A_loss: 0.5710	d_A_loss: 0.2101	d_B_loss: 0.1006
+18600: 	G_loss: 6.5075	D_loss: 0.2234	Cycle_loss: 5.1241	Identity_loss:0.0000	A2B_loss: 0.9101	B2A_loss: 0.4733	d_A_loss: 0.3701	d_B_loss: 0.0767
+18700: 	G_loss: 5.8957	D_loss: 0.2493	Cycle_loss: 4.5361	Identity_loss:0.0000	A2B_loss: 0.8124	B2A_loss: 0.5472	d_A_loss: 0.3301	d_B_loss: 0.1685
+18800: 	G_loss: 6.2242	D_loss: 0.1923	Cycle_loss: 4.7791	Identity_loss:0.0000	A2B_loss: 0.8627	B2A_loss: 0.5824	d_A_loss: 0.2830	d_B_loss: 0.1016
+18900: 	G_loss: 6.2840	D_loss: 0.2293	Cycle_loss: 4.8607	Identity_loss:0.0000	A2B_loss: 0.8687	B2A_loss: 0.5545	d_A_loss: 0.3501	d_B_loss: 0.1084
+19000: 	G_loss: 6.6361	D_loss: 0.2471	Cycle_loss: 5.2296	Identity_loss:0.0000	A2B_loss: 0.8600	B2A_loss: 0.5465	d_A_loss: 0.3779	d_B_loss: 0.1163
+19100: 	G_loss: 5.3891	D_loss: 0.2215	Cycle_loss: 3.9539	Identity_loss:0.0000	A2B_loss: 0.8949	B2A_loss: 0.5404	d_A_loss: 0.3457	d_B_loss: 0.0972
+19200: 	G_loss: 7.0122	D_loss: 0.1613	Cycle_loss: 5.5410	Identity_loss:0.0000	A2B_loss: 0.8569	B2A_loss: 0.6143	d_A_loss: 0.2106	d_B_loss: 0.1120
+19300: 	G_loss: 6.6864	D_loss: 0.2023	Cycle_loss: 5.2751	Identity_loss:0.0000	A2B_loss: 0.8701	B2A_loss: 0.5412	d_A_loss: 0.3137	d_B_loss: 0.0909
+19400: 	G_loss: 5.6439	D_loss: 0.1692	Cycle_loss: 4.2364	Identity_loss:0.0000	A2B_loss: 0.8753	B2A_loss: 0.5322	d_A_loss: 0.2812	d_B_loss: 0.0571
+19500: 	G_loss: 5.9717	D_loss: 0.1840	Cycle_loss: 4.5509	Identity_loss:0.0000	A2B_loss: 0.7875	B2A_loss: 0.6332	d_A_loss: 0.2146	d_B_loss: 0.1534
+19600: 	G_loss: 6.2599	D_loss: 0.2601	Cycle_loss: 4.8971	Identity_loss:0.0000	A2B_loss: 0.8753	B2A_loss: 0.4876	d_A_loss: 0.4273	d_B_loss: 0.0929
+19700: 	G_loss: 6.5704	D_loss: 0.1727	Cycle_loss: 5.0968	Identity_loss:0.0000	A2B_loss: 0.8785	B2A_loss: 0.5951	d_A_loss: 0.2862	d_B_loss: 0.0593
+19800: 	G_loss: 6.6655	D_loss: 0.2962	Cycle_loss: 5.3137	Identity_loss:0.0000	A2B_loss: 0.8772	B2A_loss: 0.4746	d_A_loss: 0.4902	d_B_loss: 0.1022
+19900: 	G_loss: 6.7499	D_loss: 0.1934	Cycle_loss: 5.2466	Identity_loss:0.0000	A2B_loss: 0.8876	B2A_loss: 0.6158	d_A_loss: 0.2664	d_B_loss: 0.1203
+20000: 	G_loss: 5.9052	D_loss: 0.1875	Cycle_loss: 4.4323	Identity_loss:0.0000	A2B_loss: 0.9001	B2A_loss: 0.5728	d_A_loss: 0.2898	d_B_loss: 0.0852
+20100: 	G_loss: 5.9270	D_loss: 0.1506	Cycle_loss: 4.4378	Identity_loss:0.0000	A2B_loss: 0.8958	B2A_loss: 0.5934	d_A_loss: 0.2609	d_B_loss: 0.0402
+20200: 	G_loss: 5.7212	D_loss: 0.1967	Cycle_loss: 4.3119	Identity_loss:0.0000	A2B_loss: 0.8750	B2A_loss: 0.5343	d_A_loss: 0.3559	d_B_loss: 0.0375
+20300: 	G_loss: 6.4141	D_loss: 0.2203	Cycle_loss: 4.9237	Identity_loss:0.0000	A2B_loss: 0.8919	B2A_loss: 0.5985	d_A_loss: 0.4074	d_B_loss: 0.0331
+20400: 	G_loss: 5.3845	D_loss: 0.1987	Cycle_loss: 3.9730	Identity_loss:0.0000	A2B_loss: 0.8778	B2A_loss: 0.5336	d_A_loss: 0.3521	d_B_loss: 0.0452
+20500: 	G_loss: 5.8065	D_loss: 0.1339	Cycle_loss: 4.2242	Identity_loss:0.0000	A2B_loss: 0.9177	B2A_loss: 0.6646	d_A_loss: 0.2316	d_B_loss: 0.0363
+20600: 	G_loss: 5.9066	D_loss: 0.1886	Cycle_loss: 4.4433	Identity_loss:0.0000	A2B_loss: 0.8766	B2A_loss: 0.5867	d_A_loss: 0.3022	d_B_loss: 0.0749
+20700: 	G_loss: 5.8650	D_loss: 0.1127	Cycle_loss: 4.2914	Identity_loss:0.0000	A2B_loss: 0.9140	B2A_loss: 0.6596	d_A_loss: 0.1821	d_B_loss: 0.0433
+20800: 	G_loss: 5.9605	D_loss: 0.1379	Cycle_loss: 4.3740	Identity_loss:0.0000	A2B_loss: 0.8955	B2A_loss: 0.6910	d_A_loss: 0.2051	d_B_loss: 0.0708
+20900: 	G_loss: 6.2995	D_loss: 0.1030	Cycle_loss: 4.7720	Identity_loss:0.0000	A2B_loss: 0.9093	B2A_loss: 0.6183	d_A_loss: 0.1556	d_B_loss: 0.0503
+21000: 	G_loss: 6.3427	D_loss: 0.1782	Cycle_loss: 4.8774	Identity_loss:0.0000	A2B_loss: 0.8679	B2A_loss: 0.5974	d_A_loss: 0.2958	d_B_loss: 0.0607
+21100: 	G_loss: 6.7335	D_loss: 0.2225	Cycle_loss: 5.3405	Identity_loss:0.0000	A2B_loss: 0.8264	B2A_loss: 0.5666	d_A_loss: 0.2834	d_B_loss: 0.1615
+21200: 	G_loss: 6.0028	D_loss: 0.1665	Cycle_loss: 4.4478	Identity_loss:0.0000	A2B_loss: 0.9129	B2A_loss: 0.6422	d_A_loss: 0.2837	d_B_loss: 0.0493
+21300: 	G_loss: 5.5829	D_loss: 0.1792	Cycle_loss: 4.0834	Identity_loss:0.0000	A2B_loss: 0.8894	B2A_loss: 0.6102	d_A_loss: 0.2857	d_B_loss: 0.0727
+21400: 	G_loss: 5.9736	D_loss: 0.1470	Cycle_loss: 4.3567	Identity_loss:0.0000	A2B_loss: 0.9120	B2A_loss: 0.7050	d_A_loss: 0.2044	d_B_loss: 0.0896
+21500: 	G_loss: 5.7470	D_loss: 0.1675	Cycle_loss: 4.3044	Identity_loss:0.0000	A2B_loss: 0.8897	B2A_loss: 0.5529	d_A_loss: 0.2635	d_B_loss: 0.0715
+21600: 	G_loss: 6.0855	D_loss: 0.2299	Cycle_loss: 4.5947	Identity_loss:0.0000	A2B_loss: 0.8891	B2A_loss: 0.6017	d_A_loss: 0.3519	d_B_loss: 0.1078
+21700: 	G_loss: 6.0559	D_loss: 0.1607	Cycle_loss: 4.5543	Identity_loss:0.0000	A2B_loss: 0.9167	B2A_loss: 0.5849	d_A_loss: 0.2757	d_B_loss: 0.0456
+21800: 	G_loss: 6.2871	D_loss: 0.1765	Cycle_loss: 4.8139	Identity_loss:0.0000	A2B_loss: 0.9090	B2A_loss: 0.5642	d_A_loss: 0.2909	d_B_loss: 0.0622
+21900: 	G_loss: 5.6538	D_loss: 0.1884	Cycle_loss: 4.1472	Identity_loss:0.0000	A2B_loss: 0.9070	B2A_loss: 0.5995	d_A_loss: 0.2394	d_B_loss: 0.1375
+22000: 	G_loss: 6.1386	D_loss: 0.1750	Cycle_loss: 4.5960	Identity_loss:0.0000	A2B_loss: 0.8884	B2A_loss: 0.6542	d_A_loss: 0.2627	d_B_loss: 0.0872
+22100: 	G_loss: 6.5882	D_loss: 0.1679	Cycle_loss: 5.0720	Identity_loss:0.0000	A2B_loss: 0.9035	B2A_loss: 0.6126	d_A_loss: 0.2650	d_B_loss: 0.0708
+22200: 	G_loss: 5.8709	D_loss: 0.1436	Cycle_loss: 4.2986	Identity_loss:0.0000	A2B_loss: 0.8823	B2A_loss: 0.6900	d_A_loss: 0.2023	d_B_loss: 0.0850
+22300: 	G_loss: 6.3725	D_loss: 0.1436	Cycle_loss: 4.8217	Identity_loss:0.0000	A2B_loss: 0.8798	B2A_loss: 0.6710	d_A_loss: 0.1799	d_B_loss: 0.1073
+22400: 	G_loss: 5.9398	D_loss: 0.2005	Cycle_loss: 4.4518	Identity_loss:0.0000	A2B_loss: 0.9118	B2A_loss: 0.5763	d_A_loss: 0.3389	d_B_loss: 0.0621
+22500: 	G_loss: 6.1254	D_loss: 0.0895	Cycle_loss: 4.5055	Identity_loss:0.0000	A2B_loss: 0.9258	B2A_loss: 0.6941	d_A_loss: 0.1495	d_B_loss: 0.0295
+22600: 	G_loss: 5.9583	D_loss: 0.1956	Cycle_loss: 4.4111	Identity_loss:0.0000	A2B_loss: 0.9149	B2A_loss: 0.6322	d_A_loss: 0.3453	d_B_loss: 0.0459
+22700: 	G_loss: 6.2103	D_loss: 0.2012	Cycle_loss: 4.7708	Identity_loss:0.0000	A2B_loss: 0.8655	B2A_loss: 0.5740	d_A_loss: 0.3091	d_B_loss: 0.0934
+22800: 	G_loss: 5.9923	D_loss: 0.1519	Cycle_loss: 4.4111	Identity_loss:0.0000	A2B_loss: 0.8952	B2A_loss: 0.6861	d_A_loss: 0.2343	d_B_loss: 0.0695
+22900: 	G_loss: 6.2190	D_loss: 0.2311	Cycle_loss: 4.7871	Identity_loss:0.0000	A2B_loss: 0.9171	B2A_loss: 0.5148	d_A_loss: 0.4047	d_B_loss: 0.0574
+23000: 	G_loss: 5.5612	D_loss: 0.1646	Cycle_loss: 4.0119	Identity_loss:0.0000	A2B_loss: 0.8948	B2A_loss: 0.6545	d_A_loss: 0.2274	d_B_loss: 0.1019
+23100: 	G_loss: 5.9635	D_loss: 0.1563	Cycle_loss: 4.4361	Identity_loss:0.0000	A2B_loss: 0.9068	B2A_loss: 0.6206	d_A_loss: 0.2652	d_B_loss: 0.0474
+23200: 	G_loss: 5.5234	D_loss: 0.1235	Cycle_loss: 3.9185	Identity_loss:0.0000	A2B_loss: 0.9226	B2A_loss: 0.6822	d_A_loss: 0.1913	d_B_loss: 0.0557
+23300: 	G_loss: 5.8335	D_loss: 0.1790	Cycle_loss: 4.3396	Identity_loss:0.0000	A2B_loss: 0.8550	B2A_loss: 0.6389	d_A_loss: 0.2315	d_B_loss: 0.1265
+23400: 	G_loss: 6.3489	D_loss: 0.2103	Cycle_loss: 4.8811	Identity_loss:0.0000	A2B_loss: 0.9064	B2A_loss: 0.5614	d_A_loss: 0.3161	d_B_loss: 0.1045
+23500: 	G_loss: 5.7471	D_loss: 0.1611	Cycle_loss: 4.2292	Identity_loss:0.0000	A2B_loss: 0.9115	B2A_loss: 0.6064	d_A_loss: 0.2835	d_B_loss: 0.0387
+23600: 	G_loss: 5.2377	D_loss: 0.1627	Cycle_loss: 3.7880	Identity_loss:0.0000	A2B_loss: 0.8500	B2A_loss: 0.5997	d_A_loss: 0.2681	d_B_loss: 0.0574
+23700: 	G_loss: 5.8322	D_loss: 0.1867	Cycle_loss: 4.3305	Identity_loss:0.0000	A2B_loss: 0.8763	B2A_loss: 0.6254	d_A_loss: 0.2582	d_B_loss: 0.1153
+23800: 	G_loss: 6.5392	D_loss: 0.1216	Cycle_loss: 4.9674	Identity_loss:0.0000	A2B_loss: 0.8962	B2A_loss: 0.6756	d_A_loss: 0.1824	d_B_loss: 0.0609
+23900: 	G_loss: 5.4546	D_loss: 0.1318	Cycle_loss: 3.8200	Identity_loss:0.0000	A2B_loss: 0.9176	B2A_loss: 0.7171	d_A_loss: 0.2413	d_B_loss: 0.0223
+24000: 	G_loss: 6.0620	D_loss: 0.3366	Cycle_loss: 4.6613	Identity_loss:0.0000	A2B_loss: 0.7772	B2A_loss: 0.6234	d_A_loss: 0.4208	d_B_loss: 0.2523
+24100: 	G_loss: 6.0142	D_loss: 0.1226	Cycle_loss: 4.3307	Identity_loss:0.0000	A2B_loss: 0.9343	B2A_loss: 0.7492	d_A_loss: 0.1951	d_B_loss: 0.0501
+24200: 	G_loss: 5.2721	D_loss: 0.1344	Cycle_loss: 3.6852	Identity_loss:0.0000	A2B_loss: 0.9278	B2A_loss: 0.6591	d_A_loss: 0.2453	d_B_loss: 0.0234
+24300: 	G_loss: 5.3419	D_loss: 0.0977	Cycle_loss: 3.7075	Identity_loss:0.0000	A2B_loss: 0.9330	B2A_loss: 0.7015	d_A_loss: 0.1828	d_B_loss: 0.0126
+24400: 	G_loss: 5.3768	D_loss: 0.1116	Cycle_loss: 3.7719	Identity_loss:0.0000	A2B_loss: 0.9307	B2A_loss: 0.6742	d_A_loss: 0.1836	d_B_loss: 0.0397
+24500: 	G_loss: 5.9221	D_loss: 0.0867	Cycle_loss: 4.2951	Identity_loss:0.0000	A2B_loss: 0.9315	B2A_loss: 0.6954	d_A_loss: 0.1550	d_B_loss: 0.0184
+24600: 	G_loss: 6.1563	D_loss: 0.1315	Cycle_loss: 4.6430	Identity_loss:0.0000	A2B_loss: 0.9158	B2A_loss: 0.5975	d_A_loss: 0.2419	d_B_loss: 0.0212
+24700: 	G_loss: 5.4038	D_loss: 0.0807	Cycle_loss: 3.7362	Identity_loss:0.0000	A2B_loss: 0.9522	B2A_loss: 0.7153	d_A_loss: 0.1485	d_B_loss: 0.0130
+24800: 	G_loss: 5.9549	D_loss: 0.2016	Cycle_loss: 4.3781	Identity_loss:0.0000	A2B_loss: 0.9144	B2A_loss: 0.6624	d_A_loss: 0.2130	d_B_loss: 0.1903
+24900: 	G_loss: 6.0634	D_loss: 0.1494	Cycle_loss: 4.4483	Identity_loss:0.0000	A2B_loss: 0.9359	B2A_loss: 0.6793	d_A_loss: 0.2600	d_B_loss: 0.0389
+25000: 	G_loss: 6.3170	D_loss: 0.1037	Cycle_loss: 4.6327	Identity_loss:0.0000	A2B_loss: 0.9365	B2A_loss: 0.7477	d_A_loss: 0.1807	d_B_loss: 0.0268
+25100: 	G_loss: 6.1289	D_loss: 0.1419	Cycle_loss: 4.5008	Identity_loss:0.0000	A2B_loss: 0.9148	B2A_loss: 0.7133	d_A_loss: 0.2163	d_B_loss: 0.0676
+25200: 	G_loss: 5.7954	D_loss: 0.1068	Cycle_loss: 4.1393	Identity_loss:0.0000	A2B_loss: 0.9331	B2A_loss: 0.7230	d_A_loss: 0.1883	d_B_loss: 0.0252
+25300: 	G_loss: 5.6559	D_loss: 0.1038	Cycle_loss: 3.9867	Identity_loss:0.0000	A2B_loss: 0.9222	B2A_loss: 0.7470	d_A_loss: 0.1607	d_B_loss: 0.0468
+25400: 	G_loss: 6.4714	D_loss: 0.1541	Cycle_loss: 4.8682	Identity_loss:0.0000	A2B_loss: 0.9102	B2A_loss: 0.6930	d_A_loss: 0.2562	d_B_loss: 0.0519
+25500: 	G_loss: 6.2087	D_loss: 0.1208	Cycle_loss: 4.5763	Identity_loss:0.0000	A2B_loss: 0.9604	B2A_loss: 0.6719	d_A_loss: 0.1982	d_B_loss: 0.0433
+25600: 	G_loss: 5.7306	D_loss: 0.0828	Cycle_loss: 4.0184	Identity_loss:0.0000	A2B_loss: 0.9405	B2A_loss: 0.7717	d_A_loss: 0.1222	d_B_loss: 0.0435
+25700: 	G_loss: 5.8829	D_loss: 0.1440	Cycle_loss: 4.2478	Identity_loss:0.0000	A2B_loss: 0.9309	B2A_loss: 0.7043	d_A_loss: 0.2381	d_B_loss: 0.0500
+25800: 	G_loss: 5.8218	D_loss: 0.1538	Cycle_loss: 4.3190	Identity_loss:0.0000	A2B_loss: 0.9368	B2A_loss: 0.5660	d_A_loss: 0.2687	d_B_loss: 0.0390
+25900: 	G_loss: 6.9626	D_loss: 0.1429	Cycle_loss: 5.3128	Identity_loss:0.0000	A2B_loss: 0.9237	B2A_loss: 0.7261	d_A_loss: 0.2320	d_B_loss: 0.0539
+26000: 	G_loss: 6.1816	D_loss: 0.1336	Cycle_loss: 4.6022	Identity_loss:0.0000	A2B_loss: 0.8932	B2A_loss: 0.6862	d_A_loss: 0.1972	d_B_loss: 0.0701
+26100: 	G_loss: 5.5024	D_loss: 0.1047	Cycle_loss: 3.8007	Identity_loss:0.0000	A2B_loss: 0.9458	B2A_loss: 0.7559	d_A_loss: 0.1361	d_B_loss: 0.0732
+26200: 	G_loss: 6.2295	D_loss: 0.1107	Cycle_loss: 4.5588	Identity_loss:0.0000	A2B_loss: 0.9481	B2A_loss: 0.7227	d_A_loss: 0.2045	d_B_loss: 0.0168
+26300: 	G_loss: 5.9935	D_loss: 0.0490	Cycle_loss: 4.2381	Identity_loss:0.0000	A2B_loss: 0.9576	B2A_loss: 0.7978	d_A_loss: 0.0876	d_B_loss: 0.0104
+26400: 	G_loss: 5.1166	D_loss: 0.1195	Cycle_loss: 3.4487	Identity_loss:0.0000	A2B_loss: 0.9349	B2A_loss: 0.7330	d_A_loss: 0.1872	d_B_loss: 0.0517
+26500: 	G_loss: 6.1215	D_loss: 0.1349	Cycle_loss: 4.4567	Identity_loss:0.0000	A2B_loss: 0.9369	B2A_loss: 0.7279	d_A_loss: 0.2206	d_B_loss: 0.0493
+26600: 	G_loss: 5.3092	D_loss: 0.0634	Cycle_loss: 3.5705	Identity_loss:0.0000	A2B_loss: 0.9571	B2A_loss: 0.7816	d_A_loss: 0.0984	d_B_loss: 0.0283
+26700: 	G_loss: 5.5810	D_loss: 0.1165	Cycle_loss: 3.9294	Identity_loss:0.0000	A2B_loss: 0.9449	B2A_loss: 0.7067	d_A_loss: 0.2215	d_B_loss: 0.0115
+26800: 	G_loss: 5.5686	D_loss: 0.0708	Cycle_loss: 3.8584	Identity_loss:0.0000	A2B_loss: 0.9541	B2A_loss: 0.7561	d_A_loss: 0.1087	d_B_loss: 0.0330
+26900: 	G_loss: 6.1648	D_loss: 0.1015	Cycle_loss: 4.5094	Identity_loss:0.0000	A2B_loss: 0.9362	B2A_loss: 0.7192	d_A_loss: 0.1806	d_B_loss: 0.0224
+27000: 	G_loss: 6.1168	D_loss: 0.1257	Cycle_loss: 4.5030	Identity_loss:0.0000	A2B_loss: 0.9284	B2A_loss: 0.6853	d_A_loss: 0.1814	d_B_loss: 0.0699
+27100: 	G_loss: 6.2134	D_loss: 0.1306	Cycle_loss: 4.5806	Identity_loss:0.0000	A2B_loss: 0.8767	B2A_loss: 0.7561	d_A_loss: 0.1191	d_B_loss: 0.1420
+27200: 	G_loss: 5.6757	D_loss: 0.2051	Cycle_loss: 4.0225	Identity_loss:0.0000	A2B_loss: 0.9444	B2A_loss: 0.7087	d_A_loss: 0.3376	d_B_loss: 0.0726
+27300: 	G_loss: 6.4187	D_loss: 0.2086	Cycle_loss: 4.8356	Identity_loss:0.0000	A2B_loss: 0.9181	B2A_loss: 0.6650	d_A_loss: 0.3760	d_B_loss: 0.0413
+27400: 	G_loss: 5.7052	D_loss: 0.0721	Cycle_loss: 3.9645	Identity_loss:0.0000	A2B_loss: 0.9459	B2A_loss: 0.7948	d_A_loss: 0.0844	d_B_loss: 0.0597
+27500: 	G_loss: 6.0605	D_loss: 0.1255	Cycle_loss: 4.4833	Identity_loss:0.0000	A2B_loss: 0.9103	B2A_loss: 0.6668	d_A_loss: 0.2214	d_B_loss: 0.0296
+27600: 	G_loss: 5.7433	D_loss: 0.0984	Cycle_loss: 4.0648	Identity_loss:0.0000	A2B_loss: 0.9328	B2A_loss: 0.7456	d_A_loss: 0.1637	d_B_loss: 0.0331
+27700: 	G_loss: 6.3648	D_loss: 0.1204	Cycle_loss: 4.7383	Identity_loss:0.0000	A2B_loss: 0.9414	B2A_loss: 0.6851	d_A_loss: 0.2105	d_B_loss: 0.0302
+27800: 	G_loss: 6.0019	D_loss: 0.1164	Cycle_loss: 4.3620	Identity_loss:0.0000	A2B_loss: 0.9154	B2A_loss: 0.7245	d_A_loss: 0.2123	d_B_loss: 0.0205
+27900: 	G_loss: 5.8723	D_loss: 0.0634	Cycle_loss: 4.1550	Identity_loss:0.0000	A2B_loss: 0.9473	B2A_loss: 0.7699	d_A_loss: 0.1049	d_B_loss: 0.0218
+28000: 	G_loss: 6.0431	D_loss: 0.1324	Cycle_loss: 4.4241	Identity_loss:0.0000	A2B_loss: 0.9031	B2A_loss: 0.7158	d_A_loss: 0.1953	d_B_loss: 0.0695
+28100: 	G_loss: 5.4261	D_loss: 0.0467	Cycle_loss: 3.6920	Identity_loss:0.0000	A2B_loss: 0.9236	B2A_loss: 0.8105	d_A_loss: 0.0703	d_B_loss: 0.0232
+28200: 	G_loss: 6.0450	D_loss: 0.0925	Cycle_loss: 4.3224	Identity_loss:0.0000	A2B_loss: 0.9265	B2A_loss: 0.7961	d_A_loss: 0.1339	d_B_loss: 0.0511
+28300: 	G_loss: 6.2609	D_loss: 0.1056	Cycle_loss: 4.5664	Identity_loss:0.0000	A2B_loss: 0.9535	B2A_loss: 0.7410	d_A_loss: 0.1654	d_B_loss: 0.0457
+28400: 	G_loss: 5.3992	D_loss: 0.0679	Cycle_loss: 3.6879	Identity_loss:0.0000	A2B_loss: 0.9503	B2A_loss: 0.7610	d_A_loss: 0.1073	d_B_loss: 0.0285
+28500: 	G_loss: 6.4373	D_loss: 0.1462	Cycle_loss: 4.8228	Identity_loss:0.0000	A2B_loss: 0.9494	B2A_loss: 0.6652	d_A_loss: 0.2529	d_B_loss: 0.0395
+28600: 	G_loss: 6.1701	D_loss: 0.0669	Cycle_loss: 4.4282	Identity_loss:0.0000	A2B_loss: 0.9530	B2A_loss: 0.7888	d_A_loss: 0.1254	d_B_loss: 0.0084
+28700: 	G_loss: 5.8675	D_loss: 0.0784	Cycle_loss: 4.1282	Identity_loss:0.0000	A2B_loss: 0.9499	B2A_loss: 0.7894	d_A_loss: 0.1425	d_B_loss: 0.0142
+28800: 	G_loss: 6.4808	D_loss: 0.0718	Cycle_loss: 4.7044	Identity_loss:0.0000	A2B_loss: 0.9498	B2A_loss: 0.8266	d_A_loss: 0.1091	d_B_loss: 0.0344
+28900: 	G_loss: 6.0209	D_loss: 0.0841	Cycle_loss: 4.3227	Identity_loss:0.0000	A2B_loss: 0.9675	B2A_loss: 0.7308	d_A_loss: 0.1634	d_B_loss: 0.0048
+29000: 	G_loss: 5.8204	D_loss: 0.0561	Cycle_loss: 4.0645	Identity_loss:0.0000	A2B_loss: 0.9606	B2A_loss: 0.7953	d_A_loss: 0.0903	d_B_loss: 0.0220
+29100: 	G_loss: 6.0659	D_loss: 0.1305	Cycle_loss: 4.3661	Identity_loss:0.0000	A2B_loss: 0.9485	B2A_loss: 0.7513	d_A_loss: 0.2443	d_B_loss: 0.0168
+29200: 	G_loss: 5.1888	D_loss: 0.0545	Cycle_loss: 3.4005	Identity_loss:0.0000	A2B_loss: 0.9627	B2A_loss: 0.8256	d_A_loss: 0.0730	d_B_loss: 0.0359
+29300: 	G_loss: 5.2942	D_loss: 0.1150	Cycle_loss: 3.5781	Identity_loss:0.0000	A2B_loss: 0.9477	B2A_loss: 0.7683	d_A_loss: 0.1815	d_B_loss: 0.0485
+29400: 	G_loss: 6.1035	D_loss: 0.1258	Cycle_loss: 4.4527	Identity_loss:0.0000	A2B_loss: 0.9577	B2A_loss: 0.6931	d_A_loss: 0.2263	d_B_loss: 0.0253
+29500: 	G_loss: 5.6581	D_loss: 0.0531	Cycle_loss: 3.8789	Identity_loss:0.0000	A2B_loss: 0.9370	B2A_loss: 0.8421	d_A_loss: 0.0838	d_B_loss: 0.0224
+29600: 	G_loss: 5.4387	D_loss: 0.0909	Cycle_loss: 3.6770	Identity_loss:0.0000	A2B_loss: 0.9598	B2A_loss: 0.8019	d_A_loss: 0.1145	d_B_loss: 0.0673
+29700: 	G_loss: 5.6592	D_loss: 0.0453	Cycle_loss: 3.8668	Identity_loss:0.0000	A2B_loss: 0.9615	B2A_loss: 0.8310	d_A_loss: 0.0587	d_B_loss: 0.0319
+29800: 	G_loss: 5.1149	D_loss: 0.0409	Cycle_loss: 3.3006	Identity_loss:0.0000	A2B_loss: 0.9612	B2A_loss: 0.8530	d_A_loss: 0.0760	d_B_loss: 0.0058
+29900: 	G_loss: 5.3807	D_loss: 0.0745	Cycle_loss: 3.6123	Identity_loss:0.0000	A2B_loss: 0.9486	B2A_loss: 0.8198	d_A_loss: 0.1257	d_B_loss: 0.0234
+30000: 	G_loss: 6.5603	D_loss: 0.1022	Cycle_loss: 4.8967	Identity_loss:0.0000	A2B_loss: 0.9145	B2A_loss: 0.7491	d_A_loss: 0.1686	d_B_loss: 0.0359
+30100: 	G_loss: 6.1149	D_loss: 0.1704	Cycle_loss: 4.4849	Identity_loss:0.0000	A2B_loss: 0.9608	B2A_loss: 0.6691	d_A_loss: 0.3241	d_B_loss: 0.0167
+30200: 	G_loss: 5.8607	D_loss: 0.0975	Cycle_loss: 4.1301	Identity_loss:0.0000	A2B_loss: 0.9552	B2A_loss: 0.7754	d_A_loss: 0.1521	d_B_loss: 0.0428
+30300: 	G_loss: 5.8451	D_loss: 0.1108	Cycle_loss: 4.0997	Identity_loss:0.0000	A2B_loss: 0.9555	B2A_loss: 0.7900	d_A_loss: 0.1810	d_B_loss: 0.0406
+30400: 	G_loss: 5.5132	D_loss: 0.0727	Cycle_loss: 3.7441	Identity_loss:0.0000	A2B_loss: 0.9517	B2A_loss: 0.8175	d_A_loss: 0.1346	d_B_loss: 0.0107
+30500: 	G_loss: 5.7279	D_loss: 0.0509	Cycle_loss: 3.9489	Identity_loss:0.0000	A2B_loss: 0.9581	B2A_loss: 0.8209	d_A_loss: 0.0918	d_B_loss: 0.0101
+30600: 	G_loss: 5.7712	D_loss: 0.0619	Cycle_loss: 4.0464	Identity_loss:0.0000	A2B_loss: 0.9218	B2A_loss: 0.8029	d_A_loss: 0.0992	d_B_loss: 0.0246
+30700: 	G_loss: 5.4114	D_loss: 0.1215	Cycle_loss: 3.7019	Identity_loss:0.0000	A2B_loss: 0.9523	B2A_loss: 0.7571	d_A_loss: 0.2276	d_B_loss: 0.0154
+30800: 	G_loss: 5.3093	D_loss: 0.0811	Cycle_loss: 3.5298	Identity_loss:0.0000	A2B_loss: 0.9544	B2A_loss: 0.8252	d_A_loss: 0.1076	d_B_loss: 0.0547
+30900: 	G_loss: 6.4059	D_loss: 0.0623	Cycle_loss: 4.6345	Identity_loss:0.0000	A2B_loss: 0.9585	B2A_loss: 0.8129	d_A_loss: 0.1071	d_B_loss: 0.0175
+31000: 	G_loss: 6.3366	D_loss: 0.0925	Cycle_loss: 4.6410	Identity_loss:0.0000	A2B_loss: 0.9584	B2A_loss: 0.7372	d_A_loss: 0.1753	d_B_loss: 0.0098
+31100: 	G_loss: 5.4197	D_loss: 0.0458	Cycle_loss: 3.6498	Identity_loss:0.0000	A2B_loss: 0.9534	B2A_loss: 0.8165	d_A_loss: 0.0717	d_B_loss: 0.0199
+31200: 	G_loss: 5.3588	D_loss: 0.0714	Cycle_loss: 3.5860	Identity_loss:0.0000	A2B_loss: 0.9692	B2A_loss: 0.8036	d_A_loss: 0.0970	d_B_loss: 0.0457
+31300: 	G_loss: 6.1467	D_loss: 0.0859	Cycle_loss: 4.4215	Identity_loss:0.0000	A2B_loss: 0.9594	B2A_loss: 0.7658	d_A_loss: 0.1560	d_B_loss: 0.0159
+31400: 	G_loss: 5.8195	D_loss: 0.0476	Cycle_loss: 3.9723	Identity_loss:0.0000	A2B_loss: 0.9713	B2A_loss: 0.8759	d_A_loss: 0.0819	d_B_loss: 0.0133
+31500: 	G_loss: 5.9680	D_loss: 0.1086	Cycle_loss: 4.2800	Identity_loss:0.0000	A2B_loss: 0.9421	B2A_loss: 0.7459	d_A_loss: 0.2032	d_B_loss: 0.0139
+31600: 	G_loss: 5.1853	D_loss: 0.0565	Cycle_loss: 3.3900	Identity_loss:0.0000	A2B_loss: 0.9516	B2A_loss: 0.8437	d_A_loss: 0.0986	d_B_loss: 0.0144
+31700: 	G_loss: 6.2947	D_loss: 0.0947	Cycle_loss: 4.5410	Identity_loss:0.0000	A2B_loss: 0.9516	B2A_loss: 0.8021	d_A_loss: 0.1706	d_B_loss: 0.0187
+31800: 	G_loss: 5.3636	D_loss: 0.0445	Cycle_loss: 3.5293	Identity_loss:0.0000	A2B_loss: 0.9757	B2A_loss: 0.8586	d_A_loss: 0.0697	d_B_loss: 0.0193
+31900: 	G_loss: 6.1796	D_loss: 0.0691	Cycle_loss: 4.4265	Identity_loss:0.0000	A2B_loss: 0.9444	B2A_loss: 0.8086	d_A_loss: 0.1255	d_B_loss: 0.0127
+32000: 	G_loss: 6.1561	D_loss: 0.0662	Cycle_loss: 4.3591	Identity_loss:0.0000	A2B_loss: 0.9588	B2A_loss: 0.8383	d_A_loss: 0.1203	d_B_loss: 0.0121
+32100: 	G_loss: 5.7393	D_loss: 0.0643	Cycle_loss: 3.9462	Identity_loss:0.0000	A2B_loss: 0.9714	B2A_loss: 0.8217	d_A_loss: 0.1021	d_B_loss: 0.0266
+32200: 	G_loss: 5.9429	D_loss: 0.1004	Cycle_loss: 4.1952	Identity_loss:0.0000	A2B_loss: 0.9215	B2A_loss: 0.8262	d_A_loss: 0.1570	d_B_loss: 0.0438
+32300: 	G_loss: 5.9350	D_loss: 0.0415	Cycle_loss: 4.1345	Identity_loss:0.0000	A2B_loss: 0.9497	B2A_loss: 0.8508	d_A_loss: 0.0749	d_B_loss: 0.0080
+32400: 	G_loss: 6.4642	D_loss: 0.0396	Cycle_loss: 4.6585	Identity_loss:0.0000	A2B_loss: 0.9698	B2A_loss: 0.8359	d_A_loss: 0.0763	d_B_loss: 0.0029
+32500: 	G_loss: 5.0249	D_loss: 0.0594	Cycle_loss: 3.2447	Identity_loss:0.0000	A2B_loss: 0.9661	B2A_loss: 0.8141	d_A_loss: 0.1003	d_B_loss: 0.0185
+32600: 	G_loss: 5.9511	D_loss: 0.0622	Cycle_loss: 4.2151	Identity_loss:0.0000	A2B_loss: 0.9411	B2A_loss: 0.7948	d_A_loss: 0.1078	d_B_loss: 0.0167
+32700: 	G_loss: 6.1498	D_loss: 0.0893	Cycle_loss: 4.3228	Identity_loss:0.0000	A2B_loss: 0.9576	B2A_loss: 0.8694	d_A_loss: 0.1340	d_B_loss: 0.0447
+32800: 	G_loss: 5.4223	D_loss: 0.0440	Cycle_loss: 3.6267	Identity_loss:0.0000	A2B_loss: 0.9582	B2A_loss: 0.8375	d_A_loss: 0.0778	d_B_loss: 0.0101
+32900: 	G_loss: 5.7830	D_loss: 0.0866	Cycle_loss: 3.9852	Identity_loss:0.0000	A2B_loss: 0.9634	B2A_loss: 0.8344	d_A_loss: 0.1645	d_B_loss: 0.0088
+33000: 	G_loss: 6.1102	D_loss: 0.1780	Cycle_loss: 4.4118	Identity_loss:0.0000	A2B_loss: 0.9547	B2A_loss: 0.7437	d_A_loss: 0.3373	d_B_loss: 0.0188
+33100: 	G_loss: 6.2966	D_loss: 0.0598	Cycle_loss: 4.5178	Identity_loss:0.0000	A2B_loss: 0.9491	B2A_loss: 0.8297	d_A_loss: 0.1058	d_B_loss: 0.0137
+33200: 	G_loss: 5.3289	D_loss: 0.0568	Cycle_loss: 3.4925	Identity_loss:0.0000	A2B_loss: 0.9689	B2A_loss: 0.8674	d_A_loss: 0.0927	d_B_loss: 0.0210
+33300: 	G_loss: 5.7099	D_loss: 0.0433	Cycle_loss: 3.8672	Identity_loss:0.0000	A2B_loss: 0.9787	B2A_loss: 0.8640	d_A_loss: 0.0629	d_B_loss: 0.0237
+33400: 	G_loss: 5.2863	D_loss: 0.0442	Cycle_loss: 3.4580	Identity_loss:0.0000	A2B_loss: 0.9784	B2A_loss: 0.8500	d_A_loss: 0.0707	d_B_loss: 0.0178
+33500: 	G_loss: 6.0144	D_loss: 0.0676	Cycle_loss: 4.2139	Identity_loss:0.0000	A2B_loss: 0.9518	B2A_loss: 0.8487	d_A_loss: 0.1245	d_B_loss: 0.0107
+33600: 	G_loss: 5.6925	D_loss: 0.0765	Cycle_loss: 3.8360	Identity_loss:0.0000	A2B_loss: 0.9770	B2A_loss: 0.8795	d_A_loss: 0.0981	d_B_loss: 0.0550
+33700: 	G_loss: 6.1866	D_loss: 0.0402	Cycle_loss: 4.3613	Identity_loss:0.0000	A2B_loss: 0.9678	B2A_loss: 0.8575	d_A_loss: 0.0738	d_B_loss: 0.0067
+33800: 	G_loss: 5.1422	D_loss: 0.0233	Cycle_loss: 3.2550	Identity_loss:0.0000	A2B_loss: 0.9704	B2A_loss: 0.9168	d_A_loss: 0.0398	d_B_loss: 0.0068
+33900: 	G_loss: 5.1280	D_loss: 0.0482	Cycle_loss: 3.3261	Identity_loss:0.0000	A2B_loss: 0.9680	B2A_loss: 0.8339	d_A_loss: 0.0917	d_B_loss: 0.0047
+34000: 	G_loss: 6.2423	D_loss: 0.0526	Cycle_loss: 4.4343	Identity_loss:0.0000	A2B_loss: 0.9656	B2A_loss: 0.8424	d_A_loss: 0.0942	d_B_loss: 0.0111
+34100: 	G_loss: 6.2448	D_loss: 0.0918	Cycle_loss: 4.5007	Identity_loss:0.0000	A2B_loss: 0.9708	B2A_loss: 0.7732	d_A_loss: 0.1708	d_B_loss: 0.0129
+34200: 	G_loss: 6.3137	D_loss: 0.0641	Cycle_loss: 4.4721	Identity_loss:0.0000	A2B_loss: 0.9782	B2A_loss: 0.8634	d_A_loss: 0.1238	d_B_loss: 0.0043
+34300: 	G_loss: 6.0444	D_loss: 0.1005	Cycle_loss: 4.2979	Identity_loss:0.0000	A2B_loss: 0.9625	B2A_loss: 0.7840	d_A_loss: 0.1793	d_B_loss: 0.0217
+34400: 	G_loss: 6.4329	D_loss: 0.1177	Cycle_loss: 4.6092	Identity_loss:0.0000	A2B_loss: 0.9881	B2A_loss: 0.8357	d_A_loss: 0.1171	d_B_loss: 0.1183
+34500: 	G_loss: 5.8398	D_loss: 0.0602	Cycle_loss: 4.0141	Identity_loss:0.0000	A2B_loss: 0.9839	B2A_loss: 0.8418	d_A_loss: 0.0863	d_B_loss: 0.0342
+34600: 	G_loss: 5.5439	D_loss: 0.0394	Cycle_loss: 3.6981	Identity_loss:0.0000	A2B_loss: 0.9737	B2A_loss: 0.8721	d_A_loss: 0.0594	d_B_loss: 0.0193
+34700: 	G_loss: 5.5460	D_loss: 0.0269	Cycle_loss: 3.6642	Identity_loss:0.0000	A2B_loss: 0.9782	B2A_loss: 0.9036	d_A_loss: 0.0483	d_B_loss: 0.0055
+34800: 	G_loss: 5.4430	D_loss: 0.0329	Cycle_loss: 3.6096	Identity_loss:0.0000	A2B_loss: 0.9744	B2A_loss: 0.8590	d_A_loss: 0.0621	d_B_loss: 0.0037
+34900: 	G_loss: 5.8004	D_loss: 0.0560	Cycle_loss: 3.9821	Identity_loss:0.0000	A2B_loss: 0.9545	B2A_loss: 0.8638	d_A_loss: 0.0880	d_B_loss: 0.0240
+35000: 	G_loss: 5.8007	D_loss: 0.0495	Cycle_loss: 3.9864	Identity_loss:0.0000	A2B_loss: 0.9637	B2A_loss: 0.8507	d_A_loss: 0.0876	d_B_loss: 0.0115
+35100: 	G_loss: 5.7046	D_loss: 0.0657	Cycle_loss: 3.9082	Identity_loss:0.0000	A2B_loss: 0.9365	B2A_loss: 0.8599	d_A_loss: 0.0585	d_B_loss: 0.0729
+35200: 	G_loss: 5.4971	D_loss: 0.0504	Cycle_loss: 3.6727	Identity_loss:0.0000	A2B_loss: 0.9805	B2A_loss: 0.8440	d_A_loss: 0.0935	d_B_loss: 0.0073
+35300: 	G_loss: 6.0029	D_loss: 0.0705	Cycle_loss: 4.1815	Identity_loss:0.0000	A2B_loss: 0.9657	B2A_loss: 0.8557	d_A_loss: 0.1234	d_B_loss: 0.0175
+35400: 	G_loss: 6.1556	D_loss: 0.0790	Cycle_loss: 4.3721	Identity_loss:0.0000	A2B_loss: 0.9551	B2A_loss: 0.8284	d_A_loss: 0.1200	d_B_loss: 0.0380
+35500: 	G_loss: 5.7295	D_loss: 0.0540	Cycle_loss: 3.8929	Identity_loss:0.0000	A2B_loss: 0.9550	B2A_loss: 0.8816	d_A_loss: 0.0675	d_B_loss: 0.0405
+35600: 	G_loss: 5.8216	D_loss: 0.0596	Cycle_loss: 3.9907	Identity_loss:0.0000	A2B_loss: 0.9595	B2A_loss: 0.8715	d_A_loss: 0.1047	d_B_loss: 0.0145
+35700: 	G_loss: 5.5865	D_loss: 0.0518	Cycle_loss: 3.7235	Identity_loss:0.0000	A2B_loss: 0.9703	B2A_loss: 0.8927	d_A_loss: 0.0915	d_B_loss: 0.0120
+35800: 	G_loss: 6.1321	D_loss: 0.0376	Cycle_loss: 4.3163	Identity_loss:0.0000	A2B_loss: 0.9666	B2A_loss: 0.8491	d_A_loss: 0.0698	d_B_loss: 0.0053
+35900: 	G_loss: 5.5026	D_loss: 0.0819	Cycle_loss: 3.6788	Identity_loss:0.0000	A2B_loss: 0.9721	B2A_loss: 0.8516	d_A_loss: 0.1197	d_B_loss: 0.0441
+36000: 	G_loss: 5.5558	D_loss: 0.0727	Cycle_loss: 3.7173	Identity_loss:0.0000	A2B_loss: 0.9554	B2A_loss: 0.8831	d_A_loss: 0.0745	d_B_loss: 0.0710
+36100: 	G_loss: 5.6676	D_loss: 0.0526	Cycle_loss: 3.8365	Identity_loss:0.0000	A2B_loss: 0.9699	B2A_loss: 0.8612	d_A_loss: 0.0937	d_B_loss: 0.0115
+36200: 	G_loss: 5.9999	D_loss: 0.0680	Cycle_loss: 4.1949	Identity_loss:0.0000	A2B_loss: 0.9499	B2A_loss: 0.8552	d_A_loss: 0.1031	d_B_loss: 0.0329
+36300: 	G_loss: 5.9922	D_loss: 0.0628	Cycle_loss: 4.1445	Identity_loss:0.0000	A2B_loss: 0.9725	B2A_loss: 0.8752	d_A_loss: 0.1221	d_B_loss: 0.0036
+36400: 	G_loss: 5.5203	D_loss: 0.0289	Cycle_loss: 3.6402	Identity_loss:0.0000	A2B_loss: 0.9754	B2A_loss: 0.9047	d_A_loss: 0.0535	d_B_loss: 0.0044
+36500: 	G_loss: 5.2141	D_loss: 0.0286	Cycle_loss: 3.3411	Identity_loss:0.0000	A2B_loss: 0.9866	B2A_loss: 0.8864	d_A_loss: 0.0504	d_B_loss: 0.0069
+36600: 	G_loss: 5.8845	D_loss: 0.0336	Cycle_loss: 4.0125	Identity_loss:0.0000	A2B_loss: 0.9776	B2A_loss: 0.8943	d_A_loss: 0.0615	d_B_loss: 0.0058
+36700: 	G_loss: 5.8057	D_loss: 0.0462	Cycle_loss: 3.9342	Identity_loss:0.0000	A2B_loss: 0.9734	B2A_loss: 0.8981	d_A_loss: 0.0869	d_B_loss: 0.0056
+36800: 	G_loss: 6.5010	D_loss: 0.0485	Cycle_loss: 4.6471	Identity_loss:0.0000	A2B_loss: 0.9747	B2A_loss: 0.8792	d_A_loss: 0.0811	d_B_loss: 0.0159
+36900: 	G_loss: 5.2292	D_loss: 0.0772	Cycle_loss: 3.4040	Identity_loss:0.0000	A2B_loss: 0.9608	B2A_loss: 0.8644	d_A_loss: 0.0788	d_B_loss: 0.0756
+37000: 	G_loss: 5.4384	D_loss: 0.1112	Cycle_loss: 3.6929	Identity_loss:0.0000	A2B_loss: 0.8533	B2A_loss: 0.8922	d_A_loss: 0.0699	d_B_loss: 0.1526
+37100: 	G_loss: 5.4363	D_loss: 0.0255	Cycle_loss: 3.5535	Identity_loss:0.0000	A2B_loss: 0.9792	B2A_loss: 0.9036	d_A_loss: 0.0416	d_B_loss: 0.0093
+37200: 	G_loss: 5.6687	D_loss: 0.0708	Cycle_loss: 3.8324	Identity_loss:0.0000	A2B_loss: 0.9547	B2A_loss: 0.8816	d_A_loss: 0.1035	d_B_loss: 0.0382
