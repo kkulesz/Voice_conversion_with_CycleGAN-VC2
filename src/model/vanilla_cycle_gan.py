@@ -17,7 +17,7 @@ from src.model.cycle_gan_vc2.generator import GeneratorCycleGan2
 from src.model.cycle_gan_vc2.discriminator import DiscriminatorCycleGan2
 
 
-class CycleGanTraining:
+class VanillaCycleGan:
     # only directories are given explicitly in constructor, rest training parameters are given in the `const.py` file
     def __init__(self,
                  A_data_file,
@@ -29,11 +29,13 @@ class CycleGanTraining:
                  A_cache_dir,
                  B_cache_dir,
                  save_models_dir: str,
-                 load_models_dir: Optional[str]):
+                 load_models_dir: Optional[str],
+                 start_from_epoch_number: int):
 
         # ------------------------------ #
         #  hyper parameters              #
         # ------------------------------ #
+        self.start_from_epoch_number = start_from_epoch_number
         self.number_of_epochs = Consts.number_of_epochs
         self.batch_size = Consts.mini_batch_size
         self.cycle_loss_lambda = Consts.cycle_loss_lambda
@@ -41,16 +43,16 @@ class CycleGanTraining:
         self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
         self.start_decay_after = Consts.start_decay_after
         self.device = Utils.get_device()
-        self.MSE_fn = torch.nn.MSELoss()
-        self.L1L_fn = torch.nn.L1Loss()
+        # self.MSE_fn = torch.nn.MSELoss()
+        # self.L1L_fn = torch.nn.L1Loss()
 
         # ------------------------------ #
         #  dataloader                    #
         # ------------------------------ #
         self.number_of_frames = Consts.number_of_frames
-        self.dataset = CycleGanTraining._prepare_dataset(A_data_file, B_data_file, self.number_of_frames)
+        self.dataset = self._prepare_dataset(A_data_file, B_data_file, self.number_of_frames)
         self.dataset.prepare_and_shuffle()
-        self.dataloader = CycleGanTraining._prepare_dataloader(self.dataset, self.batch_size)
+        self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
         self.number_of_samples_in_dataset = len(self.dataset)
 
         # ------------------------------ #
@@ -77,6 +79,11 @@ class CycleGanTraining:
         self.gen_lr_decay = Consts.generator_lr_decay
         self.disc_lr_decay = Consts.discriminator_lr_decay
 
+        if self.start_from_epoch_number > Consts.start_decay_after:
+            epochs_over = Consts.start_decay_after - self.start_from_epoch_number
+            self.gen_lr = max(0, self.gen_lr - epochs_over * Consts.generator_lr_decay)
+            self.disc_lr = max(0, self.disc_lr - epochs_over * Consts.discriminator_lr_decay)
+
         self.gen_optimizer = \
             torch.optim.Adam(gen_params, lr=self.gen_lr, betas=Consts.adam_optimizer_betas)
         self.disc_optimizer = \
@@ -88,7 +95,7 @@ class CycleGanTraining:
         # ------------------------------ #
         #  validation                    #
         # ------------------------------ #
-        self.validator = CycleGanTraining._prepare_validator(A_cache_dir, B_cache_dir)
+        self.validator = self._prepare_validator(A_cache_dir, B_cache_dir)
         self.A_validation_source_dir = A_validation_source_dir
         self.B_validation_source_dir = B_validation_source_dir
         self.A2B_validation_output_dir = A2B_validation_output_dir
@@ -108,12 +115,12 @@ class CycleGanTraining:
             self._load_models()
 
     def train(self):
-        for epoch_num in range(self.number_of_epochs):
+        for epoch_num in range(self.start_from_epoch_number, self.number_of_epochs):
             # print(f"Epoch {epoch_num + 1}")
             self.dataset.prepare_and_shuffle()
-            self.dataloader = CycleGanTraining._prepare_dataloader(self.dataset, self.batch_size)
-            # self._train_single_epoch(epoch_num)
-            self._train_single_epoch_overhauled(epoch_num)
+            self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
+
+            self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
                 # print("Dumping validation files... ", end='')
@@ -150,15 +157,15 @@ class CycleGanTraining:
             d_real_A = self.A_disc(real_A)
             d_real_B = self.B_disc(real_B)
 
-            d_fake_loss_A = self._adversarial_loss_fn(d_fake_A, torch.zeros_like(d_fake_A))
-            d_real_loss_A = self._adversarial_loss_fn(d_real_A, torch.ones_like(d_real_A))
-            d_loss_A = d_fake_loss_A + d_real_loss_A
+            d_fake_adv_loss_A = self._adversarial_loss(d_fake_A, torch.zeros_like(d_fake_A))
+            d_real_adv_loss_A = self._adversarial_loss(d_real_A, torch.ones_like(d_real_A))
+            d_adv_loss_A = d_fake_adv_loss_A + d_real_adv_loss_A
 
-            d_fake_loss_B = self._adversarial_loss_fn(d_fake_B, torch.zeros_like(d_fake_B))
-            d_real_loss_B = self._adversarial_loss_fn(d_real_B, torch.ones_like(d_real_B))
-            d_loss_B = d_fake_loss_B + d_real_loss_B
+            d_fake_adv_loss_B = self._adversarial_loss(d_fake_B, torch.zeros_like(d_fake_B))
+            d_real_adv_loss_B = self._adversarial_loss(d_real_B, torch.ones_like(d_real_B))
+            d_adv_loss_B = d_fake_adv_loss_B + d_real_adv_loss_B
 
-            d_loss = (d_loss_A + d_loss_B) / 2.0  # todo: what is dividing by two for?
+            d_loss = (d_adv_loss_A + d_adv_loss_B) / 2.0
 
             self.disc_optimizer.zero_grad()
             d_loss.backward()
@@ -169,23 +176,26 @@ class CycleGanTraining:
             # ------------------------------ #
             d_fake_A = self.A_disc(fake_A)
             d_fake_B = self.B_disc(fake_B)
-            adv_loss_A = self._adversarial_loss_fn(d_fake_A, torch.ones_like(d_fake_A))
-            adv_loss_B = self._adversarial_loss_fn(d_fake_B, torch.ones_like(d_fake_B))
-            adversarial_loss = adv_loss_A + adv_loss_B
+            B2A_adv_loss = self._adversarial_loss(d_fake_A, torch.ones_like(d_fake_A))
+            A2B_adv_loss = self._adversarial_loss(d_fake_B, torch.ones_like(d_fake_B))
+            gen_adversarial_loss = B2A_adv_loss + A2B_adv_loss
 
             cycle_A = self.B2A_gen(fake_B)
             cycle_B = self.A2B_gen(fake_A)
-            cycle_loss_A = self._cycle_loss_fn(real_A, cycle_A)
-            cycle_loss_B = self._cycle_loss_fn(real_B, cycle_B)
-            cycle_loss = self.cycle_loss_lambda * cycle_loss_A + self.cycle_loss_lambda * cycle_loss_B
+            cycle_loss_A = self._cycle_loss(real_A, cycle_A)
+            cycle_loss_B = self._cycle_loss(real_B, cycle_B)
+            cycle_loss = self.cycle_loss_lambda * (cycle_loss_A + cycle_loss_B)
 
-            identity_A = self.B2A_gen(real_A)
-            identity_B = self.A2B_gen(real_B)
-            identity_loss_A = self._identity_loss_fn(real_A, identity_A)
-            identity_loss_B = self._identity_loss_fn(real_B, identity_B)
-            identity_loss = self.identity_loss_lambda * identity_loss_A + self.identity_loss_lambda * identity_loss_B
+            if self.identity_loss_lambda == 0:
+                identity_A = self.B2A_gen(real_A)
+                identity_B = self.A2B_gen(real_B)
+                identity_loss_A = self._identity_loss(real_A, identity_A)
+                identity_loss_B = self._identity_loss(real_B, identity_B)
+                identity_loss = self.identity_loss_lambda * (identity_loss_A + identity_loss_B)
+            else:
+                identity_loss = torch.zeros_like(cycle_loss)
 
-            g_loss = adversarial_loss + cycle_loss + identity_loss
+            g_loss = gen_adversarial_loss + cycle_loss + identity_loss
 
             self.gen_optimizer.zero_grad()
             g_loss.backward()
@@ -199,127 +209,36 @@ class CycleGanTraining:
                 g_loss=g_loss,
                 d_loss=d_loss,
                 cycle_loss=cycle_loss,
-                identity_loss=identity_loss
-            )
-
-    def _train_single_epoch_overhauled(self, epoch_num):
-        for i, (real_A, real_B) in enumerate(self.dataloader):
-            iteration = (self.number_of_samples_in_dataset // self.batch_size) * epoch_num + i
-            real_A = real_A.to(self.device)
-            real_B = real_B.to(self.device)
-
-            # ------------------------------ #
-            #  modify parameters             #
-            # ------------------------------ #
-            self._adjust_params(iteration)
-
-            # ------------------------------ #
-            #  GENERATOR                     #
-            # ------------------------------ #
-            fake_B = self.A2B_gen(real_A)
-            cycle_A = self.B2A_gen(fake_B)
-
-            fake_A = self.B2A_gen(real_B)
-            cycle_B = self.A2B_gen(fake_A)
-
-            identity_A = self.B2A_gen(real_A)
-            identity_B = self.A2B_gen(real_B)
-
-            d_fake_A = self.A_disc(fake_A)
-            d_fake_B = self.B_disc(fake_B)
-
-            cycle_loss = torch.mean(torch.abs(real_A - cycle_A)) + torch.mean(torch.abs(real_B - cycle_B))
-            identity_loss = torch.mean(torch.abs(real_A - identity_A)) + torch.mean(torch.abs(real_B - identity_B))
-            generator_loss_A2B = torch.mean((1 - d_fake_B) ** 2)
-            generator_loss_B2A = torch.mean((1 - d_fake_A) ** 2)
-            g_loss = generator_loss_A2B + generator_loss_B2A + \
-                     self.cycle_loss_lambda * cycle_loss + \
-                     self.identity_loss_lambda * identity_loss
-
-            self._reset_grad()
-            g_loss.backward()
-            self.gen_optimizer.step()
-
-            # ------------------------------ #
-            #  DISCRIMINATOR                 #
-            # ------------------------------ #
-            d_real_A = self.A_disc(real_A)
-            d_real_B = self.B_disc(real_B)
-
-            generated_A = self.B2A_gen(real_B)
-            d_fake_A = self.A_disc(generated_A)
-
-            generated_B = self.A2B_gen(real_A)
-            d_fake_B = self.B_disc(generated_B)
-
-            # Loss Functions
-            d_loss_A_real = torch.mean((1 - d_real_A) ** 2)
-            d_loss_A_fake = torch.mean((0 - d_fake_A) ** 2)
-            d_loss_A = (d_loss_A_real + d_loss_A_fake) / 2.0
-
-            d_loss_B_real = torch.mean((1 - d_real_B) ** 2)
-            d_loss_B_fake = torch.mean((0 - d_fake_B) ** 2)
-            d_loss_B = (d_loss_B_real + d_loss_B_fake) / 2.0
-
-            # TODO: try with d_cycle
-            # cycled_B = self.generator_A2B(generated_A)
-            # d_cycled_B = self.discriminator_B(cycled_B)
-            # cycled_A = self.generator_B2A(generated_B)
-            # d_cycled_A = self.discriminator_A(cycled_A)
-            # d_loss_A_cycled = torch.mean((0 - d_cycled_A) ** 2)
-            # d_loss_B_cycled = torch.mean((0 - d_cycled_B) ** 2)
-            # d_loss_A_2nd = (d_loss_A_real + d_loss_A_cycled) / 2.0
-            # d_loss_B_2nd = (d_loss_B_real + d_loss_B_cycled) / 2.0
-
-            d_loss = (d_loss_A + d_loss_B) / 2.0  # TODO+ (d_loss_A_2nd + d_loss_B_2nd) / 2.0
-
-            self._reset_grad()
-            d_loss.backward()
-            self.disc_optimizer.step()
-
-            # ------------------------------ #
-            #  analytics                     #
-            # ------------------------------ #
-            self._analytics(
-                iteration=iteration,
-                g_loss=g_loss,
-                d_loss=d_loss,
-                cycle_loss=cycle_loss,
                 identity_loss=identity_loss,
-                A2B_loss=generator_loss_A2B,
-                B2A_loss=generator_loss_B2A,
-                d_A_loss=d_loss_A,
-                d_B_loss=d_loss_B
+                A2B_loss=A2B_adv_loss,
+                B2A_loss=B2A_adv_loss,
+                d_A_loss=d_adv_loss_A,
+                d_B_loss=d_adv_loss_B
             )
 
     @staticmethod
     def _prepare_dataset(A_data_file, B_data_file, number_of_frames):
-        dataset = PreprocessedDataset(
+        return PreprocessedDataset(
             A_dataset_file=A_data_file,
             B_dataset_file=B_data_file,
             number_of_frames=number_of_frames
         )
-        return dataset
 
     @staticmethod
     def _prepare_dataloader(dataset, batch_size):
-        dataloader = DataLoader(
+        return DataLoader(
             dataset=dataset,
             batch_size=batch_size,
             shuffle=True,
             drop_last=False
         )
 
-        return dataloader
-
     @staticmethod
     def _prepare_validator(A_cache_dir, B_cache_dir):
-        validator = Validator(
+        return Validator(
             A_cache_dir=A_cache_dir,
             B_cache_dir=B_cache_dir
         )
-
-        return validator
 
     def _adjust_lr(self):
         self._adjust_discriminator_lr()
@@ -335,14 +254,20 @@ class CycleGanTraining:
         for param_groups in self.disc_optimizer.param_groups:
             param_groups['lr'] = self.disc_lr
 
-    def _adversarial_loss_fn(self, x, y):
-        return self.MSE_fn(x, y)
+    @staticmethod
+    def _adversarial_loss(output, expected):
+        # return self.MSE_fn(x, y)
+        return torch.mean((expected - output) ** 2)
 
-    def _cycle_loss_fn(self, x, y):
-        return self.L1L_fn(x, y)
+    @staticmethod
+    def _cycle_loss(real, cycle):
+        # return self.L1L_fn(x, y)
+        return torch.mean(torch.abs(real - cycle))
 
-    def _identity_loss_fn(self, x, y):
-        return self.L1L_fn(x, y)
+    @staticmethod
+    def _identity_loss(real, identity):
+        # return self.L1L_fn(x, y)
+        return torch.mean(torch.abs(real - identity))
 
     def _validate(self, epoch):
         self._validate_single_generator(epoch=epoch,
@@ -419,8 +344,8 @@ class CycleGanTraining:
                                        B2A_loss=B2A_loss,
                                        d_A_loss=d_A_loss,
                                        d_B_loss=d_B_loss)
-        if iteration % (10 * self.print_losses_iteration_frequency) == 0:
-            self._print_params()
+        # if iteration % (10 * self.print_losses_iteration_frequency) == 0:
+        #     self._print_params()
         self.gen_loss_store.append(g_loss.cpu().detach().item())
         self.disc_loss_store.append(d_loss.cpu().detach().item())
 
@@ -440,12 +365,8 @@ class CycleGanTraining:
         self._log_message(losses_str + '\n')
 
     def _print_params(self):
-        params_str = f"gen_lr: {self.gen_lr}, disc_lr:{self.disc_lr}"
+        params_str = f"gen_lr: {self.gen_lr}, disc_lr:{self.disc_lr}, id_loss_lambda: {self.identity_loss_lambda}"
         print(params_str)
-
-    def _reset_grad(self):  # just for the overhauled version
-        self.gen_optimizer.zero_grad()
-        self.disc_optimizer.zero_grad()
 
     def _log_message(self, msg):
         f = open(self.log_file_name, "a")
