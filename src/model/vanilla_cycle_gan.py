@@ -43,8 +43,6 @@ class VanillaCycleGan:
         self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
         self.start_decay_after = Consts.start_decay_after
         self.device = Utils.get_device()
-        # self.MSE_fn = torch.nn.MSELoss()
-        # self.L1L_fn = torch.nn.L1Loss()
 
         # ------------------------------ #
         #  dataloader                    #
@@ -123,14 +121,14 @@ class VanillaCycleGan:
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                # print("Dumping validation files... ", end='')
+                print(f"Dumping validation files after epoch {epoch_num+1}... ", end='')
                 self._validate(epoch_num + 1)
-                # print("Done")
+                print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
-                # print("Checkpoint... ", end='')
+                print(f"Checkpoint after epoch {epoch_num+1}... ", end='')
                 self._checkpoint()
-                # print("Done")
+                print("Done")
 
         print("Finished training")
 
@@ -186,14 +184,14 @@ class VanillaCycleGan:
             cycle_loss_B = self._cycle_loss(real_B, cycle_B)
             cycle_loss = self.cycle_loss_lambda * (cycle_loss_A + cycle_loss_B)
 
-            if self.identity_loss_lambda == 0:
+            if self.identity_loss_lambda == 0:  # do not compute for nothing
+                identity_loss = torch.zeros_like(cycle_loss)
+            else:
                 identity_A = self.B2A_gen(real_A)
                 identity_B = self.A2B_gen(real_B)
                 identity_loss_A = self._identity_loss(real_A, identity_A)
                 identity_loss_B = self._identity_loss(real_B, identity_B)
                 identity_loss = self.identity_loss_lambda * (identity_loss_A + identity_loss_B)
-            else:
-                identity_loss = torch.zeros_like(cycle_loss)
 
             g_loss = gen_adversarial_loss + cycle_loss + identity_loss
 
@@ -256,17 +254,14 @@ class VanillaCycleGan:
 
     @staticmethod
     def _adversarial_loss(output, expected):
-        # return self.MSE_fn(x, y)
         return torch.mean((expected - output) ** 2)
 
     @staticmethod
     def _cycle_loss(real, cycle):
-        # return self.L1L_fn(x, y)
         return torch.mean(torch.abs(real - cycle))
 
     @staticmethod
     def _identity_loss(real, identity):
-        # return self.L1L_fn(x, y)
         return torch.mean(torch.abs(real - identity))
 
     def _validate(self, epoch):
@@ -344,8 +339,8 @@ class VanillaCycleGan:
                                        B2A_loss=B2A_loss,
                                        d_A_loss=d_A_loss,
                                        d_B_loss=d_B_loss)
-        # if iteration % (10 * self.print_losses_iteration_frequency) == 0:
-        #     self._print_params()
+        if iteration % (10 * self.print_losses_iteration_frequency) == 0:
+            self._print_params()
         self.gen_loss_store.append(g_loss.cpu().detach().item())
         self.disc_loss_store.append(d_loss.cpu().detach().item())
 
