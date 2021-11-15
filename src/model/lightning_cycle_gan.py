@@ -8,6 +8,7 @@ from consts import Consts
 from src.data_processing.dataset import PreprocessedDataset
 from src.model.cycle_gan_vc2.generator import GeneratorCycleGan2
 from src.model.cycle_gan_vc2.discriminator import DiscriminatorCycleGan2
+from src.utils.files_operator import FilesOperator
 
 """
 TODO:
@@ -19,8 +20,8 @@ TODO:
 """
 class LightningCycleGan(pl.LightningModule):
     def __init__(self,
-                 A_data_file,
-                 B_data_file,
+                 A_dataset,
+                 B_dataset,
                  A_validation_source_dir,
                  B_validation_source_dir,
                  A2B_validation_output_dir,
@@ -78,11 +79,10 @@ class LightningCycleGan(pl.LightningModule):
 
     def train_dataloader(self):
         dataset = PreprocessedDataset(
-            A_dataset_file=self.hparams.A_data_file,
-            B_dataset_file=self.hparams.B_data_file,
+            A_dataset=self.hparams.A_dataset,
+            B_dataset=self.hparams.B_dataset,
             number_of_frames=self.number_of_frames
         )
-        dataset.prepare_and_shuffle()
 
         dataloader = DataLoader(
             dataset=dataset,
@@ -163,10 +163,12 @@ if __name__ == '__main__':
     A_validation_source_dir = os.path.join(validation_data_dir, A_dir)
     B_validation_source_dir = os.path.join(validation_data_dir, B_dir)
 
+    A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
+    B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
     trainer = pl.Trainer(fast_dev_run=True, gpus=1)
     cycle_gan = LightningCycleGan(
-        A_data_file=Consts.A_preprocessed_dataset_file_path,
-        B_data_file=Consts.B_preprocessed_dataset_file_path,
+        A_dataset=A_dataset,
+        B_dataset=B_dataset,
         A_validation_source_dir=A_validation_source_dir,
         B_validation_source_dir=B_validation_source_dir,
         A2B_validation_output_dir=Consts.A2B_validation_output_directory_path,

@@ -7,6 +7,7 @@ from src.model.vanilla_cycle_gan import VanillaCycleGan
 
 from scripts.prepare_for_training import prepare_for_training
 from scripts.download import download_vc2016_dataset
+from src.utils.files_operator import FilesOperator
 
 
 def prepare_cycle_gan_for_training(A_validation_src_directory,
@@ -20,9 +21,12 @@ def prepare_cycle_gan_for_training(A_validation_src_directory,
     else:
         load_dir = None
 
+    A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
+    B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
+
     return VanillaCycleGan(
-        A_data_file=Consts.A_preprocessed_dataset_file_path,
-        B_data_file=Consts.B_preprocessed_dataset_file_path,
+        A_dataset=A_dataset,
+        B_dataset=B_dataset,
         A_validation_source_dir=A_validation_src_directory,
         B_validation_source_dir=B_validation_src_directory,
         A2B_validation_output_dir=Consts.A2B_validation_output_directory_path,

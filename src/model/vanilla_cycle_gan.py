@@ -20,8 +20,8 @@ from src.model.cycle_gan_vc2.discriminator import DiscriminatorCycleGan2
 class VanillaCycleGan:
     # only directories are given explicitly in constructor, rest training parameters are given in the `const.py` file
     def __init__(self,
-                 A_data_file,
-                 B_data_file,
+                 A_dataset,
+                 B_dataset,
                  A_validation_source_dir,
                  B_validation_source_dir,
                  A2B_validation_output_dir,
@@ -48,8 +48,7 @@ class VanillaCycleGan:
         #  dataloader                    #
         # ------------------------------ #
         self.number_of_frames = Consts.number_of_frames
-        self.dataset = self._prepare_dataset(A_data_file, B_data_file, self.number_of_frames)
-        self.dataset.prepare_and_shuffle()
+        self.dataset = self._prepare_dataset(A_dataset, B_dataset, self.number_of_frames)
         self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
         self.number_of_samples_in_dataset = len(self.dataset)
 
@@ -115,9 +114,6 @@ class VanillaCycleGan:
     def train(self):
         for epoch_num in range(self.start_from_epoch_number, self.number_of_epochs):
             # print(f"Epoch {epoch_num + 1}")
-            self.dataset.prepare_and_shuffle()
-            self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
-
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
@@ -215,10 +211,10 @@ class VanillaCycleGan:
             )
 
     @staticmethod
-    def _prepare_dataset(A_data_file, B_data_file, number_of_frames):
+    def _prepare_dataset(A_dataset, B_dataset, number_of_frames):
         return PreprocessedDataset(
-            A_dataset_file=A_data_file,
-            B_dataset_file=B_data_file,
+            A_dataset=A_dataset,
+            B_dataset=B_dataset,
             number_of_frames=number_of_frames
         )
 
