@@ -1,7 +1,9 @@
+import os
 import torch
 import numpy as np
 from torch.utils.data import Dataset
 
+from src.data_processing.validator import Validator
 
 class PreprocessedDataset(Dataset):
     def __init__(self, A_dataset, B_dataset, number_of_frames):
@@ -34,3 +36,32 @@ class PreprocessedDataset(Dataset):
         end = start + self.number_of_frames
 
         return data[:, start:end]
+
+
+class LightningValidationDataset(Dataset):
+    """
+    dummy dataset for PytorchLighting
+    """
+    def __init__(self, A_dir, B_dir, validator):
+        self.A_dir = A_dir
+        self.B_dir = B_dir
+        self.A_files = os.listdir(A_dir)
+        self.B_files = os.listdir(B_dir)
+
+        self.validator = validator
+
+        self.length = min(len(self.A_files), len(self.B_files))
+
+    def __len__(self):
+        return self.length
+
+    def __getitem__(self, idx):
+        A_file_name = self.A_files[idx]
+        B_file_name = self.B_files[idx]
+        A_file = os.path.join(self.A_dir, A_file_name)
+        B_file = os.path.join(self.B_dir, B_file_name)
+
+        A = self.validator.load_and_normalize(A_file, is_A=True)
+        B = self.validator.load_and_normalize(B_file, is_A=False)
+        return (A, A_file_name), (B, B_file_name)
+

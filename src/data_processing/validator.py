@@ -2,6 +2,7 @@ import librosa
 import pyworld as pw
 import numpy as np
 import soundfile as sf
+import torch
 
 from consts import Consts
 from src.utils.files_operator import FilesOperator
@@ -37,12 +38,14 @@ class Validator:
         transposed = mcep.T
         normalized = self._normalize(transposed, is_A=is_A)
 
-        return np.array([normalized]), (f0_converted, ap)
+        tensor = torch.Tensor([normalized])
+        return tensor, (f0_converted, ap)
 
     def denormalize_and_save(self, signal, ap, f0, file_path: str, is_A: bool):
         sr = Consts.sampling_rate
 
-        squeezed = np.squeeze(signal)
+        cpu = signal.cpu()
+        squeezed = np.squeeze(cpu)
         denormalized = self._denormalize(squeezed, is_A=is_A)
         transposed = denormalized.T
         contiguous_transposed = np.ascontiguousarray(transposed)

@@ -18,7 +18,6 @@ from src.model.cycle_gan_vc2.discriminator import DiscriminatorCycleGan2
 
 
 class VanillaCycleGan:
-    # only directories are given explicitly in constructor, rest training parameters are given in the `const.py` file
     def __init__(self,
                  A_dataset,
                  B_dataset,
@@ -283,12 +282,10 @@ class VanillaCycleGan:
             with torch.no_grad():
                 input_signal, (f0, ap) = self.validator.load_and_normalize(file_path=file_path, is_A=is_A2B)
 
-                signal_tensor = torch.from_numpy(input_signal)
-                device_input = signal_tensor.to(self.device).float()
+                device_input = input_signal.to(self.device).float()
                 device_generated = generator(device_input)
-                cpu_generated = device_generated.cpu()
 
-                self.validator.denormalize_and_save(signal=cpu_generated,
+                self.validator.denormalize_and_save(signal=device_generated,
                                                     ap=ap,
                                                     f0=f0,
                                                     file_path=output_file_path,

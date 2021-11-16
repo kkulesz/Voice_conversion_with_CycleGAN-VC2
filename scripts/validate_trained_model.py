@@ -25,7 +25,7 @@ if __name__ == '__main__':
     cache_dir = os.path.join(project_dir, f'storage\\{storage_dir}\\cache')
     model_storage_path = os.path.join(project_dir, f'storage\\{storage_dir}')
     data_src_dir = os.path.join(project_dir, 'data\\vc-challenge-2016\\evaluation_all')
-    input_file_name = '200040.wav'
+    input_file_name = '200043.wav'
 
     (A, B) = Consts.female_to_male
 
@@ -47,12 +47,11 @@ if __name__ == '__main__':
     # A_disc.load_state_dict(FilesOperator.load_model(model_storage_path, Consts.A_discriminator_file_name))
     # B_disc.load_state_dict(FilesOperator.load_model(model_storage_path, Consts.B_discriminator_file_name))
 
-    A_real_numpy, (A_f0, A_ap) = validator.load_and_normalize(A_input_file_path, is_A=True)
-    B_real_numpy, (B_f0, B_ap) = validator.load_and_normalize(B_input_file_path, is_A=False)
-    A_real_torch_tensor = torch.from_numpy(A_real_numpy).float()
-    B_real_torch_tensor = torch.from_numpy(B_real_numpy).float()
-    B_fake = A2B_gen(A_real_torch_tensor).detach()
-    A_fake = B2A_gen(B_real_torch_tensor).detach()
+    A_real, (A_f0, A_ap) = validator.load_and_normalize(A_input_file_path, is_A=True)
+    B_real, (B_f0, B_ap) = validator.load_and_normalize(B_input_file_path, is_A=False)
+
+    B_fake = A2B_gen(A_real.float()).detach()
+    A_fake = B2A_gen(B_real.float()).detach()
     # A_cycle = B2A_gen(B_fake).detach()
     # B_cycle = A2B_gen(A_fake).detach()
     validator.denormalize_and_save(B_fake, A_ap, A_f0, 'B_fake.wav', is_A=False)
