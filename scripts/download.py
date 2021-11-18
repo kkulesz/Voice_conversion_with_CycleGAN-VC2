@@ -36,3 +36,7 @@ def download_vc2016_dataset(destination_directory):
 
         _download(download_url, file_path)
         _unzip(file_path, destination_directory)
+
+
+if __name__ == '__main__':
+    download_vc2016_dataset(Consts.vc16_data_directory_path)

@@ -3,41 +3,11 @@ import numpy as np
 
 from consts import Consts
 
-from src.model.vanilla_cycle_gan import VanillaCycleGan
-
-from scripts.prepare_for_training import prepare_for_training
 from scripts.download import download_vc2016_dataset
+from scripts.prepare_directories_and_preprocess import prepare_directories_and_preprocess
+from scripts.train_vanilla import train_vanilla
+from scripts.train_lightning import train_lightning
 from src.utils.files_operator import FilesOperator
-
-
-def prepare_cycle_gan_for_training(A_validation_src_directory,
-                                   B_validation_src_directory,
-                                   models_storage_directory,
-                                   load_model=False,
-                                   start_from_epoch_number=0):
-
-    if load_model:
-        load_dir = models_storage_directory
-    else:
-        load_dir = None
-
-    A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
-    B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
-
-    return VanillaCycleGan(
-        A_dataset=A_dataset,
-        B_dataset=B_dataset,
-        A_validation_source_dir=A_validation_src_directory,
-        B_validation_source_dir=B_validation_src_directory,
-        A2B_validation_output_dir=Consts.A2B_validation_output_directory_path,
-        B2A_validation_output_dir=Consts.B2A_validation_output_directory_path,
-        A_cache_dir=Consts.A_cache_directory_path,
-        B_cache_dir=Consts.B_cache_directory_path,
-        save_models_dir=models_storage_directory,
-        load_models_dir=load_dir,
-        start_from_epoch_number=start_from_epoch_number
-    )
-
 
 if __name__ == '__main__':
     # ==========================================================
@@ -53,6 +23,8 @@ if __name__ == '__main__':
     load_model = False
     start_from_epoch_number = 0
     # ==========================================================
+    is_vanilla = True
+    # ==========================================================
 
     A_validation_source_dir = os.path.join(validation_data_dir, A_dir)
     B_validation_source_dir = os.path.join(validation_data_dir, B_dir)
@@ -61,14 +33,28 @@ if __name__ == '__main__':
     download_vc2016_dataset(download_destination)
 
     print("Preprocessing...")
-    prepare_for_training(training_data_dir, A_dir, B_dir, models_storage_dir)
+    prepare_directories_and_preprocess(training_data_dir, A_dir, B_dir, models_storage_dir)
 
-    print("Initializing...")
-    cycle_gan = prepare_cycle_gan_for_training(A_validation_source_dir,
-                                               B_validation_source_dir,
-                                               models_storage_dir,
-                                               load_model=load_model,
-                                               start_from_epoch_number=start_from_epoch_number)
-    print("Starting training...")
+    A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
+    B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
+
+    print("Initializing and training...")
     with np.errstate(divide='ignore'):  # np.log 'throws' warning
-        cycle_gan.train()
+        if is_vanilla:
+            train_vanilla(
+                A_dataset,
+                B_dataset,
+                A_validation_source_dir,
+                B_validation_source_dir,
+                models_storage_dir,
+                load_model=load_model,
+                start_from_epoch_number=start_from_epoch_number)
+        else:
+            train_lightning(
+                A_dataset,
+                B_dataset,
+                A_validation_source_dir,
+                B_validation_source_dir,
+                models_storage_dir,
+                load_model,
+                start_from_epoch_number=start_from_epoch_number)

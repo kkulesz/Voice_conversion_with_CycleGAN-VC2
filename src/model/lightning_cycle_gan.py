@@ -20,6 +20,8 @@ TODO:
         - pl.module
     3. proper logging
 """
+
+
 class LightningCycleGan(pl.LightningModule):
     def __init__(self,
                  A_dataset,
@@ -127,20 +129,24 @@ class LightningCycleGan(pl.LightningModule):
         A2B_adv_loss = self._adversarial_loss(d_fake_B, torch.ones_like(d_fake_B))
         gen_adversarial_loss = B2A_adv_loss + A2B_adv_loss
 
-        self.validator.denormalize_and_save(signal=B_generated, ap=A_ap.cpu().numpy()[0], f0=A_f0.cpu().numpy()[0], file_path=A_output_path, is_A=False)
-        self.validator.denormalize_and_save(signal=A_generated, ap=B_ap.cpu().numpy()[0], f0=B_f0.cpu().numpy()[0], file_path=B_output_path, is_A=True)
+        self.validator.denormalize_and_save(signal=B_generated, ap=A_ap.cpu().numpy()[0], f0=A_f0.cpu().numpy()[0],
+                                            file_path=A_output_path, is_A=False)
+        self.validator.denormalize_and_save(signal=A_generated, ap=B_ap.cpu().numpy()[0], f0=B_f0.cpu().numpy()[0],
+                                            file_path=B_output_path, is_A=True)
 
         return {"val_loss": gen_adversarial_loss}
 
     def on_train_epoch_end(self) -> None:
-        print(self.current_epoch)
+        if self.current_epoch > Consts.zero_identity_loss_lambda_after:
+            self.identity_loss_lambda = 0
+        print(f"Current epoch: {self.current_epoch}")
 
     def on_validation_start(self) -> None:
-        print("test")
+        print("Validation epoch start")
 
     def validation_epoch_end(self, outputs):
         avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
-        print(avg_loss)
+        print(f"Validation generators adversarial average loss after {self.current_epoch}. epoch: {avg_loss}")
 
     @staticmethod
     def _adversarial_loss(output, expected):
@@ -200,34 +206,3 @@ class LightningCycleGan(pl.LightningModule):
 
         g_loss = gen_adversarial_loss + cycle_loss + identity_loss
         return g_loss
-
-
-if __name__ == '__main__':
-    A_dir, B_dir = Consts.female_to_male
-    print(f"FROM: {A_dir} TO: {B_dir}")
-
-    download_destination = Consts.vc16_data_directory_path
-    training_data_dir = Consts.vc16_training_directory_path
-    validation_data_dir = Consts.vc16_validation_directory_path
-    A_validation_source_dir = os.path.join(validation_data_dir, A_dir)
-    B_validation_source_dir = os.path.join(validation_data_dir, B_dir)
-
-    A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
-    B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
-    trainer = pl.Trainer(fast_dev_run=False,
-                         gpus=1,
-                         check_val_every_n_epoch=2,#Consts.dump_validation_file_epoch_frequency,
-                         enable_progress_bar=False
-                         )
-    cycle_gan = LightningCycleGan(
-        A_dataset=A_dataset,
-        B_dataset=B_dataset,
-        A_validation_source_dir=A_validation_source_dir,
-        B_validation_source_dir=B_validation_source_dir,
-        A2B_validation_output_dir=Consts.A2B_validation_output_directory_path,
-        B2A_validation_output_dir=Consts.B2A_validation_output_directory_path,
-        A_cache_dir=Consts.A_cache_directory_path,
-        B_cache_dir=Consts.B_cache_directory_path
-    )
-    with np.errstate(divide='ignore'):  # np.log 'throws' warning
-        trainer.fit(cycle_gan)

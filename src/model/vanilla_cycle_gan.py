@@ -116,12 +116,12 @@ class VanillaCycleGan:
             self._train_single_epoch(epoch_num)
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
-                print(f"Dumping validation files after epoch {epoch_num+1}... ", end='')
+                print(f"Dumping validation files after epoch {epoch_num + 1}... ", end='')
                 self._validate(epoch_num + 1)
                 print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
-                print(f"Checkpoint after epoch {epoch_num+1}... ", end='')
+                print(f"Checkpoint after epoch {epoch_num + 1}... ", end='')
                 self._checkpoint()
                 print("Done")
 
@@ -172,6 +172,8 @@ class VanillaCycleGan:
             B2A_adv_loss = self._adversarial_loss(d_fake_A, torch.ones_like(d_fake_A))
             A2B_adv_loss = self._adversarial_loss(d_fake_B, torch.ones_like(d_fake_B))
             gen_adversarial_loss = B2A_adv_loss + A2B_adv_loss
+            if (i == 0):
+                print(f"{epoch_num}: {gen_adversarial_loss}")
 
             cycle_A = self.B2A_gen(fake_B)
             cycle_B = self.A2B_gen(fake_A)

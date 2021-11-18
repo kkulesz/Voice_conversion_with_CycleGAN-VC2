@@ -53,7 +53,7 @@ def _make_sure_storage_dir_exist(storage_dir):
         FilesOperator.create_directory(storage_dir)
 
 
-def prepare_for_training(data_dir, A_dir, B_dir, storage_dir):
+def prepare_directories_and_preprocess(data_dir, A_dir, B_dir, storage_dir):
     """
     1. create output directory IF IT DOES NOT EXIST
     2. reset cache directories
@@ -82,3 +82,17 @@ def prepare_for_training(data_dir, A_dir, B_dir, storage_dir):
 
     _save_preprocessed_data(A_data, subcache_dir=Consts.A_dir_name)
     _save_preprocessed_data(B_data, subcache_dir=Consts.B_dir_name)
+
+
+if __name__ == '__main__':
+    # ==========================================================
+    A_dir, B_dir = Consts.female_to_male
+    print(f"FROM: {A_dir} TO: {B_dir}")
+
+    training_data_dir = Consts.vc16_training_directory_path
+    validation_data_dir = Consts.vc16_validation_directory_path
+
+    models_storage_dir = Consts.models_storage_directory_path
+
+    print("Preprocessing...")
+    prepare_directories_and_preprocess(training_data_dir, A_dir, B_dir, models_storage_dir)
