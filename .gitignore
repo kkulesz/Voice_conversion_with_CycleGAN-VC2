@@ -10,3 +10,4 @@ __pycache__/
 sandpit/output/
 src/data_processing/*.wav
 storage/**/output/
+*.onnx

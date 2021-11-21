@@ -1,5 +1,6 @@
 import os
 import torch
+import wandb
 from typing import Optional
 from torch.utils.data import DataLoader
 
@@ -100,6 +101,20 @@ class VanillaCycleGan:
         self.print_losses_iteration_frequency = Consts.print_losses_iteration_frequency
         self.log_file_name = Consts.log_file_path
         self._log_message('\n\n---------\nNEXT RUN\n---------\n')
+        # ------------------------------ #
+        #  weightAndBiases boilerplate   #
+        # ------------------------------ #
+        wandb.watch(models=self.B2A_gen,
+                    criterion=None,
+                    log="all",
+                    log_freq=10)
+        # wandb.watch(models=self.A_disc,
+        #             criterion=None,
+        #             log="all",
+        #             log_freq=10,
+        #             log_graph=True
+        #             )
+        self.val_A, self.val_B = next(iter(self.dataloader))
 
         # ------------------------------ #
         #  model storage                 #
@@ -124,6 +139,7 @@ class VanillaCycleGan:
                 print(f"Checkpoint after epoch {epoch_num + 1}... ", end='')
                 self._checkpoint()
                 print("Done")
+            self._checkpoint()
 
         print("Finished training")
 
@@ -172,8 +188,6 @@ class VanillaCycleGan:
             B2A_adv_loss = self._adversarial_loss(d_fake_A, torch.ones_like(d_fake_A))
             A2B_adv_loss = self._adversarial_loss(d_fake_B, torch.ones_like(d_fake_B))
             gen_adversarial_loss = B2A_adv_loss + A2B_adv_loss
-            if (i == 0):
-                print(f"{epoch_num}: {gen_adversarial_loss}")
 
             cycle_A = self.B2A_gen(fake_B)
             cycle_B = self.A2B_gen(fake_A)
@@ -298,6 +312,15 @@ class VanillaCycleGan:
         self._save_models(save_dir)
         self._save_models_losses(save_dir)
 
+        # COMMENTED OUT
+        # file = "B2A.onnx"
+        # save_path = os.path.join(wandb.run.dir, file)  # `wandb` is bugged, this is workaround to avoid creating symbolic link
+        # torch.onnx.export(
+        #     self.B2A_gen,
+        #     self.val_B.to(self.device),
+        #     save_path)
+        # wandb.save(file)
+
     def _load_models(self):
         load_dir = self.load_models_directory
         self.A2B_gen.load_state_dict(FilesOperator.load_model(load_dir, Consts.A2B_generator_file_name))
@@ -353,6 +376,13 @@ class VanillaCycleGan:
         losses_str = losses_str.replace("\n", "")
         print(losses_str)
         self._log_message(losses_str + '\n')
+
+        wandb.log(
+            {'generator_loss': generator_loss,
+             'discriminator_loss': discriminator_loss,
+             'cycle_loss': cycle_loss,
+             'identity_loss': identity_loss}, step=iteration
+        )
 
     def _print_params(self):
         params_str = f"gen_lr: {self.gen_lr}, disc_lr:{self.disc_lr}, id_loss_lambda: {self.identity_loss_lambda}"
