@@ -11,3 +11,5 @@ sandpit/output/
 src/data_processing/*.wav
 storage/**/output/
 *.onnx
+TITANV_STORAGE/
+wandb/
