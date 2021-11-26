@@ -21,8 +21,8 @@ if __name__ == '__main__':
 
     # ==========================================================
     models_storage_dir = Consts.models_storage_directory_path
-    load_model = False
-    start_from_epoch_number = 0
+    load_model = True
+    start_from_epoch_number = 20
     # ==========================================================
     is_vanilla = True
     # ==========================================================
