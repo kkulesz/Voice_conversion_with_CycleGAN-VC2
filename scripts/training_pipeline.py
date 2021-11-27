@@ -12,7 +12,7 @@ from src.utils.files_operator import FilesOperator
 
 if __name__ == '__main__':
     # ==========================================================
-    A_dir, B_dir = Consts.female_to_male
+    A_dir, B_dir = Consts.male_to_male
     print(f"FROM: {A_dir} TO: {B_dir}")
 
     download_destination = Consts.vc16_data_directory_path
@@ -21,8 +21,8 @@ if __name__ == '__main__':
 
     # ==========================================================
     models_storage_dir = Consts.models_storage_directory_path
-    load_model = True
-    start_from_epoch_number = 20
+    load_model = False
+    start_from_epoch_number = 0
     # ==========================================================
     is_vanilla = True
     # ==========================================================
@@ -33,8 +33,8 @@ if __name__ == '__main__':
     # print("Downloading...")
     # download_vc2016_dataset(download_destination)
     #
-    # print("Preprocessing...")
-    # prepare_directories_and_preprocess(training_data_dir, A_dir, B_dir, models_storage_dir)
+    print("Preprocessing...")
+    prepare_directories_and_preprocess(training_data_dir, A_dir, B_dir, models_storage_dir)
 
     A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
     B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)

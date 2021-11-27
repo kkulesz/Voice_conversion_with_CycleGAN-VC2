@@ -381,7 +381,12 @@ class VanillaCycleGan:
             {'generator_loss': generator_loss,
              'discriminator_loss': discriminator_loss,
              'cycle_loss': cycle_loss,
-             'identity_loss': identity_loss}, step=iteration
+             'identity_loss': identity_loss,
+             'AtoB_loss': A2B_loss,
+             'BtoA_loss': B2A_loss,
+             'A_disc_loss': d_A_loss,
+             'B_disc_loss': d_B_loss
+             }, step=iteration
         )
 
     def _print_params(self):
