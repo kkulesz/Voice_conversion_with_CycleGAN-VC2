@@ -48,14 +48,14 @@ class Consts:
     vc16_url_prefix = "https://datashare.is.ed.ac.uk/bitstream/handle/10283/2211/"
     vc16_download_directories = ["vcc2016_training.zip", "evaluation_all.zip"]
 
-    male_source = "SM1"
-    male_target = "TM1"
-    female_source = "SF1"
-    female_target = "TF1"
-    male_to_female = (male_source, female_target)
-    male_to_male = (male_source, male_target)
-    female_to_male = (female_source, male_target)
-    female_to_female = (female_source, female_target)
+    male_1 = "SM1"
+    male_2 = "SM2"
+    female_1 = "SF1"
+    female_2 = "SF2"
+    male_to_female = (male_1, female_1)
+    male_to_male = (male_1, male_2)
+    female_to_male = (female_1, male_1)
+    female_to_female = (female_1, female_2)
 
     # ------------------------------ #
     #  cache directories             #
