@@ -1,1 +1,0 @@
-tutaj znowu stabilnie po ponownym przeniesioniu logowania zeby dzialo sie w kazdej iteracji

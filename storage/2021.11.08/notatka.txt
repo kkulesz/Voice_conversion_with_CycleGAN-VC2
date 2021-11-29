@@ -1,5 +1,0 @@
-downloaded manually
-- female to male
-- 52 files each
-- WITH DATASET SHUFFLED AND PREPARED FOR EACH EPOCH
-- weird behaviour of discriminator loss, stays `0.1354`

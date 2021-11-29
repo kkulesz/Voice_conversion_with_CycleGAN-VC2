@@ -1,1 +1,0 @@
-tu juz stabilnie, przeniesione logowanie do petli zeby dzialo sie rzadziej
