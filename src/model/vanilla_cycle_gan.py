@@ -104,6 +104,8 @@ class VanillaCycleGan:
         # ------------------------------ #
         #  weightAndBiases boilerplate   #
         # ------------------------------ #
+        wandb.login()
+        wandb.init(project='cycleGan-test-run')
         wandb.watch(models=self.B2A_gen,
                     criterion=None,
                     log="all",

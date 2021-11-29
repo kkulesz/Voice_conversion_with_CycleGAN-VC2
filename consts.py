@@ -36,26 +36,43 @@ class Consts:
     output_dir_path = os.path.join(project_dir_path, "output")
     A_dir_name = "A"
     B_dir_name = "B"
-
-    # ------------------------------ #
-    #  train directories             #
-    # ------------------------------ #
     data_directory_path = os.path.join(project_dir_path, "data")
 
+    # ------------------------------ #
+    #  VC2016 data directories       #
+    # ------------------------------ #
     vc16_data_directory_path = os.path.join(data_directory_path, "vc-challenge-2016")
     vc16_training_directory_path = os.path.join(vc16_data_directory_path, "vcc2016_training")
     vc16_validation_directory_path = os.path.join(vc16_data_directory_path, "evaluation_all")
     vc16_url_prefix = "https://datashare.is.ed.ac.uk/bitstream/handle/10283/2211/"
     vc16_download_directories = ["vcc2016_training.zip", "evaluation_all.zip"]
 
-    male_1 = "SM1"
-    male_2 = "SM2"
-    female_1 = "SF1"
-    female_2 = "SF2"
-    male_to_female = (male_1, female_1)
-    male_to_male = (male_1, male_2)
-    female_to_male = (female_1, male_1)
-    female_to_female = (female_1, female_2)
+    vc16_male_1 = "SM1"
+    vc16_male_2 = "SM2"
+    vc16_female_1 = "SF1"
+    vc16_female_2 = "SF2"
+
+    # ------------------------------ #
+    #  LibriSpeech data directories  #
+    # ------------------------------ #
+    ls_data_directory_path = os.path.join(data_directory_path, "LibriSpeech")
+    ls_training_directory_path = os.path.join(ls_data_directory_path, "training")
+    ls_validation_directory_path = os.path.join(ls_data_directory_path, "evaluation")
+
+    ls_male_1 = "male"
+    ls_female_1 = "female"
+
+    # ------------------------------ #
+    #  CURRENT DIRECTORIES           #
+    # ------------------------------ #
+    # current_A_training_dir = os.path.join(vc16_training_directory_path, vc16_male_1)
+    # current_B_training_dir = os.path.join(vc16_training_directory_path, vc16_female_1)
+    # current_A_val_dir = os.path.join(vc16_validation_directory_path, vc16_male_1)
+    # current_B_val_dir = os.path.join(vc16_validation_directory_path, vc16_female_1)
+    current_A_training_dir = os.path.join(ls_training_directory_path, ls_male_1)
+    current_B_training_dir = os.path.join(ls_training_directory_path, ls_female_1)
+    current_A_val_dir = os.path.join(ls_validation_directory_path, ls_male_1)
+    current_B_val_dir = os.path.join(ls_validation_directory_path, ls_female_1)
 
     # ------------------------------ #
     #  cache directories             #

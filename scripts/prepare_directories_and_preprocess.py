@@ -86,13 +86,14 @@ def prepare_directories_and_preprocess(data_dir, A_dir, B_dir, storage_dir):
 
 if __name__ == '__main__':
     # ==========================================================
-    A_dir, B_dir = Consts.female_to_male
+    A_dir = Consts.current_A_training_dir
+    B_dir = Consts.current_B_training_dir
     print(f"FROM: {A_dir} TO: {B_dir}")
 
     training_data_dir = Consts.vc16_training_directory_path
-    validation_data_dir = Consts.vc16_validation_directory_path
 
     models_storage_dir = Consts.models_storage_directory_path
 
     print("Preprocessing...")
     prepare_directories_and_preprocess(training_data_dir, A_dir, B_dir, models_storage_dir)
+    print("Done")

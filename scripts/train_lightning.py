@@ -36,17 +36,18 @@ def train_lightning(
 
 
 if __name__ == '__main__':
-    A_dir, B_dir = Consts.female_to_male
+    A_dir = Consts.current_A_training_dir
+    B_dir = Consts.current_B_training_dir
+    A_validation_source_dir = Consts.current_A_val_dir
+    B_validation_source_dir = Consts.current_B_val_dir
     print(f"FROM: {A_dir} TO: {B_dir}")
 
-    validation_data_dir = Consts.vc16_validation_directory_path
     models_storage_dir = Consts.models_storage_directory_path
 
     A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
     B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
 
-    A_validation_source_dir = os.path.join(validation_data_dir, A_dir)
-    B_validation_source_dir = os.path.join(validation_data_dir, B_dir)
+
 
     train_lightning(A_dataset,
                     B_dataset,
