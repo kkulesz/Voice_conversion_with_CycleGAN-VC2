@@ -1,9 +1,10 @@
 venv/
 venv_linux/
 .idea/
-data/
+vc-challenge-2016/
 cache/
 validation/
+sandpit/data/
 *.pth
 GRAPH*.png
 __pycache__/
