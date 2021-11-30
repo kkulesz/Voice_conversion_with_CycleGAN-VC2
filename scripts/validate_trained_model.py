@@ -20,18 +20,17 @@ def print_first_param(model):
 
 
 if __name__ == '__main__':
-    storage_dir = '2021.11.13'
-    project_dir = Consts.project_dir_path
-    cache_dir = os.path.join(project_dir, f'storage\\{storage_dir}\\cache')
-    model_storage_path = os.path.join(project_dir, f'storage\\{storage_dir}')
-    data_src_dir = os.path.join(project_dir, 'data\\vc-challenge-2016\\evaluation_all')
-    input_file_name = '200043.wav'
+    ######################################################################################################
+    trained_models_storage_path = 'E:\\STUDIA\inzynierka\\2_moje_przygotowania\\4.trenowanie\\2.SM1-TM1'
+    val_dir = 'E:\\STUDIA\inzynierka\\2_moje_przygotowania\\3.kod\\moje_repo\\data\\vc-challenge-2016\\evaluation_all'
+    A_val_src_dir = os.path.join(val_dir, 'SM1')
+    B_val_src_dir = os.path.join(val_dir, 'TM1')
+    A_input_file_path = os.path.join(A_val_src_dir, '200005.wav')
+    B_input_file_path = os.path.join(B_val_src_dir, '200005.wav')
+    ######################################################################################################
 
-    (A, B) = Consts.female_to_male
-
-    A_input_file_path = os.path.join(data_src_dir, A, input_file_name)
-    B_input_file_path = os.path.join(data_src_dir, B, input_file_name)
-
+    model_storage_path = os.path.join(trained_models_storage_path, 'models_storage')
+    cache_dir = os.path.join(trained_models_storage_path, 'CACHE')
     validator = Validator(A_cache_dir=os.path.join(cache_dir, 'A'), B_cache_dir=os.path.join(cache_dir, 'B'))
 
     # A2B_gen = Generator()
@@ -52,9 +51,10 @@ if __name__ == '__main__':
 
     B_fake = A2B_gen(A_real.float()).detach()
     A_fake = B2A_gen(B_real.float()).detach()
-    # A_cycle = B2A_gen(B_fake).detach()
-    # B_cycle = A2B_gen(A_fake).detach()
     validator.denormalize_and_save(B_fake, A_ap, A_f0, 'B_fake.wav', is_A=False)
     validator.denormalize_and_save(A_fake, B_ap, B_f0, 'A_fake.wav', is_A=True)
-    # validator.denormalize_and_save(A_cycle, A_ap, A_f0, 'A_cycle.wav', is_A=True)
-    # validator.denormalize_and_save(B_cycle, B_ap, B_f0, 'B_cycle.wav', is_A=False)
+
+    A_cycle = B2A_gen(B_fake).detach()
+    B_cycle = A2B_gen(A_fake).detach()
+    validator.denormalize_and_save(A_cycle, A_ap, A_f0, 'A_cycle.wav', is_A=True)
+    validator.denormalize_and_save(B_cycle, B_ap, B_f0, 'B_cycle.wav', is_A=False)

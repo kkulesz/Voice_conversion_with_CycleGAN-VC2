@@ -1,5 +1,3 @@
-import os
-
 import pytorch_lightning as pl
 
 from consts import Consts
@@ -13,8 +11,7 @@ def train_lightning(
         A_validation_source_dir,
         B_validation_source_dir,
         models_storage_directory,
-        load_model=False,
-        start_from_epoch_number=0
+        start_from_epoch_number
 ):
     trainer = pl.Trainer(fast_dev_run=False,
                          gpus=1,
@@ -47,12 +44,9 @@ if __name__ == '__main__':
     A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
     B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
 
-
-
     train_lightning(A_dataset,
                     B_dataset,
                     A_validation_source_dir,
                     B_validation_source_dir,
                     models_storage_dir,
-                    load_model=False,
                     start_from_epoch_number=0)

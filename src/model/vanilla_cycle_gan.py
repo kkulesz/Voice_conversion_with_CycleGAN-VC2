@@ -1,7 +1,6 @@
 import os
 import torch
 import wandb
-from typing import Optional
 from torch.utils.data import DataLoader
 
 from consts import Consts
@@ -29,7 +28,7 @@ class VanillaCycleGan:
                  A_cache_dir,
                  B_cache_dir,
                  save_models_dir: str,
-                 load_models_dir: Optional[str],
+                 load_models_dir: str,
                  start_from_epoch_number: int):
 
         # ------------------------------ #
@@ -123,8 +122,8 @@ class VanillaCycleGan:
         # ------------------------------ #
         self.models_saving_epoch_frequency = Consts.models_saving_epoch_frequency
         self.save_models_directory = save_models_dir
-        self.load_models_directory = load_models_dir
-        if self.load_models_directory:
+        if self.start_from_epoch_number > 0:
+            self.load_models_directory = load_models_dir
             self._load_models()
 
     def train(self):

@@ -3,7 +3,6 @@ import torch
 import numpy as np
 from torch.utils.data import Dataset
 
-from src.data_processing.validator import Validator
 
 class PreprocessedDataset(Dataset):
     def __init__(self, A_dataset, B_dataset, number_of_frames):
@@ -11,6 +10,8 @@ class PreprocessedDataset(Dataset):
         self.B_dataset = B_dataset
         self.length = min(len(self.A_dataset), len(self.B_dataset))
         self.number_of_frames = number_of_frames
+
+        print(f"SIZE OF DATASET = {self.length}")
 
     def __len__(self):
         return self.length

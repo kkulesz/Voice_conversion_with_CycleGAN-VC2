@@ -9,14 +9,10 @@ def train_vanilla(A_dataset,
                   B_dataset,
                   A_validation_src_directory,
                   B_validation_src_directory,
-                  models_storage_directory,
-                  load_model,
+                  save_model_directory,
+                  load_model_directory,
                   start_from_epoch_number
                   ):
-    if load_model:
-        load_dir = models_storage_directory
-    else:
-        load_dir = None
 
     trainer = VanillaCycleGan(
         A_dataset=A_dataset,
@@ -27,8 +23,8 @@ def train_vanilla(A_dataset,
         B2A_validation_output_dir=Consts.B2A_validation_output_directory_path,
         A_cache_dir=Consts.A_cache_directory_path,
         B_cache_dir=Consts.B_cache_directory_path,
-        save_models_dir=models_storage_directory,
-        load_models_dir=load_dir,
+        save_models_dir=save_model_directory,
+        load_models_dir=load_model_directory,
         start_from_epoch_number=start_from_epoch_number
     )
 
@@ -44,7 +40,6 @@ if __name__ == '__main__':
     print(f"VALIDATING FROM: {A_validation_source_dir} TO: {B_validation_source_dir}")
     ###########################################################
     models_storage_dir = Consts.models_storage_directory_path
-    load_model = False
     start_from_epoch_number = 0
     ###########################################################
 
@@ -55,6 +50,6 @@ if __name__ == '__main__':
                       B_dataset,
                       A_validation_source_dir,
                       B_validation_source_dir,
-                      models_storage_dir,
-                      load_model=load_model,
+                      save_model_directory=models_storage_dir,
+                      load_model_directory=models_storage_dir,
                       start_from_epoch_number=start_from_epoch_number)
