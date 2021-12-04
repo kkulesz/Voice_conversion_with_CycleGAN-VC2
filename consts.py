@@ -96,7 +96,8 @@ class Consts:
     A2B_validation_output_directory_path = os.path.join(validation_output_directory, A2B_validation_output_directory_name)
     B2A_validation_output_directory_path = os.path.join(validation_output_directory, B2A_validation_output_directory_name)
     dump_validation_file_epoch_frequency = 500
-    print_losses_iteration_frequency = 100
+    log_training_losses_iteration_frequency = 100
+    log_validation_losses_iteration_frequency = 1000
 
     # ------------------------------ #
     #  model storage                 #

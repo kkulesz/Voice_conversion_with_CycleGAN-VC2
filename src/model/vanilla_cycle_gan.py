@@ -2,6 +2,7 @@ import os
 import torch
 import wandb
 from torch.utils.data import DataLoader
+from datetime import date
 
 from consts import Consts
 from src.utils.files_operator import FilesOperator
@@ -97,18 +98,23 @@ class VanillaCycleGan:
         self.A2B_validation_output_dir = A2B_validation_output_dir
         self.B2A_validation_output_dir = B2A_validation_output_dir
         self.dump_validation_file_epoch_frequency = Consts.dump_validation_file_epoch_frequency
-        self.print_losses_iteration_frequency = Consts.print_losses_iteration_frequency
+
+        self.log_training_losses_iteration_frequency = Consts.log_training_losses_iteration_frequency
+        self.log_validation_losses_iteration_frequency = Consts.log_validation_losses_iteration_frequency
+        self.A_val_signal, self.B_val_signal = self._prepare_validation_data()
+
         self.log_file_name = Consts.log_file_path
-        self._log_message('\n\n---------\nNEXT RUN\n---------\n')
+        self._log_message(f'\n\n---------\nNEW RUN {str(date.today())}\n---------\n')
+
         # ------------------------------ #
         #  weightAndBiases boilerplate   #
         # ------------------------------ #
         wandb.login()
-        wandb.init(project='cycleGan-test-run')
-        wandb.watch(models=self.B2A_gen,
+        wandb.init(project='cycle-gan-vc-2', entity="kk-inz")
+        wandb.watch(models=self.A2B_gen,
                     criterion=None,
                     log="all",
-                    log_freq=10)
+                    log_freq=100)
         # wandb.watch(models=self.A_disc,
         #             criterion=None,
         #             log="all",
@@ -133,7 +139,7 @@ class VanillaCycleGan:
 
             if (epoch_num + 1) % self.dump_validation_file_epoch_frequency == 0:
                 print(f"Dumping validation files after epoch {epoch_num + 1}... ", end='')
-                self._validate(epoch_num + 1)
+                self._dump_validation_files(epoch_num + 1)
                 print("Done")
 
             if (epoch_num + 1) % self.models_saving_epoch_frequency == 0:
@@ -194,7 +200,7 @@ class VanillaCycleGan:
             cycle_B = self.A2B_gen(fake_A)
             cycle_loss_A = self._cycle_loss(real_A, cycle_A)
             cycle_loss_B = self._cycle_loss(real_B, cycle_B)
-            cycle_loss = self.cycle_loss_lambda * (cycle_loss_A + cycle_loss_B)
+            cycle_loss = cycle_loss_A + cycle_loss_B
 
             if self.identity_loss_lambda == 0:  # do not compute for nothing
                 identity_loss = torch.zeros_like(cycle_loss)
@@ -203,18 +209,26 @@ class VanillaCycleGan:
                 identity_B = self.A2B_gen(real_B)
                 identity_loss_A = self._identity_loss(real_A, identity_A)
                 identity_loss_B = self._identity_loss(real_B, identity_B)
-                identity_loss = self.identity_loss_lambda * (identity_loss_A + identity_loss_B)
+                identity_loss = identity_loss_A + identity_loss_B
 
-            g_loss = gen_adversarial_loss + cycle_loss + identity_loss
+            g_loss = gen_adversarial_loss + \
+                     self.cycle_loss_lambda * cycle_loss + \
+                     self.identity_loss_lambda * identity_loss
 
             self.gen_optimizer.zero_grad()
             g_loss.backward()
             self.gen_optimizer.step()
 
             # ------------------------------ #
+            #  validation                    #
+            # ------------------------------ #
+            if iteration % self.log_validation_losses_iteration_frequency == 0:
+                self._validate(iteration)
+
+            # ------------------------------ #
             #  analytics                     #
             # ------------------------------ #
-            self._analytics(
+            self._training_analytics(
                 iteration=iteration,
                 g_loss=g_loss,
                 d_loss=d_loss,
@@ -276,20 +290,20 @@ class VanillaCycleGan:
     def _identity_loss(real, identity):
         return torch.mean(torch.abs(real - identity))
 
-    def _validate(self, epoch):
-        self._validate_single_generator(epoch=epoch,
-                                        generator=self.A2B_gen,
-                                        validation_directory=self.A_validation_source_dir,
-                                        output_dir=self.A2B_validation_output_dir,
-                                        is_A2B=True)
+    def _dump_validation_files(self, epoch):
+        self._dump_validation_files_single_generator(epoch=epoch,
+                                                     generator=self.A2B_gen,
+                                                     validation_directory=self.A_validation_source_dir,
+                                                     output_dir=self.A2B_validation_output_dir,
+                                                     is_A2B=True)
 
-        self._validate_single_generator(epoch=epoch,
-                                        generator=self.B2A_gen,
-                                        validation_directory=self.B_validation_source_dir,
-                                        output_dir=self.B2A_validation_output_dir,
-                                        is_A2B=False)
+        self._dump_validation_files_single_generator(epoch=epoch,
+                                                     generator=self.B2A_gen,
+                                                     validation_directory=self.B_validation_source_dir,
+                                                     output_dir=self.B2A_validation_output_dir,
+                                                     is_A2B=False)
 
-    def _validate_single_generator(self, epoch, generator, validation_directory, output_dir, is_A2B):
+    def _dump_validation_files_single_generator(self, epoch, generator, validation_directory, output_dir, is_A2B):
         epoch_output_dir = os.path.join(output_dir, str(epoch))
         os.mkdir(epoch_output_dir)
         for file in os.listdir(validation_directory):
@@ -322,6 +336,32 @@ class VanillaCycleGan:
         #     save_path)
         # wandb.save(file)
 
+    def _validate(self, iteration):
+        with torch.no_grad():
+            A_real = self.A_val_signal
+            B_real = self.B_val_signal
+
+            B_fake = self.A2B_gen(A_real)
+            A_fake = self.B2A_gen(B_real)
+
+            A_cycle = self.B2A_gen(B_fake)
+            B_cycle = self.A2B_gen(A_fake)
+
+            A_identity = self.B2A_gen(A_real)
+            B_identity = self.A2B_gen(B_real)
+
+            cycle_loss_A = self._cycle_loss(A_real, A_cycle)
+            cycle_loss_B = self._cycle_loss(B_real, B_cycle)
+            identity_loss_A = self._identity_loss(A_real, A_identity)
+            identity_loss_B = self._identity_loss(B_real, B_identity)
+
+            self._print_and_log_validation_losses(iteration=iteration,
+                                                  A_cycle_loss=cycle_loss_A,
+                                                  B_cycle_loss=cycle_loss_B,
+                                                  A_identity_loss=identity_loss_A,
+                                                  B_identity_loss=identity_loss_B
+                                                  )
+
     def _load_models(self):
         load_dir = self.load_models_directory
         self.A2B_gen.load_state_dict(FilesOperator.load_model(load_dir, Consts.A2B_generator_file_name))
@@ -345,26 +385,25 @@ class VanillaCycleGan:
         if iteration > self.start_decay_after:
             self._adjust_lr()
 
-    def _analytics(self, iteration, g_loss, d_loss, cycle_loss, identity_loss,
-                   A2B_loss=torch.tensor(0), B2A_loss=torch.tensor(0),
-                   d_A_loss=torch.tensor(0), d_B_loss=torch.tensor(0)):
-        if iteration % self.print_losses_iteration_frequency == 0:
-            self._print_losses_and_log(iteration=iteration,
-                                       generator_loss=g_loss,
-                                       discriminator_loss=d_loss,
-                                       cycle_loss=cycle_loss,
-                                       identity_loss=identity_loss,
-                                       A2B_loss=A2B_loss,
-                                       B2A_loss=B2A_loss,
-                                       d_A_loss=d_A_loss,
-                                       d_B_loss=d_B_loss)
-        if iteration % (10 * self.print_losses_iteration_frequency) == 0:
-            self._print_params()
+    def _training_analytics(self, iteration, g_loss, d_loss, cycle_loss, identity_loss,
+                            A2B_loss=torch.tensor(0), B2A_loss=torch.tensor(0),
+                            d_A_loss=torch.tensor(0), d_B_loss=torch.tensor(0)):
+        if iteration % self.log_training_losses_iteration_frequency == 0:
+            self._print_and_log_training_losses(iteration=iteration,
+                                                generator_loss=g_loss,
+                                                discriminator_loss=d_loss,
+                                                cycle_loss=cycle_loss,
+                                                identity_loss=identity_loss,
+                                                A2B_loss=A2B_loss,
+                                                B2A_loss=B2A_loss,
+                                                d_A_loss=d_A_loss,
+                                                d_B_loss=d_B_loss)
+
         self.gen_loss_store.append(g_loss.cpu().detach().item())
         self.disc_loss_store.append(d_loss.cpu().detach().item())
 
-    def _print_losses_and_log(self, iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss,
-                              A2B_loss, B2A_loss, d_A_loss, d_B_loss):
+    def _print_and_log_training_losses(self, iteration, generator_loss, discriminator_loss, cycle_loss, identity_loss,
+                                       A2B_loss, B2A_loss, d_A_loss, d_B_loss):
         losses_str = f"{iteration:>5}: \n" + \
                      f"\tG_loss: {generator_loss.item():.4f}\n" + \
                      f"\tD_loss: {discriminator_loss.item():.4f}\n" + \
@@ -390,11 +429,39 @@ class VanillaCycleGan:
              }, step=iteration
         )
 
-    def _print_params(self):
-        params_str = f"gen_lr: {self.gen_lr}, disc_lr:{self.disc_lr}, id_loss_lambda: {self.identity_loss_lambda}"
-        print(params_str)
+    def _print_and_log_validation_losses(self, iteration, A_cycle_loss, B_cycle_loss, A_identity_loss, B_identity_loss):
+        losses_str = f"VALIDATION  {iteration:>5}: \n" + \
+                     f"\tA_cycle_loss: {A_cycle_loss.item():.4f}\n" + \
+                     f"\tB_cycle_loss: {B_cycle_loss.item():.4f}\n" + \
+                     f"\tA_identity_loss: {A_identity_loss.item():.4f}\n" + \
+                     f"\tB_identity_loss:{B_identity_loss.item():.4f}\n"
+        losses_str = losses_str.replace("\n", "")
+        print(losses_str)
+        self._log_message(losses_str + '\n')
+        wandb.log(
+            {'val_A_cycle_loss': A_cycle_loss,
+             'val_B_cycle_loss': B_cycle_loss,
+             'val_A_identity_loss': A_identity_loss,
+             'val_B_identity_loss': B_identity_loss
+             }, step=iteration
+        )
 
     def _log_message(self, msg):
         f = open(self.log_file_name, "a")
         f.write(msg)
         f.close()
+
+    def _prepare_validation_data(self):
+        A_val_dir = self.A_validation_source_dir
+        B_val_dir = self.B_validation_source_dir
+
+        A_val_file = os.listdir(A_val_dir)[0]
+        B_val_file = os.listdir(B_val_dir)[0]
+
+        A_val_file_path = os.path.join(A_val_dir, A_val_file)
+        B_val_file_path = os.path.join(B_val_dir, B_val_file)
+
+        A_val_input, _ = self.validator.load_and_normalize(A_val_file_path, is_A=True)
+        B_val_input, _ = self.validator.load_and_normalize(B_val_file_path, is_A=False)
+
+        return A_val_input.to(self.device).float(), B_val_input.to(self.device).float()
