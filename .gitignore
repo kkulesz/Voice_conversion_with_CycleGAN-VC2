@@ -1,16 +1,9 @@
 venv/
-venv_linux/
 .idea/
-vc-challenge-2016/
 cache/
 validation/
-sandpit/data/
 *.pth
-GRAPH*.png
 __pycache__/
-sandpit/output/
 src/data_processing/*.wav
-storage/**/output/
-*.onnx
 TITANV_STORAGE/
 wandb/
