@@ -36,6 +36,7 @@ class VanillaCycleGan:
         # ------------------------------ #
         #  dataloader                    #
         # ------------------------------ #
+        self.batch_size = Consts.mini_batch_size
         self.number_of_frames = Consts.number_of_frames
         self.dataset = self._prepare_dataset(A_dataset, B_dataset, self.number_of_frames)
         self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
@@ -48,7 +49,6 @@ class VanillaCycleGan:
         self.number_of_epochs = self._count_desired_epoch_number(
                 Consts.number_of_iterations,
                 self.number_of_samples_in_dataset)
-        self.batch_size = Consts.mini_batch_size
         self.cycle_loss_lambda = Consts.cycle_loss_lambda
         self.identity_loss_lambda = Consts.identity_loss_lambda
         self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
