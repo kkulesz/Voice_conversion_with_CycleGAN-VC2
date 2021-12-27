@@ -1,4 +1,5 @@
 import os
+import math
 import torch
 import wandb
 from torch.utils.data import DataLoader
@@ -33,24 +34,26 @@ class VanillaCycleGan:
                  start_from_epoch_number: int):
 
         # ------------------------------ #
-        #  hyper parameters              #
-        # ------------------------------ #
-        self.start_from_epoch_number = start_from_epoch_number
-        self.number_of_epochs = Consts.number_of_epochs
-        self.batch_size = Consts.mini_batch_size
-        self.cycle_loss_lambda = Consts.cycle_loss_lambda
-        self.identity_loss_lambda = Consts.identity_loss_lambda
-        self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
-        self.start_decay_after = Consts.start_decay_after
-        self.device = Utils.get_device()
-
-        # ------------------------------ #
         #  dataloader                    #
         # ------------------------------ #
         self.number_of_frames = Consts.number_of_frames
         self.dataset = self._prepare_dataset(A_dataset, B_dataset, self.number_of_frames)
         self.dataloader = self._prepare_dataloader(self.dataset, self.batch_size)
         self.number_of_samples_in_dataset = len(self.dataset)
+
+        # ------------------------------ #
+        #  hyper parameters              #
+        # ------------------------------ #
+        self.start_from_epoch_number = start_from_epoch_number
+        self.number_of_epochs = self._count_desired_epoch_number(
+                Consts.number_of_iterations,
+                self.number_of_samples_in_dataset)
+        self.batch_size = Consts.mini_batch_size
+        self.cycle_loss_lambda = Consts.cycle_loss_lambda
+        self.identity_loss_lambda = Consts.identity_loss_lambda
+        self.zero_identity_lambda_loss_after = Consts.zero_identity_loss_lambda_after
+        self.start_decay_after = Consts.start_decay_after
+        self.device = Utils.get_device()
 
         # ------------------------------ #
         #  generators and discriminators #
@@ -450,6 +453,13 @@ class VanillaCycleGan:
         f = open(self.log_file_name, "a")
         f.write(msg)
         f.close()
+
+    @staticmethod
+    def _count_desired_epoch_number(iterations, dataset_size):
+        """
+        Round up number of epochs to next hundred so it's easier to read for human
+        """
+        return int(math.ceil(iterations/dataset_size / 100.0)) * 100
 
     def _prepare_validation_data(self):
         A_val_dir = self.A_validation_source_dir

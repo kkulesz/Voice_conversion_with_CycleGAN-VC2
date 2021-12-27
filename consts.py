@@ -20,15 +20,20 @@ class Consts:
     mini_batch_size = 1
     generator_lr = 0.0002
     discriminator_lr = 0.0001
-    generator_lr_decay = generator_lr / 200000
-    discriminator_lr_decay = discriminator_lr / 200000
     start_decay_after = 200000
+    generator_lr_decay = generator_lr / start_decay_after
+    discriminator_lr_decay = discriminator_lr / start_decay_after
     adam_optimizer_betas = (0.5, 0.999)
     cycle_loss_lambda = 10
     identity_loss_lambda = 5
     zero_identity_loss_lambda_after = 10000
-    number_of_epochs = 5000
-
+    """
+    In paper it is written:
+        We kept the same learning rate for the first 2×10^5 iterations and 
+        linearly decay over the next 2 × 10^5 iterations.
+    So, we set number of iterations instead of epochs.
+    """
+    number_of_iterations = start_decay_after * 2
     # ------------------------------ #
     #  FILES AND DIRECTORIES         #
     # ------------------------------ #
