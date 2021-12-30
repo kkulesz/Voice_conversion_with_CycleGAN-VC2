@@ -3,6 +3,7 @@ import numpy as np
 from consts import Consts
 from src.model.vanilla_cycle_gan import VanillaCycleGan
 from src.utils.files_operator import FilesOperator
+from src.utils.utils import Utils
 
 
 def train_vanilla(A_dataset,
@@ -42,6 +43,7 @@ if __name__ == '__main__':
     models_storage_dir = Consts.models_storage_directory_path
     start_from_epoch_number = 0
     ###########################################################
+    Utils.seed_torch()
 
     A_dataset = FilesOperator.load_pickle_file(Consts.A_preprocessed_dataset_file_path)
     B_dataset = FilesOperator.load_pickle_file(Consts.B_preprocessed_dataset_file_path)
