@@ -70,14 +70,14 @@ class Consts:
     # ------------------------------ #
     #  CURRENT DIRECTORIES           #
     # ------------------------------ #
-    # current_A_training_dir = os.path.join(vc16_training_directory_path, vc16_male_1)
-    # current_B_training_dir = os.path.join(vc16_training_directory_path, vc16_female_1)
-    # current_A_val_dir = os.path.join(vc16_validation_directory_path, vc16_male_1)
-    # current_B_val_dir = os.path.join(vc16_validation_directory_path, vc16_female_1)
-    current_A_training_dir = os.path.join(ls_training_directory_path, ls_male_1)
-    current_B_training_dir = os.path.join(ls_training_directory_path, ls_female_1)
-    current_A_val_dir = os.path.join(ls_validation_directory_path, ls_male_1)
-    current_B_val_dir = os.path.join(ls_validation_directory_path, ls_female_1)
+    current_A_training_dir = os.path.join(vc16_training_directory_path, vc16_male_1)
+    current_B_training_dir = os.path.join(vc16_training_directory_path, vc16_male_2)
+    current_A_val_dir = os.path.join(vc16_validation_directory_path, vc16_male_1)
+    current_B_val_dir = os.path.join(vc16_validation_directory_path, vc16_male_2)
+    # current_A_training_dir = os.path.join(ls_training_directory_path, ls_male_1)
+    # current_B_training_dir = os.path.join(ls_training_directory_path, ls_female_1)
+    # current_A_val_dir = os.path.join(ls_validation_directory_path, ls_male_1)
+    # current_B_val_dir = os.path.join(ls_validation_directory_path, ls_female_1)
 
     # ------------------------------ #
     #  cache directories             #
