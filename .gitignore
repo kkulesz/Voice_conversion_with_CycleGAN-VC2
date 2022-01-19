@@ -7,3 +7,4 @@ __pycache__/
 src/data_processing/*.wav
 TITANV_STORAGE/
 wandb/
+log_file.txt
